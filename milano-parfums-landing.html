@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milano Parfums — Fragancias de inspiración italiana</title>
+<meta name="description" content="Milano Parfums — Fragancias inspiradas en las casas más codiciadas del mundo, con carácter propio. Envíos a todo el Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15120F;
+  --ink-soft:#241F1A;
+  --cream:#F7F2E9;
+  --cream-deep:#EFE6D6;
+  --gold:#B8924B;
+  --gold-light:#E4C988;
+  --wine:#6E1423;
+  --sage:#5C6B54;
+  --text-dark:#211C16;
+  --text-light:#F3ECDD;
+  --text-mute:#8B8378;
+  --radius:2px;
+  --maxw:1320px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);
+  color:var(--text-dark);
+  font-family:'Manrope',sans-serif;
+  font-weight:400;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;letter-spacing:.2px;color:var(--ink);}
+.eyebrow{
+  font-family:'Archivo',sans-serif;
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--gold);display:inline-block;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important;}}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  background:var(--ink);
+  color:var(--text-light);
+  text-align:center;
+  font-family:'Archivo',sans-serif;
+  font-size:12px;
+  letter-spacing:.06em;
+  padding:9px 16px;
+  position:relative;
+  overflow:hidden;
+}
+.topbar b{color:var(--gold-light);font-weight:600;}
+
+/* ---------- HEADER ---------- */
+header.site{
+  position:sticky;top:0;z-index:60;
+  background:rgba(247,242,233,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(21,18,15,.08);
+  transition:box-shadow .3s;
+}
+header.site.scrolled{box-shadow:0 6px 24px rgba(21,18,15,.07);}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:24px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.crest{width:34px;height:34px;flex:none;}
+.logo-text{font-family:'Fraunces',serif;font-size:21px;letter-spacing:.05em;font-weight:500;color:var(--ink);}
+.logo-text span{color:var(--gold);}
+nav.main{display:flex;gap:34px;align-items:center;}
+nav.main .navlink{
+  position:relative;
+  font-family:'Archivo',sans-serif;
+  font-size:12.5px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--text-dark);
+  padding:6px 0;
+  cursor:pointer;
+}
+nav.main .navlink::after{
+  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);
+  transition:width .25s ease;
+}
+nav.main .navlink:hover::after{width:100%;}
+.has-drop{display:flex;flex-direction:column;}
+.dropdown{
+  position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);
+  background:var(--cream);border:1px solid rgba(21,18,15,.1);
+  padding:18px;display:flex;gap:14px;min-width:280px;
+  opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;
+  box-shadow:0 18px 40px rgba(21,18,15,.12);
+}
+.has-drop:hover .dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+.dropdown a{
+  font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;
+  font-weight:600;color:var(--text-dark);padding:7px 10px;white-space:nowrap;
+}
+.dropdown a:hover{color:var(--gold);}
+.icons{display:flex;align-items:center;gap:18px;}
+.icon-btn{width:20px;height:20px;cursor:pointer;background:none;border:none;color:var(--ink);}
+.icon-btn svg{width:100%;height:100%;}
+.cart-count{
+  font-family:'Archivo',sans-serif;font-size:10px;background:var(--wine);color:#fff;
+  border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;
+  position:relative;top:-9px;left:-7px;
+}
+.burger{display:none;background:none;border:none;width:24px;height:18px;position:relative;cursor:pointer;}
+.burger span{position:absolute;left:0;width:100%;height:1.5px;background:var(--ink);transition:.3s;}
+.burger span:nth-child(1){top:0;} .burger span:nth-child(2){top:8px;} .burger span:nth-child(3){top:16px;}
+
+@media(max-width:920px){
+  nav.main{display:none;}
+  .burger{display:block;}
+}
+
+/* mobile drawer */
+.mobile-nav{
+  position:fixed;inset:0;background:var(--ink);color:var(--text-light);z-index:80;
+  transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;padding:90px 36px 36px;
+}
+.mobile-nav.open{transform:translateX(0);}
+.mobile-nav a{font-family:'Fraunces',serif;font-size:24px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.mobile-close{position:absolute;top:26px;right:28px;background:none;border:none;color:var(--text-light);font-size:28px;cursor:pointer;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:92vh;display:flex;align-items:center;
+  background:radial-gradient(ellipse 80% 60% at 70% 20%, #2b231c 0%, var(--ink) 55%, #0b0a08 100%);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(115deg, rgba(184,146,75,.05) 0px, rgba(184,146,75,.05) 1px, transparent 1px, transparent 90px);
+  pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;width:100%;position:relative;z-index:2;}
+.hero-copy .eyebrow{color:var(--gold-light);}
+.hero-copy .eyebrow::before{background:var(--gold-light);}
+.hero h1{
+  color:var(--text-light);font-size:clamp(42px,6vw,74px);line-height:1.04;margin:22px 0 26px;
+  font-weight:500;
+}
+.hero h1 em{font-style:italic;color:var(--gold-light);font-weight:500;}
+.hero p.lead{color:#CFC6B4;font-size:17px;max-width:430px;margin-bottom:34px;}
+.btn{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Archivo',sans-serif;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  padding:17px 30px;border:1px solid var(--gold);color:var(--gold-light);background:transparent;cursor:pointer;
+  transition:background .25s, color .25s;
+}
+.btn:hover{background:var(--gold);color:var(--ink);}
+.btn.solid{background:var(--gold);color:var(--ink);}
+.btn.solid:hover{background:var(--gold-light);}
+.btn.dark{border-color:var(--ink);color:var(--ink);}
+.btn.dark:hover{background:var(--ink);color:var(--text-light);}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;height:540px;}
+.thread{
+  position:absolute;top:-40px;bottom:-40px;left:50%;width:1px;
+  background:linear-gradient(to bottom, transparent, var(--gold) 18%, var(--gold) 82%, transparent);
+  opacity:.55;
+}
+.scroll-cue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;color:#9C9384;
+  font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+}
+.scroll-cue .line{width:1px;height:30px;background:linear-gradient(to bottom,var(--gold),transparent);animation:cue 2s infinite;}
+@keyframes cue{0%{opacity:0;transform:scaleY(0);}50%{opacity:1;transform:scaleY(1);}100%{opacity:0;transform:scaleY(1);}}
+
+/* ---------- BOTTLE SVG (signature illustration system) ---------- */
+.bottle{display:block;}
+.bottle .liquid{transition:transform .6s ease;}
+.card:hover .bottle .liquid{transform:translateY(-3px);}
+
+/* ---------- TICKER ---------- */
+.ticker-wrap{background:var(--cream-deep);border-top:1px solid rgba(21,18,15,.08);border-bottom:1px solid rgba(21,18,15,.08);overflow:hidden;padding:16px 0;}
+.ticker{display:flex;width:max-content;animation:ticker 32s linear infinite;}
+.ticker span{
+  font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);
+  padding:0 30px;border-right:1px solid rgba(21,18,15,.15);white-space:nowrap;font-weight:600;
+}
+.ticker span b{color:var(--ink);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ---------- SECTION GENERIC ---------- */
+.section{padding:96px 0;position:relative;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap;}
+.section-head h2{font-size:clamp(30px,4vw,44px);margin-top:14px;}
+.section-head p.sub{color:var(--text-mute);font-size:14px;margin-top:8px;max-width:380px;}
+.view-all{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:4px;white-space:nowrap;}
+
+/* ---------- CAROUSEL ---------- */
+.carousel{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;-ms-overflow-style:none;scrollbar-width:none;}
+.carousel::-webkit-scrollbar{display:none;}
+.card{
+  flex:0 0 270px;scroll-snap-align:start;background:#fff;border:1px solid rgba(21,18,15,.08);
+  display:flex;flex-direction:column;transition:transform .3s, box-shadow .3s;position:relative;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(21,18,15,.1);}
+.card-media{height:230px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.tag{
+  position:absolute;top:12px;left:12px;font-family:'Archivo',sans-serif;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:700;background:var(--ink);color:var(--text-light);padding:5px 9px;
+}
+.wishlist-btn{
+  position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(247,242,233,.9);
+  display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;
+}
+.wishlist-btn svg{width:14px;height:14px;}
+.card-body{padding:18px 18px 22px;border-top:1px solid rgba(21,18,15,.06);}
+.card-house{font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px;}
+.card-name{font-family:'Fraunces',serif;font-size:19px;margin-bottom:6px;}
+.card-note{font-size:12.5px;color:var(--text-mute);margin-bottom:14px;}
+.card-foot{display:flex;justify-content:space-between;align-items:center;}
+.price{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;}
+.price small{display:block;font-family:'Manrope',sans-serif;font-weight:400;font-size:10px;color:var(--text-mute);text-transform:none;letter-spacing:0;}
+.add-btn{
+  font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+  border:1px solid var(--ink);background:none;padding:8px 12px;cursor:pointer;transition:.25s;
+}
+.add-btn:hover{background:var(--ink);color:var(--text-light);}
+
+/* ---------- GENDER GRID ---------- */
+.gender-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.gender-card{
+  position:relative;height:440px;overflow:hidden;display:flex;align-items:flex-end;
+  background:linear-gradient(160deg,#272019,#100D0A);
+}
+.gender-card .gcard-bg{position:absolute;inset:0;opacity:.9;}
+.gender-card .overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(10,9,7,.92) 5%, rgba(10,9,7,0) 60%);}
+.gender-card .gc-content{position:relative;z-index:2;padding:28px;width:100%;}
+.gender-card h3{color:var(--text-light);font-size:26px;letter-spacing:.08em;margin-bottom:10px;text-transform:uppercase;}
+.gender-card a.glink{
+  font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--gold-light);display:inline-flex;align-items:center;gap:8px;
+}
+@media(max-width:880px){.gender-grid{grid-template-columns:1fr;}.gender-card{height:280px;}}
+
+/* ---------- ABOUT / FEATURES ---------- */
+.about-feature{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:90px;}
+.about-feature:nth-child(even){direction:rtl;}
+.about-feature:nth-child(even) > *{direction:ltr;}
+.about-feature .num{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--gold);margin-bottom:14px;}
+.about-feature h3{font-size:30px;margin-bottom:16px;}
+.about-feature p{color:#5b5448;max-width:430px;}
+.feature-visual{height:340px;position:relative;display:flex;align-items:center;justify-content:center;background:var(--cream-deep);border:1px solid rgba(21,18,15,.08);}
+.disclaimer-box{
+  background:var(--ink);color:var(--text-light);padding:34px;border:1px solid rgba(184,146,75,.4);
+}
+.disclaimer-box h3{color:var(--text-light);}
+.disclaimer-box p{color:#C9C0AE;}
+@media(max-width:880px){.about-feature,.about-feature:nth-child(even){grid-template-columns:1fr;direction:ltr;}.about-feature{gap:30px;margin-bottom:60px;}}
+
+/* ---------- TRUST BAR ---------- */
+.trust-bar{background:var(--ink);padding:54px 0;}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+.trust-item{display:flex;gap:16px;align-items:flex-start;color:var(--text-light);}
+.trust-item .ic{width:30px;height:30px;flex:none;color:var(--gold-light);}
+.trust-item h4{color:var(--text-light);font-size:15px;margin-bottom:4px;}
+.trust-item p{font-size:12.5px;color:#A99F8C;}
+@media(max-width:880px){.trust-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.trust-grid{grid-template-columns:1fr;}}
+
+/* ---------- TESTIMONIALS ---------- */
+.testi-wrap{position:relative;max-width:760px;margin:0 auto;text-align:center;}
+.testi-slide{display:none;}
+.testi-slide.active{display:block;animation:fadein .5s;}
+@keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.stars{color:var(--gold);font-size:15px;letter-spacing:3px;margin-bottom:18px;}
+.testi-slide p.quote{font-family:'Fraunces',serif;font-size:23px;font-style:italic;line-height:1.45;color:var(--ink);margin-bottom:22px;}
+.testi-name{font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
+.testi-meta{font-size:11.5px;color:var(--text-mute);margin-top:2px;}
+.testi-dots{display:flex;justify-content:center;gap:9px;margin-top:34px;}
+.testi-dots button{width:7px;height:7px;border-radius:50%;border:none;background:rgba(21,18,15,.22);cursor:pointer;padding:0;}
+.testi-dots button.active{background:var(--gold);width:22px;border-radius:4px;transition:.3s;}
+
+/* ---------- CTA / NEWSLETTER ---------- */
+.cta-band{
+  background:linear-gradient(120deg,#241C14,#0E0D0C 60%);position:relative;overflow:hidden;padding:90px 0;
+  text-align:center;
+}
+.cta-band h2{color:var(--text-light);font-size:clamp(28px,4vw,46px);max-width:680px;margin:18px auto 30px;}
+.cta-band .eyebrow{color:var(--gold-light);justify-content:center;}
+.cta-band .eyebrow::before{display:none;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+/* ---------- FOOTER ---------- */
+footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.08);}
+.footer-grid h5{font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px;font-weight:700;}
+.footer-grid ul{list-style:none;}
+.footer-grid li{margin-bottom:11px;font-size:13.5px;}
+.footer-grid a:hover{color:var(--gold-light);}
+.foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.foot-logo .logo-text{color:var(--text-light);}
+.foot-desc{font-size:13.5px;max-width:300px;margin-bottom:22px;}
+.foot-social{display:flex;gap:14px;}
+.foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.foot-social svg{width:14px;height:14px;}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-size:12px;flex-wrap:wrap;gap:14px;}
+.pay-icons{display:flex;gap:10px;}
+.pay-icons span{
+  font-family:'Archivo',sans-serif;font-size:9.5px;border:1px solid rgba(255,255,255,.2);padding:5px 9px;letter-spacing:.05em;
+}
+@media(max-width:880px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+
+/* ---------- CART DRAWER ---------- */
+.cart-overlay{position:fixed;inset:0;background:rgba(21,18,15,.5);z-index:90;opacity:0;pointer-events:none;transition:opacity .3s;}
+.cart-overlay.open{opacity:1;pointer-events:auto;}
+.cart-drawer{
+  position:fixed;top:0;right:0;height:100%;width:min(400px,92vw);background:var(--cream);z-index:95;
+  transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.2);
+}
+.cart-drawer.open{transform:translateX(0);}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid rgba(21,18,15,.1);}
+.cart-head h3{font-size:20px;}
+.cart-head button{background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);}
+.cart-items{flex:1;overflow-y:auto;padding:18px 24px;}
+.cart-empty{text-align:center;color:var(--text-mute);padding:60px 10px;font-size:13.5px;}
+.cart-line{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(21,18,15,.07);}
+.cart-line .swatch{width:40px;height:56px;border-radius:2px;flex:none;background:linear-gradient(160deg,#16140F,#2a261f);border:1px solid var(--gold);}
+.cart-line .ci-info{flex:1;}
+.cart-line .ci-info .ci-name{font-family:'Fraunces',serif;font-size:14.5px;}
+.cart-line .ci-info .ci-price{font-size:12px;color:var(--text-mute);}
+.qty-ctrl{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.qty-ctrl button{width:22px;height:22px;border:1px solid var(--ink);background:none;cursor:pointer;font-size:13px;line-height:1;}
+.qty-ctrl span{font-family:'Archivo',sans-serif;font-size:12px;min-width:14px;text-align:center;}
+.remove-line{background:none;border:none;color:var(--wine);font-size:11px;cursor:pointer;font-family:'Archivo',sans-serif;letter-spacing:.05em;text-transform:uppercase;margin-top:6px;}
+.cart-foot{padding:20px 24px 26px;border-top:1px solid rgba(21,18,15,.1);}
+.cart-total{display:flex;justify-content:space-between;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;margin-bottom:16px;}
+.cart-foot .btn{width:100%;justify-content:center;}
+.cart-note{font-size:11px;color:var(--text-mute);text-align:center;margin-top:10px;}
+
+/* ---------- NEWSLETTER FORM ---------- */
+.news-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:440px;margin:0 auto 18px;}
+.news-form input{
+  flex:1;min-width:200px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.25);color:var(--text-light);
+  padding:15px 18px;font-family:'Manrope',sans-serif;font-size:13.5px;
+}
+.news-form input::placeholder{color:#A99F8C;}
+.news-msg{color:var(--gold-light);font-size:12.5px;margin-bottom:10px;min-height:18px;}
+
+/* ---------- WHATSAPP FLOAT ---------- */
+.wa-float{
+  position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#25D366;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.25);z-index:70;
+  animation:pulse 2.6s infinite;
+}
+.wa-float svg{width:28px;height:28px;fill:#fff;}
+@keyframes pulse{0%{box-shadow:0 10px 26px rgba(0,0,0,.25),0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 10px 26px rgba(0,0,0,.25),0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 10px 26px rgba(0,0,0,.25),0 0 0 0 rgba(37,211,102,0);}}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:600px){
+  .wrap{padding:0 20px;}
+  .hero-grid{grid-template-columns:1fr;text-align:left;}
+  .hero-visual{height:340px;order:-1;}
+  .section{padding:64px 0;}
+  .about-feature{margin-bottom:50px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">⟡ Envío gratis en pedidos mayores a <b>S/. 149</b> · Lima Metropolitana y Callao</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site" id="siteHeader">
+  <div class="wrap nav-row">
+    <a href="#top" class="logo">
+      <svg class="crest" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30.5" stroke="#B8924B" stroke-width="1"/>
+        <path d="M32 14 L32 50 M22 20 L32 32 L42 20 M22 44 L32 32 L42 44" stroke="#B8924B" stroke-width="1.3" fill="none"/>
+      </svg>
+      <span class="logo-text">MILANO <span>PARFUMS</span></span>
+    </a>
+
+    <nav class="main">
+      <a class="navlink" href="#top">Inicio</a>
+      <div class="has-drop">
+        <span class="navlink">Perfumes ▾</span>
+        <div class="dropdown">
+          <a href="#hombres">Hombres</a>
+          <a href="#mujeres">Mujeres</a>
+          <a href="#unisex">Unisex</a>
+          <a href="#bestsellers">Más vendidos</a>
+          <a href="#nuevos">Nuevos ingresos</a>
+        </div>
+      </div>
+      <a class="navlink" href="#nuevos">Home Spray</a>
+      <a class="navlink" href="#about">Sobre Nosotros</a>
+      <a class="navlink" href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="icons">
+      <button class="icon-btn" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg></button>
+      <button class="icon-btn" aria-label="Lista de deseos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.2 2 4.5 5.7 4.1c2-.2 3.7.9 4.5 2.3.8-1.4 2.5-2.5 4.5-2.3C18.4 4.5 20 8.2 18.3 11.7 16.5 16.4 12 21 12 21z"/></svg></button>
+      <button class="icon-btn" aria-label="Carrito" style="position:relative;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+        <span class="cart-count">0</span>
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose">×</button>
+  <a href="#top">Inicio</a>
+  <a href="#bestsellers">Más vendidos</a>
+  <a href="#hombres">Hombres</a>
+  <a href="#mujeres">Mujeres</a>
+  <a href="#unisex">Unisex</a>
+  <a href="#about">Sobre Nosotros</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Tu carrito</h3>
+    <button id="cartCloseBtn" aria-label="Cerrar carrito">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">S/. 0.00</span></div>
+    <button class="btn solid" id="checkoutBtn" style="display:flex;">Finalizar por WhatsApp</button>
+    <p class="cart-note">Tu pedido se envía directo a nuestro WhatsApp para confirmar stock y coordinar el pago.</p>
+  </div>
+</aside>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal in">
+      <span class="eyebrow">Casa de fragancias · Lima, Perú</span>
+      <h1>El lujo no se compra,<br><em>se evoca.</em></h1>
+      <p class="lead">Fragancias inspiradas en las casas de perfumería más codiciadas del mundo, reinterpretadas con ingredientes de alta concentración y un carácter propio: el de Milano.</p>
+      <div class="cta-actions" style="justify-content:flex-start;">
+        <a href="#bestsellers" class="btn solid">Descubre tu fragancia</a>
+        <a href="#about" class="btn">Nuestra filosofía</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="thread"></div>
+      <svg width="220" height="420" viewBox="0 0 220 420" class="bottle">
+        <defs>
+          <linearGradient id="botG1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E4C988"/><stop offset="1" stop-color="#8C6B2E"/>
+          </linearGradient>
+        </defs>
+        <rect x="80" y="30" width="60" height="36" rx="4" fill="url(#botG1)"/>
+        <rect x="92" y="8" width="36" height="26" rx="3" fill="#E9E1CF"/>
+        <path d="M70 66 q-14 18 -14 50 v230 a14 14 0 0 0 14 14 h80 a14 14 0 0 0 14 -14 v-230 q0 -32 -14 -50 z" fill="#16140F" stroke="#B8924B" stroke-width="1.4"/>
+        <rect class="liquid" x="64" y="150" width="92" height="208" rx="6" fill="#6E1423" opacity=".55"/>
+        <text x="110" y="230" text-anchor="middle" font-family="Fraunces, serif" font-size="13" fill="#E4C988" letter-spacing="3">MILANO</text>
+        <text x="110" y="248" text-anchor="middle" font-family="Archivo, sans-serif" font-size="8" fill="#B8924B" letter-spacing="2">PARFUMS · MILANO</text>
+      </svg>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Desliza</span><div class="line"></div></div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-wrap">
+  <div class="ticker" id="tickerEl">
+    <span>Notas <b>Amaderadas</b></span><span>Notas <b>Orientales</b></span><span>Notas <b>Cítricas</b></span><span>Notas <b>Florales</b></span><span>Notas <b>Gourmand</b></span><span>Notas <b>Acuáticas</b></span><span>Alta <b>Concentración</b></span><span>Larga <b>Duración</b></span>
+  </div>
+</div>
+
+<!-- ============ BEST SELLERS ============ -->
+<section class="section" id="bestsellers">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Edición Milano</span>
+        <h2>Los más buscados</h2>
+        <p class="sub">Las fragancias que más enamoran a nuestra comunidad. Desliza para ver toda la selección.</p>
+      </div>
+      <a href="#" class="view-all">Ver catálogo completo →</a>
+    </div>
+
+    <div class="carousel" id="bestCarousel">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ GENDER CATALOG ============ -->
+<section class="section" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Catálogo</span>
+        <h2>Encuentra tu familia olfativa</h2>
+      </div>
+    </div>
+    <div class="gender-grid">
+      <a href="#" class="gender-card reveal" id="hombres">
+        <div class="gcard-bg" style="background:linear-gradient(160deg,#2c241a,#0c0a08);position:absolute;inset:0;"></div>
+        <div class="overlay"></div>
+        <div class="gc-content"><h3>Hombres</h3><span class="glink">Ver colección →</span></div>
+      </a>
+      <a href="#" class="gender-card reveal" id="mujeres">
+        <div class="gcard-bg" style="background:linear-gradient(160deg,#3a1c22,#0c0a08);position:absolute;inset:0;"></div>
+        <div class="overlay"></div>
+        <div class="gc-content"><h3>Mujeres</h3><span class="glink">Ver colección →</span></div>
+      </a>
+      <a href="#" class="gender-card reveal" id="unisex">
+        <div class="gcard-bg" style="background:linear-gradient(160deg,#26301f,#0c0a08);position:absolute;inset:0;"></div>
+        <div class="overlay"></div>
+        <div class="gc-content"><h3>Unisex</h3><span class="glink">Ver colección →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEW ARRIVALS ============ -->
+<section class="section" id="nuevos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Recién llegados</span>
+        <h2>Nuevos ingresos</h2>
+        <p class="sub">Las últimas incorporaciones a nuestra casa de fragancias.</p>
+      </div>
+      <a href="#" class="view-all">Ver todo →</a>
+    </div>
+    <div class="carousel" id="newCarousel"></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / PHILOSOPHY ============ -->
+<section class="section" id="about" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:70px;">
+      <div>
+        <span class="eyebrow">Nuestra filosofía</span>
+        <h2>Por qué elegir Milano</h2>
+      </div>
+    </div>
+
+    <div class="about-feature reveal">
+      <div>
+        <span class="num">01 — Ingredientes</span>
+        <h3>Alta concentración, sin atajos</h3>
+        <p>Formulamos cada fragancia con una mayor proporción de esencias aromáticas que las versiones económicas del mercado. El resultado: notas más nítidas y una estela que acompaña todo el día.</p>
+      </div>
+      <div class="feature-visual">
+        <svg width="120" height="160" viewBox="0 0 120 160"><rect x="20" y="20" width="80" height="120" rx="8" fill="none" stroke="#B8924B" stroke-width="1.4"/><rect x="40" y="4" width="40" height="20" rx="3" fill="#B8924B"/><line x1="20" y1="70" x2="100" y2="70" stroke="#B8924B" stroke-width="1"/><line x1="20" y1="100" x2="100" y2="100" stroke="#B8924B" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <div class="about-feature reveal">
+      <div>
+        <span class="num">02 — Variedad</span>
+        <h3>Un catálogo curado, no infinito</h3>
+        <p>En vez de saturar el catálogo, seleccionamos cuidadosamente las familias olfativas más codiciadas — amaderadas, orientales, florales, gourmand y acuáticas — para que encuentres tu favorita sin perderte en la oferta.</p>
+      </div>
+      <div class="feature-visual">
+        <svg width="160" height="120" viewBox="0 0 160 120">
+          <circle cx="40" cy="60" r="26" fill="none" stroke="#6E1423" stroke-width="1.3"/>
+          <circle cx="80" cy="40" r="26" fill="none" stroke="#B8924B" stroke-width="1.3"/>
+          <circle cx="120" cy="60" r="26" fill="none" stroke="#5C6B54" stroke-width="1.3"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="about-feature reveal">
+      <div>
+        <span class="num">03 — Experiencia</span>
+        <h3>Compra fácil, sin salir de casa</h3>
+        <p>Desde tu celular o computadora, explora la colección completa, pide asesoría personalizada por WhatsApp y recibe tu pedido en cualquier punto del Perú con seguimiento en tiempo real.</p>
+      </div>
+      <div class="feature-visual">
+        <svg width="140" height="140" viewBox="0 0 140 140"><rect x="30" y="10" width="80" height="120" rx="14" fill="none" stroke="#B8924B" stroke-width="1.4"/><line x1="55" y1="30" x2="85" y2="30" stroke="#B8924B" stroke-width="1.4"/><circle cx="70" cy="110" r="4" fill="#B8924B"/></svg>
+      </div>
+    </div>
+
+    <div class="about-feature reveal">
+      <div class="disclaimer-box">
+        <span class="num" style="color:var(--gold-light);">04 — Transparencia</span>
+        <h3>Importante saber</h3>
+        <p>En Milano Parfums creamos fragancias inspiradas en perfumes reconocidos, también llamadas alternativas o equivalentes. Cada producto viene en presentación propia y original: no utilizamos envases de marcas registradas ni replicamos su diseño. Nuestro objetivo es ofrecer una experiencia olfativa de calidad, con identidad propia y precios justos.</p>
+      </div>
+      <div class="feature-visual" style="background:transparent;border:none;">
+        <svg width="150" height="150" viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" fill="none" stroke="#B8924B" stroke-width="1.2"/><path d="M75 40 L75 95 M75 110 L75 112" stroke="#B8924B" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="trust-bar">
+  <div class="wrap trust-grid">
+    <div class="trust-item reveal">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="6" width="14" height="11" rx="1"/><path d="M15 9h4l3 4v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+      <div><h4>Envío gratis</h4><p>Desde S/. 149 en Lima Metropolitana y Callao.</p></div>
+    </div>
+    <div class="trust-item reveal">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      <div><h4>Pagos 100% seguros</h4><p>Tarjetas, billeteras digitales y transferencias.</p></div>
+    </div>
+    <div class="trust-item reveal">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 11.5a8.5 8.5 0 1 1-4-7.2"/><path d="M21 4l-9 9-3-3"/></svg>
+      <div><h4>Garantía de satisfacción</h4><p>Cambios y devoluciones sin complicaciones.</p></div>
+    </div>
+    <div class="trust-item reveal">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20l1.2-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      <div><h4>Asesoría personalizada</h4><p>Te ayudamos a elegir por WhatsApp.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;">
+      <span class="eyebrow">Comunidad Milano</span>
+      <h2>Lo que dicen quienes ya nos eligieron</h2>
+    </div>
+
+    <div class="testi-wrap reveal">
+      <div class="testi-slide active">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"La duración es lo que más me sorprendió. Empecé con una sola fragancia y ahora tengo cuatro en mi colección."</p>
+        <div class="testi-name">Valeria Quispe</div>
+        <div class="testi-meta">Compra verificada · Lima</div>
+      </div>
+      <div class="testi-slide">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Pedí asesoría por WhatsApp porque no sabía qué elegir para un regalo y me ayudaron muchísimo. Llegó antes de lo esperado."</p>
+        <div class="testi-name">Renzo Alvarado</div>
+        <div class="testi-meta">Compra verificada · Arequipa</div>
+      </div>
+      <div class="testi-slide">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota que usan buenos ingredientes."</p>
+        <div class="testi-name">Camila Torres</div>
+        <div class="testi-meta">Compra verificada · Trujillo</div>
+      </div>
+      <div class="testi-slide">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Llevo meses comprando acá. Mi favorita hasta ahora es Cuoio Antico, huele a lujo de verdad."</p>
+        <div class="testi-name">Diego Salazar</div>
+        <div class="testi-meta">Compra verificada · Lima</div>
+      </div>
+
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <span class="eyebrow">Únete a Milano</span>
+    <h2>Recibe acceso anticipado a nuevos lanzamientos y descuentos exclusivos.</h2>
+    <form class="news-form" id="newsForm">
+      <input type="email" id="newsEmail" placeholder="Tu correo electrónico" required>
+      <button type="submit" class="btn solid">Quiero mi descuento</button>
+    </form>
+    <p class="news-msg" id="newsMsg"></p>
+    <div class="cta-actions">
+      <a href="https://wa.me/51961389397" class="btn">Hablar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site" id="contacto">
+  <div class="wrap footer-grid">
+    <div>
+      <div class="foot-logo">
+        <svg class="crest" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+          <circle cx="32" cy="32" r="30.5" stroke="#B8924B" stroke-width="1"/>
+          <path d="M32 14 L32 50 M22 20 L32 32 L42 20 M22 44 L32 32 L42 44" stroke="#B8924B" stroke-width="1.3" fill="none"/>
+        </svg>
+        <span class="logo-text">MILANO PARFUMS</span>
+      </div>
+      <p class="foot-desc">Fragancias inspiradas en las casas de perfumería más reconocidas del mundo, creadas con identidad propia y enviadas a todo el Perú.</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8h-2a3 3 0 0 0-3 3v9M8 13h6"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v10a4 4 0 1 1-4-4"/><path d="M14 4a5 5 0 0 0 5 5"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h5>Enlaces útiles</h5>
+      <ul>
+        <li><a href="#about">Sobre nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#">Lista de deseos</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Políticas</h5>
+      <ul>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Política de envíos</a></li>
+        <li><a href="#">Cambios y devoluciones</a></li>
+        <li><a href="#">Términos y condiciones</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li>Av. Larco 345, Miraflores, Lima, Perú</li>
+        <li><a href="tel:+51961389397">+51 961 389 397</a></li>
+        <li><a href="mailto:hola@milanoparfums.pe">milanoparfums.pe@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 MILANO PARFUMS. Todos los derechos reservados.</span>
+    <div class="pay-icons">
+      <span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>DINERS</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/51961389397?text=Hola%20Milano%20Parfums%2C%20quisiera%20hacer%20una%20consulta" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 0 0-10.4 18l-1.5 5.5 5.6-1.5A12 12 0 1 0 12 0zm6.9 17a9.9 9.9 0 0 1-14-14 9.9 9.9 0 0 1 16.9 7 9.8 9.8 0 0 1-2.9 7zm-3-5.3c-.3-.2-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.8-.7-3-2-3.8-3.5-.1-.2 0-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6L7.7 5c-.1-.3-.5-.3-.7-.3-.2 0-.5.1-.7.3-.5.5-.8 1.2-.8 2 0 2.6 2.7 6.4 6.7 7.6.6.2 1.2.3 1.7.1.5-.1 1.5-1 1.7-1.2.2-.2.2-.5.1-.7z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN — reemplaza estos dos valores
+   ========================================================= */
+const CONFIG = {
+  // URL de tu Web App de Google Apps Script (ver Code.gs / README-setup.md)
+  API_URL: "https://script.google.com/macros/s/AKfycbyrvuGyv0DQG3lzs8I_Di5Q3bEEl3WP-H8zeMGUnE9fXpMksubeGb9SOxPza-NkUJCN/exec",
+  // Número de WhatsApp del negocio, formato internacional sin "+" ni espacios
+  WHATSAPP_NUMBER: "51961389397"
+};
+
+/* =========================================================
+   DATOS DE RESPALDO — se usan si CONFIG.API_URL no responde
+   (así el sitio funciona aunque aún no conectes Google Sheets)
+   ========================================================= */
+const FALLBACK_PRODUCTS = [
+  {ID:"1",Nombre:"Aurum Notte",Casa:"Edición Milano",Nota:"Especiado oriental · ámbar y vainilla",Genero:"Unisex",Precio:55,Categoria:"bestseller",Color:"#6E1423",Stock:10,Activo:"SI"},
+  {ID:"2",Nombre:"Via Condotti",Casa:"Edición Milano",Nota:"Cítrico amaderado · bergamota y vetiver",Genero:"Masculino",Precio:55,Categoria:"bestseller",Color:"#B8924B",Stock:10,Activo:"SI"},
+  {ID:"3",Nombre:"Seta Rossa",Casa:"Edición Milano",Nota:"Floral oriental · rosa y pachulí",Genero:"Femenino",Precio:55,Categoria:"bestseller",Color:"#5C6B54",Stock:10,Activo:"SI"},
+  {ID:"4",Nombre:"Duomo Blu",Casa:"Edición Milano",Nota:"Acuático amaderado · sal marina y cedro",Genero:"Masculino",Precio:55,Categoria:"bestseller",Color:"#2c241a",Stock:10,Activo:"SI"},
+  {ID:"5",Nombre:"Notte Stellata",Casa:"Edición Milano",Nota:"Gourmand cálido · café y haba tonka",Genero:"Unisex",Precio:58,Categoria:"bestseller",Color:"#7A3B1F",Stock:10,Activo:"SI"},
+  {ID:"6",Nombre:"Fiore di Milano",Casa:"Edición Milano",Nota:"Floral fresco · jazmín y almizcle blanco",Genero:"Femenino",Precio:55,Categoria:"bestseller",Color:"#3A4A5C",Stock:10,Activo:"SI"},
+  {ID:"7",Nombre:"Cuoio Antico",Casa:"Edición Milano",Nota:"Cuero y ámbar · incienso y vainilla",Genero:"Unisex",Precio:58,Categoria:"bestseller",Color:"#6E1423",Stock:10,Activo:"SI"},
+  {ID:"8",Nombre:"Brisa Tirrena",Casa:"Edición Milano",Nota:"Acuático cítrico · pomelo y musgo marino",Genero:"Masculino",Precio:55,Categoria:"bestseller",Color:"#B8924B",Stock:10,Activo:"SI"},
+  {ID:"9",Nombre:"Velluto Nero",Casa:"Nueva Llegada",Nota:"Amaderado intenso · oud y especias",Genero:"Masculino",Precio:58,Categoria:"nuevo",Color:"#2c241a",Stock:10,Activo:"SI"},
+  {ID:"10",Nombre:"Giardino Rosa",Casa:"Nueva Llegada",Nota:"Floral frutal · litchi y peonía",Genero:"Femenino",Precio:55,Categoria:"nuevo",Color:"#5C6B54",Stock:10,Activo:"SI"},
+  {ID:"11",Nombre:"Sale di Capri",Casa:"Nueva Llegada",Nota:"Cítrico acuático · neroli y sal",Genero:"Unisex",Precio:55,Categoria:"nuevo",Color:"#3A4A5C",Stock:10,Activo:"SI"},
+  {ID:"12",Nombre:"Ambra Dorata",Casa:"Nueva Llegada",Nota:"Oriental dulce · ámbar y miel",Genero:"Femenino",Precio:58,Categoria:"nuevo",Color:"#7A3B1F",Stock:10,Activo:"SI"},
+  {ID:"13",Nombre:"Tabacco Reale",Casa:"Nueva Llegada",Nota:"Especiado amaderado · tabaco y cacao",Genero:"Masculino",Precio:58,Categoria:"nuevo",Color:"#6E1423",Stock:10,Activo:"SI"},
+  {ID:"14",Nombre:"Fico Bianco",Casa:"Nueva Llegada",Nota:"Verde fresco · higo y bambú",Genero:"Unisex",Precio:55,Categoria:"nuevo",Color:"#B8924B",Stock:10,Activo:"SI"},
+];
+
+let PRODUCTS = [];
+
+function bottleSVG(color){
+  return `<svg width="120" height="180" viewBox="0 0 120 180" class="bottle">
+    <rect x="44" y="14" width="32" height="20" rx="3" fill="#E9E1CF"/>
+    <rect x="50" y="2" width="20" height="14" rx="2" fill="${color}"/>
+    <path d="M38 34 q-8 10 -8 28 v98 a10 10 0 0 0 10 10 h40 a10 10 0 0 0 10 -10 v-98 q0 -18 -8 -28 z" fill="#16140F" stroke="${color}" stroke-width="1.3"/>
+    <rect x="34" y="86" width="52" height="80" rx="4" fill="${color}" opacity=".5"/>
+    <text x="60" y="124" text-anchor="middle" font-family="Fraunces, serif" font-size="9" fill="#F3ECDD" letter-spacing="2">MILANO</text>
+  </svg>`;
+}
+
+function renderCards(target, list){
+  const el = document.getElementById(target);
+  if(!list.length){ el.innerHTML = `<p style="color:var(--text-mute);padding:20px;">Aún no hay productos en esta sección.</p>`; return; }
+  el.innerHTML = list.map((f)=>{
+    const color = f.Color || "#6E1423";
+    const precio = Number(f.Precio || 0).toFixed(2);
+    const sinStock = Number(f.Stock) === 0;
+    return `<div class="card" data-id="${f.ID}">
+      <div class="card-media" style="background:linear-gradient(160deg,#EFE6D6,#E2D6BC);">
+        <span class="tag">${f.Genero}</span>
+        <button class="wishlist-btn" data-wish="${f.ID}" aria-label="Añadir a lista de deseos"><svg viewBox="0 0 24 24" fill="none" stroke="#15120F" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.2 2 4.5 5.7 4.1c2-.2 3.7.9 4.5 2.3.8-1.4 2.5-2.5 4.5-2.3C18.4 4.5 20 8.2 18.3 11.7 16.5 16.4 12 21 12 21z"/></svg></button>
+        ${bottleSVG(color)}
+      </div>
+      <div class="card-body">
+        <div class="card-house">${f.Casa}</div>
+        <div class="card-name">${f.Nombre}</div>
+        <div class="card-note">${f.Nota}</div>
+        <div class="card-foot">
+          <div class="price">S/. ${precio}<small>Precio</small></div>
+          <button class="add-btn" data-id="${f.ID}" data-name="${f.Nombre}" data-price="${f.Precio}" data-color="${color}" ${sinStock?'disabled':''}>
+            ${sinStock ? 'Agotado' : 'Añadir'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+async function loadProducts(){
+  try{
+    if(!CONFIG.API_URL || CONFIG.API_URL.includes("PEGA_AQUI")) throw new Error("API no configurada todavía");
+    const res = await fetch(`${CONFIG.API_URL}?action=productos`);
+    if(!res.ok) throw new Error("Respuesta no válida");
+    const data = await res.json();
+    PRODUCTS = Array.isArray(data) && data.length ? data : FALLBACK_PRODUCTS;
+  }catch(err){
+    PRODUCTS = FALLBACK_PRODUCTS;
+  }
+  const activos = PRODUCTS.filter(p => String(p.Activo).toUpperCase() !== "NO");
+  renderCards("bestCarousel", activos.filter(p => String(p.Categoria).toLowerCase() === "bestseller"));
+  renderCards("newCarousel", activos.filter(p => String(p.Categoria).toLowerCase() === "nuevo"));
+  refreshWishlistIcons();
+}
+loadProducts();
+
+/* =========================================================
+   CARRITO (localStorage)
+   ========================================================= */
+const CART_KEY = "milano_cart";
+function getCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY)) || []; }catch(e){ return []; } }
+function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); renderCart(); }
+
+function addToCart(id, nombre, precio, color){
+  const cart = getCart();
+  const existing = cart.find(i => i.id === id);
+  if(existing){ existing.cantidad += 1; }
+  else{ cart.push({id, nombre, precio:Number(precio), color, cantidad:1}); }
+  saveCart(cart);
+}
+function changeQty(id, delta){
+  let cart = getCart();
+  const item = cart.find(i => i.id === id);
+  if(!item) return;
+  item.cantidad += delta;
+  if(item.cantidad <= 0) cart = cart.filter(i => i.id !== id);
+  saveCart(cart);
+}
+function removeFromCart(id){
+  saveCart(getCart().filter(i => i.id !== id));
+}
+function cartTotal(cart){ return cart.reduce((sum,i)=> sum + i.precio*i.cantidad, 0); }
+
+function renderCart(){
+  const cart = getCart();
+  const itemsEl = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+  const countEl = document.querySelector(".cart-count");
+  const totalQty = cart.reduce((s,i)=>s+i.cantidad,0);
+  countEl.textContent = totalQty;
+
+  if(!cart.length){
+    itemsEl.innerHTML = `<div class="cart-empty">Tu carrito está vacío.<br>Explora la colección y encuentra tu fragancia.</div>`;
+  }else{
+    itemsEl.innerHTML = cart.map(i => `
+      <div class="cart-line" data-id="${i.id}">
+        <div class="swatch" style="background:linear-gradient(160deg, ${i.color || '#6E1423'}, #16140F);"></div>
+        <div class="ci-info">
+          <div class="ci-name">${i.nombre}</div>
+          <div class="ci-price">S/. ${i.precio.toFixed(2)} c/u</div>
+          <div class="qty-ctrl">
+            <button data-action="dec" aria-label="Restar">−</button>
+            <span>${i.cantidad}</span>
+            <button data-action="inc" aria-label="Sumar">+</button>
+          </div>
+          <button class="remove-line" data-action="remove">Quitar</button>
+        </div>
+      </div>`).join("");
+  }
+  totalEl.textContent = `S/. ${cartTotal(cart).toFixed(2)}`;
+}
+
+document.getElementById("cartItems").addEventListener("click", (e)=>{
+  const line = e.target.closest(".cart-line");
+  if(!line) return;
+  const id = line.dataset.id;
+  if(e.target.dataset.action === "inc") changeQty(id, 1);
+  if(e.target.dataset.action === "dec") changeQty(id, -1);
+  if(e.target.dataset.action === "remove") removeFromCart(id);
+});
+
+// open/close drawer
+const cartDrawer = document.getElementById("cartDrawer");
+const cartOverlay = document.getElementById("cartOverlay");
+function openCart(){ cartDrawer.classList.add("open"); cartOverlay.classList.add("open"); }
+function closeCart(){ cartDrawer.classList.remove("open"); cartOverlay.classList.remove("open"); }
+document.querySelector('.icon-btn[aria-label="Carrito"]').addEventListener("click", openCart);
+document.getElementById("cartCloseBtn").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+
+// add to cart from product cards
+document.addEventListener("click", (e)=>{
+  const btn = e.target.closest(".add-btn");
+  if(!btn || btn.disabled) return;
+  addToCart(btn.dataset.id, btn.dataset.name, btn.dataset.price, btn.dataset.color);
+  const original = btn.textContent;
+  btn.textContent = "Añadido ✓";
+  setTimeout(()=> btn.textContent = original, 1400);
+  openCart();
+});
+
+/* =========================================================
+   WISHLIST (localStorage, sólo visual + persistente)
+   ========================================================= */
+const WISH_KEY = "milano_wishlist";
+function getWishlist(){ try{ return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }catch(e){ return []; } }
+function toggleWishlist(id){
+  let wish = getWishlist();
+  wish = wish.includes(id) ? wish.filter(i=>i!==id) : [...wish, id];
+  localStorage.setItem(WISH_KEY, JSON.stringify(wish));
+  refreshWishlistIcons();
+}
+function refreshWishlistIcons(){
+  const wish = getWishlist();
+  document.querySelectorAll(".wishlist-btn").forEach(btn=>{
+    const id = btn.dataset.wish;
+    const svg = btn.querySelector("svg");
+    const active = wish.includes(id);
+    svg.setAttribute("fill", active ? "#6E1423" : "none");
+    svg.setAttribute("stroke", active ? "#6E1423" : "#15120F");
+  });
+}
+document.addEventListener("click", (e)=>{
+  const wbtn = e.target.closest(".wishlist-btn");
+  if(wbtn) toggleWishlist(wbtn.dataset.wish);
+});
+
+/* =========================================================
+   CHECKOUT — genera mensaje de WhatsApp y registra el pedido
+   ========================================================= */
+document.getElementById("checkoutBtn").addEventListener("click", async ()=>{
+  const cart = getCart();
+  if(!cart.length){ return; }
+  const lineas = cart.map(i => `• ${i.nombre} x${i.cantidad} — S/. ${(i.precio*i.cantidad).toFixed(2)}`).join("\n");
+  const total = cartTotal(cart).toFixed(2);
+  const mensaje = `Hola Milano Parfums 👋🏼, quiero hacer este pedido:\n\n${lineas}\n\nTotal: S/. ${total}`;
+
+  // Intenta registrar el pedido en Google Sheets (no bloquea el checkout si falla)
+  if(CONFIG.API_URL && !CONFIG.API_URL.includes("PEGA_AQUI")){
+    try{
+      fetch(CONFIG.API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" }, // evita preflight CORS
+        body: JSON.stringify({
+          action: "pedido",
+          nombre: "Cliente web",
+          telefono: "",
+          items: cart.map(i=>({nombre:i.nombre, cantidad:i.cantidad, precio:i.precio})),
+          total: Number(total),
+          mensaje
+        })
+      });
+    }catch(err){ /* silencioso: el pedido igual se envía por WhatsApp */ }
+  }
+
+  window.open(`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`, "_blank");
+});
+
+/* =========================================================
+   NEWSLETTER
+   ========================================================= */
+document.getElementById("newsForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const email = document.getElementById("newsEmail").value.trim();
+  const msgEl = document.getElementById("newsMsg");
+  if(!email) return;
+
+  if(!CONFIG.API_URL || CONFIG.API_URL.includes("PEGA_AQUI")){
+    msgEl.textContent = "Gracias por tu interés — activa la conexión con Google Sheets para guardar tu correo.";
+    return;
+  }
+  try{
+    await fetch(CONFIG.API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "suscriptor", email })
+    });
+    msgEl.textContent = "¡Listo! Revisa tu correo, pronto recibirás tu descuento de bienvenida.";
+    document.getElementById("newsEmail").value = "";
+  }catch(err){
+    msgEl.textContent = "No pudimos guardar tu correo, inténtalo nuevamente.";
+  }
+});
+
+renderCart();
+
+// ---------- header scroll state ----------
+const header = document.getElementById("siteHeader");
+window.addEventListener("scroll", ()=>{
+  header.classList.toggle("scrolled", window.scrollY > 12);
+});
+
+// ---------- mobile nav ----------
+const burger = document.getElementById("burgerBtn");
+const mobileNav = document.getElementById("mobileNav");
+const mobileClose = document.getElementById("mobileClose");
+burger.addEventListener("click", ()=> mobileNav.classList.add("open"));
+mobileClose.addEventListener("click", ()=> mobileNav.classList.remove("open"));
+mobileNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>mobileNav.classList.remove("open")));
+
+// ---------- ticker duplicate for seamless loop ----------
+const ticker = document.getElementById("tickerEl");
+ticker.innerHTML += ticker.innerHTML;
+
+// ---------- reveal on scroll ----------
+const revealEls = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.15});
+revealEls.forEach(el=>io.observe(el));
+
+// ---------- testimonials slider ----------
+const slides = document.querySelectorAll(".testi-slide");
+const dotsWrap = document.getElementById("testiDots");
+let current = 0;
+slides.forEach((_,i)=>{
+  const b = document.createElement("button");
+  if(i===0) b.classList.add("active");
+  b.addEventListener("click", ()=> goTo(i));
+  dotsWrap.appendChild(b);
+});
+function goTo(i){
+  slides[current].classList.remove("active");
+  dotsWrap.children[current].classList.remove("active");
+  current = i;
+  slides[current].classList.add("active");
+  dotsWrap.children[current].classList.add("active");
+}
+setInterval(()=> goTo((current+1) % slides.length), 5000);
+</script>
+</body>
+</html>
