@@ -357,6 +357,18 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
 .news-form input::placeholder{color:#A99F8C;}
 .news-msg{color:var(--gold-light);font-size:12.5px;margin-bottom:10px;min-height:18px;}
 
+/* ---------- CATÁLOGO COMPLETO (filtros) ---------- */
+.filter-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:38px;}
+.filter-tab{
+  font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  padding:10px 18px;border:1px solid rgba(21,18,15,.2);background:transparent;color:var(--text-dark);cursor:pointer;transition:.2s;
+}
+.filter-tab:hover{border-color:var(--gold);}
+.filter-tab.active{background:var(--ink);color:var(--text-light);border-color:var(--ink);}
+.catalog-grid{display:flex;flex-wrap:wrap;gap:22px;}
+.catalog-grid .card{flex:0 0 270px;}
+.catalog-empty{color:var(--text-mute);padding:30px 0;font-size:13.5px;}
+
 /* ---------- WHATSAPP FLOAT ---------- */
 .wa-float{
   position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#25D366;
@@ -400,9 +412,9 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
       <div class="has-drop">
         <span class="navlink">Perfumes ▾</span>
         <div class="dropdown">
-          <a href="#hombres">Hombres</a>
-          <a href="#mujeres">Mujeres</a>
-          <a href="#unisex">Unisex</a>
+          <a href="#catalogo" data-filter="Masculino">Hombres</a>
+          <a href="#catalogo" data-filter="Femenino">Mujeres</a>
+          <a href="#catalogo" data-filter="Unisex">Unisex</a>
           <a href="#bestsellers">Más vendidos</a>
           <a href="#nuevos">Nuevos ingresos</a>
         </div>
@@ -428,9 +440,9 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
   <button class="mobile-close" id="mobileClose">×</button>
   <a href="#top">Inicio</a>
   <a href="#bestsellers">Más vendidos</a>
-  <a href="#hombres">Hombres</a>
-  <a href="#mujeres">Mujeres</a>
-  <a href="#unisex">Unisex</a>
+  <a href="#catalogo" data-filter="Masculino">Hombres</a>
+  <a href="#catalogo" data-filter="Femenino">Mujeres</a>
+  <a href="#catalogo" data-filter="Unisex">Unisex</a>
   <a href="#about">Sobre Nosotros</a>
   <a href="#contacto">Contacto</a>
 </div>
@@ -497,7 +509,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
         <h2>Los más buscados</h2>
         <p class="sub">Las fragancias que más enamoran a nuestra comunidad. Desliza para ver toda la selección.</p>
       </div>
-      <a href="#" class="view-all">Ver catálogo completo →</a>
+      <a href="#catalogo" class="view-all">Ver catálogo completo →</a>
     </div>
 
     <div class="carousel" id="bestCarousel">
@@ -516,17 +528,17 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
       </div>
     </div>
     <div class="gender-grid">
-      <a href="#" class="gender-card reveal" id="hombres">
+      <a href="#catalogo" data-filter="Masculino" class="gender-card reveal">
         <div class="gcard-bg" style="background:linear-gradient(160deg,#2c241a,#0c0a08);position:absolute;inset:0;"></div>
         <div class="overlay"></div>
         <div class="gc-content"><h3>Hombres</h3><span class="glink">Ver colección →</span></div>
       </a>
-      <a href="#" class="gender-card reveal" id="mujeres">
+      <a href="#catalogo" data-filter="Femenino" class="gender-card reveal">
         <div class="gcard-bg" style="background:linear-gradient(160deg,#3a1c22,#0c0a08);position:absolute;inset:0;"></div>
         <div class="overlay"></div>
         <div class="gc-content"><h3>Mujeres</h3><span class="glink">Ver colección →</span></div>
       </a>
-      <a href="#" class="gender-card reveal" id="unisex">
+      <a href="#catalogo" data-filter="Unisex" class="gender-card reveal">
         <div class="gcard-bg" style="background:linear-gradient(160deg,#26301f,#0c0a08);position:absolute;inset:0;"></div>
         <div class="overlay"></div>
         <div class="gc-content"><h3>Unisex</h3><span class="glink">Ver colección →</span></div>
@@ -544,9 +556,29 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
         <h2>Nuevos ingresos</h2>
         <p class="sub">Las últimas incorporaciones a nuestra casa de fragancias.</p>
       </div>
-      <a href="#" class="view-all">Ver todo →</a>
+      <a href="#catalogo" class="view-all">Ver todo →</a>
     </div>
     <div class="carousel" id="newCarousel"></div>
+  </div>
+</section>
+
+<!-- ============ CATÁLOGO COMPLETO (con filtros funcionales) ============ -->
+<section class="section" id="catalogo" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Catálogo</span>
+        <h2>Todas nuestras fragancias</h2>
+        <p class="sub">Filtra por categoría para encontrar justo lo que buscas.</p>
+      </div>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="Todos">Todos</button>
+      <button class="filter-tab" data-filter="Masculino">Hombres</button>
+      <button class="filter-tab" data-filter="Femenino">Mujeres</button>
+      <button class="filter-tab" data-filter="Unisex">Unisex</button>
+    </div>
+    <div class="catalog-grid" id="catalogGrid"></div>
   </div>
 </section>
 
@@ -727,16 +759,16 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:80px 0 0;}
     <div>
       <h5>Contacto</h5>
       <ul>
-        <li>Av. Larco 345, Miraflores, Lima, Perú</li>
+        <li>Calle Courbet 104, Surquillo, Lima, Perú</li>
         <li><a href="tel:+51961389397">+51 961 389 397</a></li>
-        <li><a href="mailto:hola@milanoparfums.pe">milanoparfums.pe@gmail.com</a></li>
+        <li><a href="mailto:milanoparfums.pe@gmail.com">milanoparfums.pe@gmail.com</a></li>
       </ul>
     </div>
   </div>
   <div class="wrap foot-bottom">
     <span>© 2026 MILANO PARFUMS. Todos los derechos reservados.</span>
     <div class="pay-icons">
-      <span>VISA</span><span>MASTERCARD</span><span>AMEX</span><span>DINERS</span>
+      <span>YAPE</span><span>PLIN</span><span>VISA</span><span>MASTERCARD</span>
     </div>
   </div>
 </footer>
@@ -830,9 +862,29 @@ async function loadProducts(){
   const activos = PRODUCTS.filter(p => String(p.Activo).toUpperCase() !== "NO");
   renderCards("bestCarousel", activos.filter(p => String(p.Categoria).toLowerCase() === "bestseller"));
   renderCards("newCarousel", activos.filter(p => String(p.Categoria).toLowerCase() === "nuevo"));
+  renderCatalog(currentFilter);
   refreshWishlistIcons();
 }
 loadProducts();
+
+/* =========================================================
+   CATÁLOGO COMPLETO — filtros funcionales (Todos/Hombres/Mujeres/Unisex)
+   ========================================================= */
+let currentFilter = "Todos";
+function renderCatalog(filter){
+  currentFilter = filter;
+  const activos = PRODUCTS.filter(p => String(p.Activo).toUpperCase() !== "NO");
+  const filtered = filter === "Todos" ? activos : activos.filter(p => p.Genero === filter);
+  renderCards("catalogGrid", filtered);
+  document.querySelectorAll(".filter-tab").forEach(b => b.classList.toggle("active", b.dataset.filter === filter));
+  refreshWishlistIcons();
+}
+document.querySelectorAll(".filter-tab").forEach(btn=>{
+  btn.addEventListener("click", ()=> renderCatalog(btn.dataset.filter));
+});
+document.querySelectorAll("a[data-filter]").forEach(a=>{
+  a.addEventListener("click", ()=> renderCatalog(a.dataset.filter));
+});
 
 /* =========================================================
    CARRITO (localStorage)
