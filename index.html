@@ -96,9 +96,15 @@ nav.main{display:flex;gap:28px;align-items:center;}
 }
 .pm-close{position:sticky;top:0;display:flex;justify-content:flex-end;padding:16px 24px 0;background:var(--cream);z-index:2;}
 .pm-close button{background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);}
-.pm-visual{display:flex;align-items:center;justify-content:center;min-height:320px;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);position:relative;}
+.pm-visual{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:320px;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);position:relative;padding-bottom:14px;}
 .pm-visual .bottle-wrap{transition:transform .4s;}
 .pm-visual:hover .bottle-wrap{transform:scale(1.04);}
+.pm-main-img{max-height:300px;max-width:88%;object-fit:contain;transition:opacity .25s;}
+.pm-thumbs{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center;padding:0 14px;}
+.pm-thumb{width:48px;height:60px;border-radius:2px;overflow:hidden;border:1.5px solid transparent;cursor:pointer;opacity:.6;transition:.2s;}
+.pm-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.pm-thumb:hover{opacity:1;}
+.pm-thumb.active{border-color:var(--gold);opacity:1;}
 .pm-info{padding:16px 0 16px 36px;display:flex;flex-direction:column;gap:0;}
 .pm-genero{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);margin-bottom:8px;}
 .pm-name{font-size:clamp(24px,3vw,34px);line-height:1.1;margin-bottom:6px;}
@@ -182,7 +188,8 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .hero h1 em{font-style:italic;color:var(--gold2);}
 .hero p.lead{color:#CFC6B4;font-size:16px;max-width:420px;margin-bottom:30px;}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;height:520px;}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;height:520px;overflow:hidden;border-radius:4px;}
+#heroVideo{position:absolute;inset:0;}
 .thread{position:absolute;top:-40px;bottom:-40px;left:50%;width:1px;background:linear-gradient(to bottom,transparent,var(--gold) 18%,var(--gold) 82%,transparent);opacity:.45;}
 .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:#9C9384;font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;}
 .scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,var(--gold),transparent);animation:cue 2s infinite;}
@@ -200,13 +207,41 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .section-head p.sub{color:var(--tm);font-size:13.5px;margin-top:6px;max-width:380px;}
 .view-all{font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:3px;white-space:nowrap;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;}
 /* ===== CAROUSEL ===== */
-.carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;-ms-overflow-style:none;scrollbar-width:none;}
+.carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:12px;-ms-overflow-style:none;scrollbar-width:none;}
 .carousel::-webkit-scrollbar{display:none;}
+.carousel-wrap{position:relative;}
+.car-arrow{position:absolute;top:42%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid rgba(21,18,15,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;box-shadow:0 8px 20px rgba(21,18,15,.1);transition:.2s;}
+.car-arrow:hover{background:var(--ink);border-color:var(--ink);}
+.car-arrow:hover svg{stroke:var(--tl);}
+.car-arrow svg{width:16px;height:16px;stroke:var(--ink);transition:.2s;}
+.car-arrow.prev{left:-8px;}
+.car-arrow.next{right:-8px;}
+@media(max-width:760px){.car-arrow{display:none;}}
 /* ===== PRODUCT CARD ===== */
-.card{flex:0 0 260px;scroll-snap-align:start;background:#fff;border:1px solid rgba(21,18,15,.08);display:flex;flex-direction:column;transition:transform .28s,box-shadow .28s;cursor:pointer;}
-.card:hover{transform:translateY(-5px);box-shadow:0 20px 36px rgba(21,18,15,.1);}
+.card{flex:0 0 260px;scroll-snap-align:start;background:#fff;border:1px solid rgba(21,18,15,.08);display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s cubic-bezier(.2,.8,.2,1);cursor:pointer;}
+.card:hover{transform:translateY(-7px);box-shadow:0 24px 44px rgba(21,18,15,.13);}
 .card-media{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);}
+.card-media img,.card-media svg{transition:transform .55s cubic-bezier(.2,.8,.2,1);}
+.card:hover .card-media img,.card:hover .card-media svg{transform:scale(1.09) rotate(-1deg);}
 .ctag{position:absolute;top:10px;left:10px;font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;background:var(--ink);color:var(--tl);padding:4px 8px;}
+/* urgency badge */
+.urg-badge{display:flex;align-items:center;gap:5px;font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.02em;color:var(--wine);font-weight:700;margin-bottom:9px;}
+.urg-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--wine);flex:none;animation:urgblink 1.8s infinite;}
+.urg-badge.gold{color:#8a6a23;}
+.urg-badge.gold .dot{background:var(--gold);}
+@keyframes urgblink{0%,100%{opacity:1;}50%{opacity:.35;}}
+/* size selector (card) */
+.size-row{display:flex;gap:6px;margin-bottom:12px;}
+.size-opt{flex:1;font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.02em;font-weight:700;text-align:center;padding:6px 4px;border:1px solid rgba(21,18,15,.18);background:transparent;color:var(--td);cursor:pointer;transition:.18s;}
+.size-opt:hover{border-color:var(--gold);}
+.size-opt.active{background:var(--ink);color:var(--tl);border-color:var(--ink);}
+/* size selector (product modal, larger) */
+.pm-size-row{display:flex;gap:8px;margin-bottom:18px;}
+.pm-size-opt{flex:1;font-family:'Archivo',sans-serif;font-size:11.5px;font-weight:700;text-align:center;padding:12px 6px;border:1px solid rgba(21,18,15,.2);background:transparent;cursor:pointer;transition:.2s;}
+.pm-size-opt span{display:block;font-size:10px;font-weight:400;color:var(--tm);margin-top:2px;}
+.pm-size-opt:hover{border-color:var(--gold);}
+.pm-size-opt.active{background:var(--ink);color:var(--tl);border-color:var(--ink);}
+.pm-size-opt.active span{color:#cfc6b4;}
 .wishlist-btn{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:rgba(247,242,233,.9);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;}
 .wishlist-btn svg{width:13px;height:13px;}
 .card-body{padding:15px 16px 18px;border-top:1px solid rgba(21,18,15,.06);}
@@ -220,6 +255,55 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .add-btn:hover{background:var(--ink);color:var(--tl);}
 .add-btn:disabled{opacity:.45;cursor:not-allowed;}
 /* ===== GENDER TILES ===== */
+/* ===== QUIZ BANNER ===== */
+.quiz-banner{position:relative;background:linear-gradient(125deg,#241C14 0%,#3a2a18 55%,#1a1410 100%);overflow:hidden;border-radius:4px;padding:54px 40px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;}
+.quiz-banner::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(115deg,rgba(184,146,75,.06) 0px,rgba(184,146,75,.06) 1px,transparent 1px,transparent 70px);pointer-events:none;}
+.quiz-text{position:relative;z-index:2;}
+.quiz-text .eyebrow{color:var(--gold2);}
+.quiz-text .eyebrow::before{background:var(--gold2);}
+.quiz-text h2{color:var(--tl);font-size:clamp(26px,3.6vw,38px);margin:14px 0 12px;}
+.quiz-text p{color:#CFC6B4;font-size:14px;max-width:420px;margin-bottom:22px;}
+.quiz-visual{position:relative;z-index:2;display:flex;justify-content:center;}
+.quiz-orb{width:170px;height:170px;border-radius:50%;border:1px solid rgba(184,146,75,.4);display:flex;align-items:center;justify-content:center;position:relative;}
+.quiz-orb::before{content:"";position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(184,146,75,.2);animation:spin 16s linear infinite;}
+.quiz-orb svg{width:64px;height:64px;color:var(--gold2);}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media(max-width:780px){.quiz-banner{grid-template-columns:1fr;padding:40px 26px;text-align:center;}.quiz-text p{margin:0 auto 22px;}.quiz-visual{order:-1;}}
+/* ===== QUIZ MODAL ===== */
+.quiz-modal{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;padding:18px;pointer-events:none;}
+.quiz-modal.open{pointer-events:auto;}
+.quiz-box{background:var(--cream);max-width:540px;width:100%;max-height:88vh;overflow-y:auto;padding:0;box-shadow:0 30px 80px rgba(0,0,0,.3);transform:translateY(20px) scale(.96);opacity:0;transition:transform .3s,opacity .3s;border-radius:6px;}
+.quiz-modal.open .quiz-box{transform:none;opacity:1;}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px 0;}
+.quiz-head button{background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+.quiz-progress{display:flex;gap:6px;padding:14px 26px 0;}
+.quiz-progress .seg{flex:1;height:3px;background:rgba(21,18,15,.12);border-radius:2px;overflow:hidden;}
+.quiz-progress .seg .fill{height:100%;width:0;background:var(--gold);transition:width .3s;}
+.quiz-body{padding:28px 28px 32px;}
+.quiz-step{display:none;}
+.quiz-step.active{display:block;animation:fadein .35s;}
+.quiz-q-label{font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;}
+.quiz-q{font-size:21px;margin-bottom:22px;line-height:1.3;}
+.quiz-opts{display:flex;flex-direction:column;gap:10px;}
+.quiz-opt{display:flex;align-items:center;gap:14px;text-align:left;padding:15px 18px;border:1px solid rgba(21,18,15,.15);background:#fff;cursor:pointer;transition:.2s;font-family:'Manrope',sans-serif;font-size:14px;color:var(--td);}
+.quiz-opt:hover{border-color:var(--gold);background:rgba(184,146,75,.05);}
+.quiz-opt .qi{font-size:20px;flex:none;}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:22px;}
+.quiz-back{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--tm);background:none;border:none;cursor:pointer;}
+.quiz-loading{text-align:center;padding:50px 10px;}
+.quiz-loading .spinner{width:38px;height:38px;border:2px solid rgba(184,146,75,.25);border-top-color:var(--gold);border-radius:50%;margin:0 auto 18px;animation:spin .9s linear infinite;}
+.quiz-loading p{color:var(--tm);font-size:13.5px;}
+.quiz-results h3{font-size:22px;margin-bottom:6px;}
+.quiz-results .qr-sub{color:var(--tm);font-size:13px;margin-bottom:22px;}
+.quiz-result-card{display:flex;gap:14px;align-items:center;padding:14px;border:1px solid rgba(21,18,15,.1);margin-bottom:10px;cursor:pointer;transition:.2s;background:#fff;}
+.quiz-result-card:hover{border-color:var(--gold);box-shadow:0 8px 18px rgba(21,18,15,.08);}
+.qrc-swatch{width:44px;height:60px;border-radius:2px;flex:none;}
+.qrc-info{flex:1;}
+.qrc-name{font-family:'Fraunces',serif;font-size:15.5px;}
+.qrc-match{font-size:11px;color:var(--gold);font-weight:700;font-family:'Archivo',sans-serif;letter-spacing:.05em;text-transform:uppercase;margin-top:2px;}
+.qrc-price{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;}
+.quiz-restart{margin-top:16px;width:100%;justify-content:center;}
+/* ===== GENDER GRID (existing) ===== */
 .gender-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .gender-card{position:relative;height:420px;overflow:hidden;display:flex;align-items:flex-end;cursor:pointer;}
 .gcard-bg{position:absolute;inset:0;}
@@ -241,7 +325,8 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .about-num{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--gold);margin-bottom:12px;}
 .about-feature h3{font-size:28px;margin-bottom:14px;}
 .about-feature p{color:#5b5448;max-width:420px;}
-.feature-visual{height:320px;display:flex;align-items:center;justify-content:center;background:var(--cream2);border:1px solid rgba(21,18,15,.08);}
+.feature-visual{height:320px;display:flex;align-items:center;justify-content:center;background:var(--cream2);border:1px solid rgba(21,18,15,.08);overflow:hidden;}
+.feature-visual img{width:100%;height:100%;object-fit:cover;display:block;}
 .disclaimer-box{background:var(--ink);color:var(--tl);padding:30px;border:1px solid rgba(184,146,75,.4);}
 .disclaimer-box h3{color:var(--tl);}
 .disclaimer-box p{color:#C9C0AE;}
@@ -255,6 +340,25 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .trust-item p{font-size:12px;color:#A99F8C;}
 @media(max-width:780px){.trust-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:460px){.trust-grid{grid-template-columns:1fr;}}
+/* ===== SOCIAL PROOF ===== */
+.social-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:64px;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Fraunces',serif;font-size:clamp(28px,3.6vw,40px);color:var(--ink);line-height:1;}
+.stat-num .plus{color:var(--gold);}
+.stat-label{font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tm);font-weight:700;margin-top:8px;}
+.stat-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-top:4px;}
+@media(max-width:780px){.social-stats{grid-template-columns:1fr 1fr;}}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:54px;}
+.review-card{background:#fff;border:1px solid rgba(21,18,15,.08);padding:22px;}
+.review-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.review-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#fff;flex:none;}
+.review-id{flex:1;}
+.review-name{font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:700;color:var(--ink);}
+.review-verified{font-size:10.5px;color:var(--sage);display:flex;align-items:center;gap:4px;}
+.review-stars{color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:8px;}
+.review-text{font-size:13px;color:#5b5448;line-height:1.6;}
+@media(max-width:880px){.review-grid{grid-template-columns:1fr;}}
+
 /* ===== TESTIMONIALS ===== */
 .testi-wrap{max-width:720px;margin:0 auto;text-align:center;}
 .testi-slide{display:none;}
@@ -309,8 +413,23 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
   .hero-grid{grid-template-columns:1fr;}
   .hero-visual{height:300px;order:-1;}
   .section{padding:58px 0;}
+  .feature-visual{height:200px;}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+
+/* ===== FIX: evita restos visibles de overlays cerrados (bug de renderizado en móviles) ===== */
+.search-overlay,.product-modal,.quiz-modal,.policy-modal,.mobile-nav{
+  visibility:hidden;
+  transition:transform .35s ease, opacity .3s ease, visibility 0s linear .35s;
+}
+.search-overlay.open,.product-modal.open,.quiz-modal.open,.policy-modal.open,.mobile-nav.open{
+  visibility:visible;
+  transition:transform .35s ease, opacity .3s ease, visibility 0s linear 0s;
+}
+.cart-overlay,.overlay-bg{visibility:hidden;transition:opacity .3s ease, visibility 0s linear .3s;}
+.cart-overlay.open,.overlay-bg.open{visibility:visible;transition:opacity .3s ease, visibility 0s linear 0s;}
+.cart-drawer,.wish-drawer{visibility:hidden;transition:transform .35s ease, visibility 0s linear .35s;}
+.cart-drawer.open,.wish-drawer.open{visibility:visible;transition:transform .35s ease, visibility 0s linear 0s;}
 </style>
 </head>
 <body>
@@ -322,7 +441,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
 <header class="site" id="siteHeader">
   <div class="wrap nav-row">
     <a href="#top" class="logo">
-      <svg class="crest" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30.5" stroke="#B8924B" stroke-width="1"/><path d="M32 14L32 50M22 20L32 32L42 20M22 44L32 32L42 44" stroke="#B8924B" stroke-width="1.3"/></svg>
+      <svg class="crest" id="headerCrest" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30.5" stroke="#B8924B" stroke-width="1"/><path d="M32 14L32 50M22 20L32 32L42 20M22 44L32 32L42 44" stroke="#B8924B" stroke-width="1.3"/></svg>
       <span class="logo-text">MILANO <span>PARFUMS</span></span>
     </a>
     <nav class="main">
@@ -406,6 +525,23 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
   </div>
 </div>
 
+<!-- QUIZ MODAL -->
+<div class="overlay-bg" id="quizOverlayBg" style="z-index:97;"></div>
+<div class="quiz-modal" id="quizModal" style="z-index:98;">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <span class="eyebrow" style="margin:0;">Encuentra tu perfume</span>
+      <button id="quizCloseBtn">×</button>
+    </div>
+    <div class="quiz-progress" id="quizProgress">
+      <div class="seg"><div class="fill"></div></div>
+      <div class="seg"><div class="fill"></div></div>
+      <div class="seg"><div class="fill"></div></div>
+    </div>
+    <div class="quiz-body" id="quizBody"></div>
+  </div>
+</div>
+
 <!-- POLICY MODALS -->
 <div class="overlay-bg" id="policyOverlayBg" style="z-index:97;"></div>
 <div class="policy-modal" id="policyModal" style="z-index:98;">
@@ -424,12 +560,13 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
       <p class="lead">Fragancias inspiradas en las casas más codiciadas del mundo, reinterpretadas con ingredientes de alta concentración y un carácter propio: el de Milano.</p>
       <div class="hero-actions">
         <button class="btn solid" onclick="applyFilterAndGo('Todos')">Descubre tu fragancia</button>
-        <a href="#about" class="btn">Nuestra filosofía</a>
+        <button class="btn" onclick="openQuiz()">Encuentra tu perfume con IA</button>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual" id="heroVisual">
       <div class="thread"></div>
-      <svg width="210" height="400" viewBox="0 0 210 400">
+      <video id="heroVideo" autoplay muted loop playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:4px;"></video>
+      <svg id="heroBottle" width="210" height="400" viewBox="0 0 210 400" style="transition:transform .15s ease-out;">
         <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E4C988"/><stop offset="1" stop-color="#8C6B2E"/></linearGradient></defs>
         <rect x="75" y="28" width="60" height="34" rx="4" fill="url(#hg)"/>
         <rect x="88" y="8" width="34" height="24" rx="3" fill="#E9E1CF"/>
@@ -448,6 +585,25 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
   <span>Notas <b>Amaderadas</b></span><span>Notas <b>Orientales</b></span><span>Notas <b>Cítricas</b></span><span>Notas <b>Florales</b></span><span>Notas <b>Gourmand</b></span><span>Notas <b>Acuáticas</b></span><span>Alta <b>Concentración</b></span><span>Larga <b>Duración</b></span>
 </div></div>
 
+<!-- QUIZ BANNER -->
+<section class="section" style="padding-top:60px;padding-bottom:60px;">
+  <div class="wrap">
+    <div class="quiz-banner reveal">
+      <div class="quiz-text">
+        <span class="eyebrow">Asesoría con IA</span>
+        <h2>Encuentra tu perfume ideal en 30 segundos</h2>
+        <p>Responde 3 preguntas rápidas y te recomendamos entre 3 y 5 fragancias hechas para ti — sin perderte entre el catálogo.</p>
+        <button class="btn solid" id="openQuizBtn">Comenzar mi quiz olfativo →</button>
+      </div>
+      <div class="quiz-visual">
+        <div class="quiz-orb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2a7 7 0 0 0-4 12.7V18a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3.3A7 7 0 0 0 12 2z"/><line x1="9" y1="22" x2="15" y2="22"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BEST SELLERS -->
 <section class="section" id="bestsellers">
   <div class="wrap">
@@ -459,7 +615,11 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
       </div>
       <button class="view-all" onclick="applyFilterAndGo('Todos')">Ver catálogo completo →</button>
     </div>
-    <div class="carousel" id="bestCarousel"></div>
+    <div class="carousel-wrap">
+      <button class="car-arrow prev" data-target="bestCarousel" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="carousel" id="bestCarousel"></div>
+      <button class="car-arrow next" data-target="bestCarousel" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
   </div>
 </section>
 
@@ -496,7 +656,11 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
       <div><span class="eyebrow">Recién llegados</span><h2>Nuevos ingresos</h2><p class="sub">Las últimas incorporaciones a nuestra colección.</p></div>
       <button class="view-all" onclick="applyFilterAndGo('nuevo')">Ver todo →</button>
     </div>
-    <div class="carousel" id="newCarousel"></div>
+    <div class="carousel-wrap">
+      <button class="car-arrow prev" data-target="newCarousel" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="carousel" id="newCarousel"></div>
+      <button class="car-arrow next" data-target="newCarousel" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
   </div>
 </section>
 
@@ -528,7 +692,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
         <h3>Alta concentración, sin atajos</h3>
         <p>Formulamos cada fragancia con concentraciones de esencias por encima del mercado masivo. El resultado: notas más nítidas, mayor proyección y una estela que te acompaña todo el día.</p>
       </div>
-      <div class="feature-visual"><svg width="100" height="140" viewBox="0 0 100 140"><rect x="10" y="10" width="80" height="120" rx="8" fill="none" stroke="#B8924B" stroke-width="1.3"/><rect x="30" y="0" width="40" height="16" rx="2" fill="#B8924B"/><line x1="10" y1="60" x2="90" y2="60" stroke="#B8924B" stroke-width="1"/><line x1="10" y1="90" x2="90" y2="90" stroke="#B8924B" stroke-width="1"/></svg></div>
+      <div class="feature-visual" id="aboutImg1"><svg width="100" height="140" viewBox="0 0 100 140"><rect x="10" y="10" width="80" height="120" rx="8" fill="none" stroke="#B8924B" stroke-width="1.3"/><rect x="30" y="0" width="40" height="16" rx="2" fill="#B8924B"/><line x1="10" y1="60" x2="90" y2="60" stroke="#B8924B" stroke-width="1"/><line x1="10" y1="90" x2="90" y2="90" stroke="#B8924B" stroke-width="1"/></svg></div>
     </div>
     <div class="about-feature reveal">
       <div>
@@ -536,7 +700,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
         <h3>Un catálogo curado, no infinito</h3>
         <p>Seleccionamos cuidadosamente las familias olfativas más codiciadas — amaderadas, orientales, florales, gourmand y acuáticas — para que encuentres tu fragancia firma sin perderte en una oferta interminable.</p>
       </div>
-      <div class="feature-visual"><svg width="150" height="100" viewBox="0 0 150 100"><circle cx="35" cy="50" r="28" fill="none" stroke="#6E1423" stroke-width="1.2"/><circle cx="75" cy="30" r="28" fill="none" stroke="#B8924B" stroke-width="1.2"/><circle cx="115" cy="50" r="28" fill="none" stroke="#5C6B54" stroke-width="1.2"/></svg></div>
+      <div class="feature-visual" id="aboutImg2"><svg width="150" height="100" viewBox="0 0 150 100"><circle cx="35" cy="50" r="28" fill="none" stroke="#6E1423" stroke-width="1.2"/><circle cx="75" cy="30" r="28" fill="none" stroke="#B8924B" stroke-width="1.2"/><circle cx="115" cy="50" r="28" fill="none" stroke="#5C6B54" stroke-width="1.2"/></svg></div>
     </div>
     <div class="about-feature reveal">
       <div>
@@ -544,7 +708,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
         <h3>Compra fácil, sin salir de casa</h3>
         <p>Explora todo el catálogo desde tu celular, recibe asesoría personalizada por WhatsApp y recibe tu pedido en cualquier punto del Perú con seguimiento.</p>
       </div>
-      <div class="feature-visual"><svg width="120" height="120" viewBox="0 0 120 120"><rect x="20" y="5" width="80" height="110" rx="12" fill="none" stroke="#B8924B" stroke-width="1.3"/><line x1="42" y1="22" x2="78" y2="22" stroke="#B8924B" stroke-width="1.3"/><circle cx="60" cy="100" r="4" fill="#B8924B"/></svg></div>
+      <div class="feature-visual" id="aboutImg3"><svg width="120" height="120" viewBox="0 0 120 120"><rect x="20" y="5" width="80" height="110" rx="12" fill="none" stroke="#B8924B" stroke-width="1.3"/><line x1="42" y1="22" x2="78" y2="22" stroke="#B8924B" stroke-width="1.3"/><circle cx="60" cy="100" r="4" fill="#B8924B"/></svg></div>
     </div>
     <div class="about-feature reveal">
       <div class="disclaimer-box">
@@ -552,7 +716,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
         <h3>Importante saber</h3>
         <p>En Milano Parfums creamos fragancias <strong>inspiradas</strong> en perfumes reconocidos, también llamadas alternativas o equivalentes. Cada producto viene en presentación propia y original: no utilizamos envases de marcas registradas ni replicamos su diseño. Nuestro objetivo es ofrecer una experiencia olfativa de calidad, con identidad propia y precios justos.</p>
       </div>
-      <div class="feature-visual" style="background:transparent;border:none;"><svg width="130" height="130" viewBox="0 0 130 130"><circle cx="65" cy="65" r="56" fill="none" stroke="#B8924B" stroke-width="1.1"/><path d="M65 34L65 84M65 99L65 101" stroke="#B8924B" stroke-width="2.8" stroke-linecap="round"/></svg></div>
+      <div class="feature-visual" id="aboutImg4" style="background:transparent;border:none;"><svg width="130" height="130" viewBox="0 0 130 130"><circle cx="65" cy="65" r="56" fill="none" stroke="#B8924B" stroke-width="1.1"/><path d="M65 34L65 84M65 99L65 101" stroke="#B8924B" stroke-width="2.8" stroke-linecap="round"/></svg></div>
     </div>
   </div>
 </section>
@@ -567,13 +731,48 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
   </div>
 </div>
 
-<!-- TESTIMONIALS -->
+<!-- TESTIMONIALS / PRUEBA SOCIAL -->
 <section class="section">
   <div class="wrap">
     <div class="section-head reveal" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;">
       <span class="eyebrow">Comunidad Milano</span>
       <h2>Lo que dicen quienes ya nos eligieron</h2>
     </div>
+
+    <div class="social-stats reveal">
+      <div class="stat-item"><div class="stat-num">1,200<span class="plus">+</span></div><div class="stat-label">Clientes satisfechos</div></div>
+      <div class="stat-item"><div class="stat-num">4.9<span class="plus">/5</span></div><div class="stat-stars">★★★★★</div><div class="stat-label">Calificación promedio</div></div>
+      <div class="stat-item"><div class="stat-num">350<span class="plus">+</span></div><div class="stat-label">Reseñas verificadas</div></div>
+      <div class="stat-item"><div class="stat-num">98<span class="plus">%</span></div><div class="stat-label">Clientes que recompran</div></div>
+    </div>
+
+    <div class="review-grid reveal">
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar" style="background:#6E1423;">VQ</div>
+          <div class="review-id"><div class="review-name">Valeria Quispe</div><div class="review-verified">✓ Compra verificada</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Dura todo el día, huele increíble. Empecé con una fragancia y ahora tengo cuatro en mi colección."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar" style="background:#B8924B;">RA</div>
+          <div class="review-id"><div class="review-name">Renzo Alvarado</div><div class="review-verified">✓ Compra verificada</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar" style="background:#5C6B54;">CT</div>
+          <div class="review-id"><div class="review-name">Camila Torres</div><div class="review-verified">✓ Compra verificada</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota la calidad de los ingredientes."</p>
+      </div>
+    </div>
+
     <div class="testi-wrap reveal">
       <div class="testi-slide active"><div class="stars">★★★★★</div><p class="quote">"La duración es lo que más me sorprendió. Empecé con una sola fragancia y ahora tengo cuatro en mi colección."</p><div class="testi-name">Valeria Quispe</div><div class="testi-meta">Compra verificada · Lima</div></div>
       <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado."</p><div class="testi-name">Renzo Alvarado</div><div class="testi-meta">Compra verificada · Arequipa</div></div>
@@ -605,7 +804,7 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
   <div class="wrap footer-grid">
     <div>
       <div class="foot-logo">
-        <svg viewBox="0 0 64 64" fill="none" width="28" height="28"><circle cx="32" cy="32" r="30.5" stroke="#B8924B" stroke-width="1"/><path d="M32 14L32 50M22 20L32 32L42 20M22 44L32 32L42 44" stroke="#B8924B" stroke-width="1.3"/></svg>
+        <svg class="crest" id="footerCrest" viewBox="0 0 64 64" fill="none" width="28" height="28"><circle cx="32" cy="32" r="30.5" stroke="#B8924B" stroke-width="1"/><path d="M32 14L32 50M22 20L32 32L42 20M22 44L32 32L42 44" stroke="#B8924B" stroke-width="1.3"/></svg>
         <span class="logo-text">MILANO PARFUMS</span>
       </div>
       <p class="foot-desc">Fragancias inspiradas en las casas más reconocidas del mundo, enviadas a todo el Perú.</p>
@@ -661,7 +860,13 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
    ============================================================ */
 const CONFIG = {
   API_URL: "https://script.google.com/macros/s/AKfycbyrvuGyv0DQG3lzs8I_Di5Q3bEEl3WP-H8zeMGUnE9fXpMksubeGb9SOxPza-NkUJCN/exec",
-  WA: "51961389397"
+  WA: "51961389397",
+  // Pega aquí el link directo a tu logo (PNG/SVG con fondo transparente recomendado). Vacío = usa el emblema por defecto.
+  LOGO_URL: "",
+  // Pega aquí el link directo a un video corto (MP4, ideal <15MB, loopeable) para el fondo del Hero. Vacío = usa la botella animada con efecto parallax.
+  HERO_VIDEO_URL: "",
+  // Pega aquí hasta 4 imágenes para la sección "Por qué elegir Milano" (en orden: Ingredientes, Variedad, Experiencia, Transparencia). Deja "" para mantener el ícono ilustrado.
+  ABOUT_IMAGES: ["", "", "", ""]
 };
 
 /* ============================================================
@@ -702,33 +907,143 @@ function bottleSVG(color, size=110){
 }
 
 /* ============================================================
+   LOGO, VIDEO DE HERO Y PARALLAX, IMÁGENES "POR QUÉ ELEGIR"
+   ============================================================ */
+function initBranding(){
+  // Logo
+  if(CONFIG.LOGO_URL){
+    document.querySelectorAll(".crest").forEach(el=>{
+      const img = document.createElement("img");
+      img.src = CONFIG.LOGO_URL;
+      img.alt = "Milano Parfums";
+      const w = el.getAttribute("width") || "32";
+      const h = el.getAttribute("height") || "32";
+      img.style.cssText = `width:${w}px;height:${h}px;object-fit:contain;display:block;`;
+      el.replaceWith(img);
+    });
+  }
+  // Video de fondo del Hero (si hay URL) o parallax con mouse (si no hay video)
+  const heroVideo = document.getElementById("heroVideo");
+  const heroBottle = document.getElementById("heroBottle");
+  if(CONFIG.HERO_VIDEO_URL){
+    heroVideo.src = CONFIG.HERO_VIDEO_URL;
+    heroVideo.style.display = "block";
+    heroBottle.style.display = "none";
+  }else{
+    const heroVisual = document.getElementById("heroVisual");
+    heroVisual.addEventListener("mousemove", e=>{
+      const r = heroVisual.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      heroBottle.style.transform = `translate(${x*18}px,${y*14}px) rotate(${x*4}deg)`;
+    });
+    heroVisual.addEventListener("mouseleave", ()=>{
+      heroBottle.style.transform = "translate(0,0) rotate(0deg)";
+    });
+  }
+  // Imágenes reales para "Por qué elegir Milano"
+  CONFIG.ABOUT_IMAGES.forEach((url, i)=>{
+    if(!url) return;
+    const el = document.getElementById(`aboutImg${i+1}`);
+    if(!el) return;
+    el.innerHTML = `<img src="${url}" alt="Milano Parfums">`;
+  });
+}
+initBranding();
+
+/* ============================================================
+   GALERÍA DE IMÁGENES POR PRODUCTO
+   ============================================================ */
+function getProductImages(p){
+  if(p.ImagenesURL){
+    return String(p.ImagenesURL).split(/[|,]/).map(s=>s.trim()).filter(Boolean).slice(0,6);
+  }
+  if(p.ImagenURL) return [p.ImagenURL];
+  return [];
+}
+function getSizes(p){
+  const base = Number(p.Precio) || 55;
+  const p10 = p.Precio10 ? Number(p.Precio10) : Math.round(base*0.5);
+  const p100 = p.Precio100 ? Number(p.Precio100) : Math.round(base*1.75);
+  return [
+    {ml:10, precio:p10, label:"Prueba"},
+    {ml:50, precio:base, label:"Clásico"},
+    {ml:100, precio:p100, label:"Premium"}
+  ];
+}
+function urgencyBadge(p){
+  const stock = Number(p.Stock);
+  if(!isNaN(stock) && stock>0 && stock<=5){
+    return `<div class="urg-badge"><span class="dot"></span>Solo quedan ${stock} unidades · stock limitado por lote</div>`;
+  }
+  if(String(p.Categoria).toLowerCase()==="bestseller"){
+    return `<div class="urg-badge gold"><span class="dot"></span>Top 10 más vendido esta semana</div>`;
+  }
+  const n = (parseInt(p.ID,10)||0) % 3;
+  if(n===0) return `<div class="urg-badge gold"><span class="dot"></span>Reabastecido cada 2 semanas</div>`;
+  return "";
+}
+
+/* ============================================================
    RENDER CARDS
    ============================================================ */
 function cardHTML(p){
   const color = p.Color || "#6E1423";
   const sinStock = Number(p.Stock) === 0;
+  const sizes = getSizes(p);
+  const def = sizes[1];
   const imgHTML = p.ImagenURL
     ? `<img src="${p.ImagenURL}" alt="${p.Nombre}" style="width:100%;height:100%;object-fit:cover;">`
     : bottleSVG(color);
-  return `<div class="card" data-id="${p.ID}">
+  return `<div class="card" data-id="${p.ID}" data-selected-ml="50">
     <div class="card-media" onclick="openProduct('${p.ID}')">
       <span class="ctag">${p.Genero}</span>
       <button class="wishlist-btn" data-wish="${p.ID}" onclick="event.stopPropagation();toggleWish('${p.ID}')"><svg viewBox="0 0 24 24" fill="none" stroke="#15120F" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.2 2 4.5 5.7 4.1c2-.2 3.7.9 4.5 2.3.8-1.4 2.5-2.5 4.5-2.3C18.4 4.5 20 8.2 18.3 11.7 16.5 16.4 12 21 12 21z"/></svg></button>
       ${imgHTML}
     </div>
-    <div class="card-body" onclick="openProduct('${p.ID}')">
-      <div class="card-house">${p.Casa}</div>
-      <div class="card-name">${p.Nombre}</div>
-      <div class="card-note">${p.Nota}</div>
+    <div class="card-body">
+      <div class="card-house" onclick="openProduct('${p.ID}')">${p.Casa}</div>
+      <div class="card-name" onclick="openProduct('${p.ID}')">${p.Nombre}</div>
+      <div class="card-note" onclick="openProduct('${p.ID}')">${p.Nota}</div>
+      ${urgencyBadge(p)}
+      <div class="size-row">
+        ${sizes.map(s=>`<button class="size-opt${s.ml===50?' active':''}" data-ml="${s.ml}">${s.ml}ml</button>`).join("")}
+      </div>
       <div class="card-foot">
-        <div class="price">S/. ${Number(p.Precio).toFixed(2)}<small>Precio</small></div>
-        <button class="add-btn" onclick="event.stopPropagation();addToCart('${p.ID}')" ${sinStock?'disabled':''}>
-          ${sinStock?'Agotado':'Añadir'}
-        </button>
+        <div class="price">S/. ${def.precio.toFixed(2)}<small>${def.ml}ml</small></div>
+        <button class="add-btn" ${sinStock?'disabled':''}>${sinStock?'Agotado':'Añadir'}</button>
       </div>
     </div>
   </div>`;
 }
+
+/* Delegated: cambiar tamaño seleccionado dentro de una tarjeta */
+document.addEventListener("click", e=>{
+  const opt = e.target.closest(".size-opt");
+  if(!opt) return;
+  e.stopPropagation();
+  const card = opt.closest(".card");
+  if(!card) return;
+  const pid = card.dataset.id;
+  const ml = opt.dataset.ml;
+  card.dataset.selectedMl = ml;
+  card.querySelectorAll(".size-opt").forEach(b=>b.classList.toggle("active", b===opt));
+  const p = getProduct(pid);
+  if(!p) return;
+  const sizeObj = getSizes(p).find(s=>String(s.ml)===String(ml));
+  const priceEl = card.querySelector(".price");
+  if(priceEl && sizeObj) priceEl.innerHTML = `S/. ${sizeObj.precio.toFixed(2)}<small>${sizeObj.ml}ml</small>`;
+});
+
+/* Delegated: añadir al carrito respetando el tamaño seleccionado */
+document.addEventListener("click", e=>{
+  const btn = e.target.closest(".add-btn");
+  if(!btn || btn.disabled) return;
+  e.stopPropagation();
+  const card = btn.closest(".card");
+  if(!card) return;
+  addToCart(card.dataset.id, card.dataset.selectedMl || "50");
+});
 
 function renderCarousel(id, list){
   const el = document.getElementById(id);
@@ -790,24 +1105,42 @@ function applyFilterAndGo(filter){
    ============================================================ */
 function getProduct(id){ return PRODUCTS.find(p=>String(p.ID)===String(id)); }
 
+let pmCurrentId = null;
+let pmSelectedMl = "50";
+
 function openProduct(id){
   const p = getProduct(id);
   if(!p) return;
+  pmCurrentId = id;
+  pmSelectedMl = "50";
   const color = p.Color||"#6E1423";
   const intensidad = Number(p.Intensidad)||1;
   const dots = [1,2,3].map(i=>`<div class="intensity-dot${i<=intensidad?' on':''}"></div>`).join("");
   const intensLabel = intensidad===1?"Suave":intensidad===2?"Significativo":"Característico";
-  const imgHTML = p.ImagenURL
-    ? `<img src="${p.ImagenURL}" alt="${p.Nombre}" style="max-height:340px;object-fit:contain;">`
-    : `<div class="bottle-wrap">${bottleSVG(color,130)}</div>`;
+  const sizes = getSizes(p);
+  const def = sizes[1];
+  const images = getProductImages(p);
+  let visualHTML;
+  if(images.length){
+    visualHTML = `<img class="pm-main-img" id="pmMainImg" src="${images[0]}" alt="${p.Nombre}">`;
+    if(images.length > 1){
+      visualHTML += `<div class="pm-thumbs">${images.map((url,i)=>`<button class="pm-thumb${i===0?' active':''}" data-img="${url}"><img src="${url}" alt="${p.Nombre} ${i+1}"></button>`).join("")}</div>`;
+    }
+  }else{
+    visualHTML = `<div class="bottle-wrap">${bottleSVG(color,130)}</div>`;
+  }
   document.getElementById("pmInner").innerHTML = `
-    <div class="pm-visual">${imgHTML}</div>
+    <div class="pm-visual">${visualHTML}</div>
     <div class="pm-info">
       <div class="pm-genero">${p.Genero}</div>
       <h2 class="pm-name">${p.Nombre}</h2>
       ${p.InspiradoEn?`<div class="pm-inspired">Inspirado en <strong>${p.InspiradoEn}</strong></div>`:''}
-      <div class="pm-price">S/. ${Number(p.Precio).toFixed(2)}<small>Precio de perfume</small></div>
-      <button class="btn solid pm-add" onclick="addToCart('${p.ID}');closeProduct();" ${Number(p.Stock)===0?'disabled':''}>
+      ${urgencyBadge(p)}
+      <div class="pm-size-row">
+        ${sizes.map(s=>`<button class="pm-size-opt${s.ml===50?' active':''}" data-ml="${s.ml}">${s.ml}ml<span>${s.label}</span></button>`).join("")}
+      </div>
+      <div class="pm-price" id="pmPriceDisplay">S/. ${def.precio.toFixed(2)}<small>Precio · ${def.ml}ml</small></div>
+      <button class="btn solid pm-add" onclick="addToCart(pmCurrentId,pmSelectedMl);closeProduct();" ${Number(p.Stock)===0?'disabled':''}>
         ${Number(p.Stock)===0?'Agotado — Consultar':'Añadir al carrito'}
       </button>
       <div class="pm-divider"></div>
@@ -836,6 +1169,31 @@ function openProduct(id){
   document.body.style.overflow="hidden";
 }
 
+/* Delegated: cambiar imagen principal de la galería del producto */
+document.addEventListener("click", e=>{
+  const thumb = e.target.closest(".pm-thumb");
+  if(!thumb) return;
+  document.querySelectorAll(".pm-thumb").forEach(t=>t.classList.toggle("active", t===thumb));
+  const mainImg = document.getElementById("pmMainImg");
+  if(mainImg){
+    mainImg.style.opacity = "0";
+    setTimeout(()=>{ mainImg.src = thumb.dataset.img; mainImg.style.opacity = "1"; }, 150);
+  }
+});
+
+/* Delegated: cambiar tamaño dentro del modal de producto */
+document.addEventListener("click", e=>{
+  const opt = e.target.closest(".pm-size-opt");
+  if(!opt) return;
+  document.querySelectorAll(".pm-size-opt").forEach(b=>b.classList.toggle("active", b===opt));
+  pmSelectedMl = opt.dataset.ml;
+  const p = getProduct(pmCurrentId);
+  if(!p) return;
+  const s = getSizes(p).find(x=>String(x.ml)===String(pmSelectedMl));
+  const disp = document.getElementById("pmPriceDisplay");
+  if(disp && s) disp.innerHTML = `S/. ${s.precio.toFixed(2)}<small>Precio · ${s.ml}ml</small>`;
+});
+
 function closeProduct(){
   document.getElementById("productModal").classList.remove("open");
   document.getElementById("pmOverlay").classList.remove("open");
@@ -850,16 +1208,19 @@ document.getElementById("pmOverlay").addEventListener("click",closeProduct);
 const CART_KEY="mp_cart";
 function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return [];}}
 function saveCart(c){localStorage.setItem(CART_KEY,JSON.stringify(c));renderCart();}
-function addToCart(id){
+function addToCart(id, ml){
+  ml = ml || "50";
   const p=getProduct(id); if(!p||Number(p.Stock)===0) return;
+  const sizeObj = getSizes(p).find(s=>String(s.ml)===String(ml)) || getSizes(p)[1];
+  const lineId = `${id}_${sizeObj.ml}`;
   const cart=getCart();
-  const ex=cart.find(i=>i.id===String(id));
-  if(ex)ex.cantidad+=1;
-  else cart.push({id:String(id),nombre:p.Nombre,nota:p.Nota,precio:Number(p.Precio),color:p.Color,cantidad:1});
+  const ex=cart.find(i=>i.lineId===lineId);
+  if(ex) ex.cantidad+=1;
+  else cart.push({lineId, id:String(id), nombre:p.Nombre, nota:p.Nota, precio:sizeObj.precio, ml:sizeObj.ml, color:p.Color, cantidad:1});
   saveCart(cart); openCart();
 }
-function changeQty(id,d){let c=getCart();const it=c.find(i=>i.id===id);if(!it)return;it.cantidad+=d;if(it.cantidad<=0)c=c.filter(i=>i.id!==id);saveCart(c);}
-function removeFromCart(id){saveCart(getCart().filter(i=>i.id!==id));}
+function changeQty(lineId,d){let c=getCart();const it=c.find(i=>i.lineId===lineId);if(!it)return;it.cantidad+=d;if(it.cantidad<=0)c=c.filter(i=>i.lineId!==lineId);saveCart(c);}
+function removeFromCart(lineId){saveCart(getCart().filter(i=>i.lineId!==lineId));}
 function cartTotal(c){return c.reduce((s,i)=>s+i.precio*i.cantidad,0);}
 function renderCart(){
   const c=getCart();
@@ -867,10 +1228,10 @@ function renderCart(){
   const el=document.getElementById("cartItems");
   if(!c.length){el.innerHTML=`<div class="cart-empty">Tu carrito está vacío.<br>Explora nuestra colección y encuentra tu fragancia ideal.</div>`;}
   else{
-    el.innerHTML=c.map(i=>`<div class="cart-line" data-id="${i.id}">
+    el.innerHTML=c.map(i=>`<div class="cart-line" data-line="${i.lineId}">
       <div class="cart-swatch" style="background:linear-gradient(150deg,${i.color||'#6E1423'},#16140F);"></div>
       <div class="ci-info">
-        <div class="ci-name">${i.nombre}</div>
+        <div class="ci-name">${i.nombre} <span style="color:var(--tm);font-weight:400;">· ${i.ml}ml</span></div>
         <div class="ci-note">${i.nota||''}</div>
         <div class="ci-price">S/. ${(i.precio*i.cantidad).toFixed(2)}</div>
         <div class="qty-ctrl">
@@ -886,10 +1247,10 @@ function renderCart(){
 }
 document.getElementById("cartItems").addEventListener("click",e=>{
   const ln=e.target.closest(".cart-line"); if(!ln) return;
-  const id=ln.dataset.id;
-  if(e.target.dataset.action==="inc") changeQty(id,1);
-  if(e.target.dataset.action==="dec") changeQty(id,-1);
-  if(e.target.dataset.action==="remove") removeFromCart(id);
+  const lineId=ln.dataset.line;
+  if(e.target.dataset.action==="inc") changeQty(lineId,1);
+  if(e.target.dataset.action==="dec") changeQty(lineId,-1);
+  if(e.target.dataset.action==="remove") removeFromCart(lineId);
 });
 const cartDrawer=document.getElementById("cartDrawer");
 const cartOverlay=document.getElementById("cartOverlay");
@@ -900,10 +1261,10 @@ document.getElementById("cartCloseBtn").addEventListener("click",closeCart);
 cartOverlay.addEventListener("click",closeCart);
 document.getElementById("checkoutBtn").addEventListener("click",async()=>{
   const c=getCart(); if(!c.length) return;
-  const lineas=c.map(i=>`• ${i.nombre} x${i.cantidad} — S/. ${(i.precio*i.cantidad).toFixed(2)}`).join("\n");
+  const lineas=c.map(i=>`• ${i.nombre} (${i.ml}ml) x${i.cantidad} — S/. ${(i.precio*i.cantidad).toFixed(2)}`).join("\n");
   const total=cartTotal(c).toFixed(2);
   const msg=`Hola Milano Parfums 👋🏼, quiero hacer este pedido:\n\n${lineas}\n\nTotal: S/. ${total}`;
-  try{ fetch(CONFIG.API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"pedido",items:c.map(i=>({nombre:i.nombre,cantidad:i.cantidad,precio:i.precio})),total:Number(total),mensaje:msg})}); }catch(e){}
+  try{ fetch(CONFIG.API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"pedido",items:c.map(i=>({nombre:i.nombre,ml:i.ml,cantidad:i.cantidad,precio:i.precio})),total:Number(total),mensaje:msg})}); }catch(e){}
   window.open(`https://wa.me/${CONFIG.WA}?text=${encodeURIComponent(msg)}`,"_blank");
 });
 renderCart();
@@ -1128,6 +1489,204 @@ function openPolicy(key){
 function closePolicy(){policyModal.classList.remove("open");policyOverlayBg.classList.remove("open");document.body.style.overflow="";}
 document.getElementById("policyClose").addEventListener("click",closePolicy);
 policyOverlayBg.addEventListener("click",closePolicy);
+
+/* ============================================================
+   FLECHAS DE CARRUSEL
+   ============================================================ */
+document.querySelectorAll(".car-arrow").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const car = document.getElementById(btn.dataset.target);
+    if(!car) return;
+    const cardW = car.querySelector(".card")?.offsetWidth || 260;
+    const dist = (cardW+20) * 2;
+    car.scrollBy({left: btn.classList.contains("next") ? dist : -dist, behavior:"smooth"});
+  });
+});
+
+/* ============================================================
+   CONTADOR ANIMADO DE ESTADÍSTICAS SOCIALES
+   ============================================================ */
+function animateStat(el, target, suffix, decimals){
+  const dur = 1400;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now-start)/dur, 1);
+    const eased = 1-Math.pow(1-p,3);
+    const val = target*eased;
+    el.textContent = decimals ? val.toFixed(decimals) : Math.round(val);
+    if(p<1) requestAnimationFrame(tick);
+    else el.textContent = decimals ? target.toFixed(decimals) : target;
+  }
+  requestAnimationFrame(tick);
+}
+const statTargets=[
+  {sel:".stat-item:nth-child(1) .stat-num",val:1200,suffix:"+",decimals:0},
+  {sel:".stat-item:nth-child(2) .stat-num",val:4.9,suffix:"/5",decimals:1},
+  {sel:".stat-item:nth-child(3) .stat-num",val:350,suffix:"+",decimals:0},
+  {sel:".stat-item:nth-child(4) .stat-num",val:98,suffix:"%",decimals:0}
+];
+let statsAnimated=false;
+const statsBar=document.querySelector(".social-stats");
+if(statsBar){
+  const statsIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !statsAnimated){
+        statsAnimated=true;
+        statTargets.forEach(st=>{
+          const el=document.querySelector(st.sel);
+          if(!el) return;
+          const plusEl=el.querySelector(".plus");
+          const plusHTML=plusEl?plusEl.outerHTML:"";
+          animateStat(el, st.val, st.suffix, st.decimals);
+          setTimeout(()=>{ if(plusEl) el.innerHTML = (st.decimals?st.val.toFixed(st.decimals):st.val) + plusHTML; }, 1450);
+        });
+        statsIO.unobserve(e.target);
+      }
+    });
+  },{threshold:.4});
+  statsIO.observe(statsBar);
+}
+
+/* ============================================================
+   QUIZ "ENCUENTRA TU PERFUME"
+   ============================================================ */
+const QUIZ_QUESTIONS = [
+  {
+    label:"Pregunta 1 de 3",
+    q:"¿Qué tipo de aromas prefieres?",
+    key:"familia",
+    opts:[
+      {icon:"🍯",text:"Dulces y gourmand (vainilla, café, caramelo)",val:"Gourmand"},
+      {icon:"🌊",text:"Frescos y cítricos (mar, cítricos, ligero)",val:"Acuática"},
+      {icon:"🌲",text:"Intensos y amaderados (madera, cuero, especias)",val:"Oriental"},
+      {icon:"🌸",text:"Florales y delicados (rosa, jazmín, flores blancas)",val:"Floral"}
+    ]
+  },
+  {
+    label:"Pregunta 2 de 3",
+    q:"¿Para qué ocasión lo usarás más?",
+    key:"ocasion",
+    opts:[
+      {icon:"☀️",text:"Uso diario, oficina o universidad",val:"diario"},
+      {icon:"🌙",text:"Salidas nocturnas y ocasiones especiales",val:"especial"},
+      {icon:"✨",text:"Para todo tipo de ocasión",val:"ambos"}
+    ]
+  },
+  {
+    label:"Pregunta 3 de 3",
+    q:"¿Cuál es tu presupuesto ideal (frasco de 50ml)?",
+    key:"presupuesto",
+    opts:[
+      {icon:"💧",text:"Económico — hasta S/. 55",val:"bajo"},
+      {icon:"💎",text:"Medio — entre S/. 55 y S/. 70",val:"medio"},
+      {icon:"👑",text:"No importa, quiero la mejor opción",val:"alto"}
+    ]
+  }
+];
+let quizAnswers = {};
+let quizStep = 0;
+
+function openQuiz(){
+  quizAnswers = {}; quizStep = 0;
+  document.getElementById("quizModal").classList.add("open");
+  document.getElementById("quizOverlayBg").classList.add("open");
+  document.body.style.overflow = "hidden";
+  renderQuizStep();
+}
+function closeQuiz(){
+  document.getElementById("quizModal").classList.remove("open");
+  document.getElementById("quizOverlayBg").classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.getElementById("openQuizBtn").addEventListener("click", openQuiz);
+document.getElementById("quizCloseBtn").addEventListener("click", closeQuiz);
+document.getElementById("quizOverlayBg").addEventListener("click", closeQuiz);
+
+function updateQuizProgress(full){
+  document.querySelectorAll("#quizProgress .seg .fill").forEach((f,i)=>{
+    f.style.width = full ? "100%" : (i < quizStep ? "100%" : i === quizStep ? "50%" : "0%");
+  });
+}
+
+function renderQuizStep(){
+  updateQuizProgress(false);
+  const body = document.getElementById("quizBody");
+  const qd = QUIZ_QUESTIONS[quizStep];
+  body.innerHTML = `
+    <div class="quiz-q-label">${qd.label}</div>
+    <div class="quiz-q">${qd.q}</div>
+    <div class="quiz-opts">
+      ${qd.opts.map(o=>`<button class="quiz-opt" data-key="${qd.key}" data-val="${o.val}"><span class="qi">${o.icon}</span>${o.text}</button>`).join("")}
+    </div>
+    ${quizStep>0?`<div class="quiz-nav"><button class="quiz-back" id="quizBackBtn">← Volver</button></div>`:''}
+  `;
+  body.querySelectorAll(".quiz-opt").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      quizAnswers[btn.dataset.key] = btn.dataset.val;
+      quizStep++;
+      if(quizStep >= QUIZ_QUESTIONS.length) renderQuizLoading();
+      else renderQuizStep();
+    });
+  });
+  const backBtn = document.getElementById("quizBackBtn");
+  if(backBtn) backBtn.addEventListener("click", ()=>{ quizStep--; renderQuizStep(); });
+}
+
+function renderQuizLoading(){
+  updateQuizProgress(true);
+  const body = document.getElementById("quizBody");
+  body.innerHTML = `<div class="quiz-loading"><div class="spinner"></div><p>Analizando tus preferencias olfativas...</p></div>`;
+  setTimeout(renderQuizResults, 1100);
+}
+
+function scoreProduct(p){
+  let score = 0;
+  const fam = (p.Familia||"").toLowerCase();
+  const wantFam = (quizAnswers.familia||"").toLowerCase();
+  if(fam === wantFam) score += 4;
+  else if(wantFam === "oriental" && fam === "herbal") score += 1;
+
+  const intensidad = Number(p.Intensidad) || 2;
+  if(quizAnswers.ocasion === "diario" && intensidad <= 2) score += 2;
+  if(quizAnswers.ocasion === "especial" && intensidad >= 2) score += 2;
+  if(quizAnswers.ocasion === "ambos") score += 1;
+
+  const precio50 = getSizes(p)[1].precio;
+  if(quizAnswers.presupuesto === "bajo" && precio50 <= 55) score += 2;
+  if(quizAnswers.presupuesto === "medio" && precio50 > 55 && precio50 <= 70) score += 2;
+  if(quizAnswers.presupuesto === "alto") score += 1;
+
+  return score;
+}
+
+function renderQuizResults(){
+  const activos = PRODUCTS.filter(p=>String(p.Activo).toUpperCase()!=="NO");
+  let scored = activos.map(p=>({p, score:scoreProduct(p)})).sort((a,b)=>b.score-a.score);
+  let top = scored.filter(s=>s.score>0).slice(0,5);
+  if(top.length < 3) top = scored.slice(0,5);
+
+  const body = document.getElementById("quizBody");
+  body.innerHTML = `
+    <div class="quiz-results">
+      <h3>Tu match olfativo ✨</h3>
+      <p class="qr-sub">Según tus respuestas, estas son las fragancias ideales para ti:</p>
+      ${top.map(({p},idx)=>{
+        const sizes = getSizes(p);
+        const matchLabel = idx===0?"Match perfecto":idx===1?"Excelente opción":"Buena alternativa";
+        return `<div class="quiz-result-card" onclick="closeQuiz();openProduct('${p.ID}')">
+          <div class="qrc-swatch" style="background:linear-gradient(150deg,${p.Color||'#6E1423'},#16140F);"></div>
+          <div class="qrc-info">
+            <div class="qrc-name">${p.Nombre}</div>
+            <div class="qrc-match">${matchLabel}</div>
+          </div>
+          <div class="qrc-price">S/. ${sizes[1].precio.toFixed(2)}</div>
+        </div>`;
+      }).join("")}
+      <button class="btn quiz-restart" onclick="openQuiz()">Repetir quiz</button>
+      <a href="https://wa.me/${CONFIG.WA}?text=Hola%2C%20hice%20el%20quiz%20de%20fragancias%20y%20quiero%20asesor%C3%ADa" target="_blank" class="btn solid quiz-restart" style="margin-top:8px;display:flex;">Hablar con un asesor por WhatsApp</a>
+    </div>
+  `;
+}
 </script>
 </body>
 </html>
