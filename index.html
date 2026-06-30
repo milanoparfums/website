@@ -1264,7 +1264,14 @@ document.getElementById("checkoutBtn").addEventListener("click",async()=>{
   const lineas=c.map(i=>`• ${i.nombre} (${i.ml}ml) x${i.cantidad} — S/. ${(i.precio*i.cantidad).toFixed(2)}`).join("\n");
   const total=cartTotal(c).toFixed(2);
   const msg=`Hola Milano Parfums 👋🏼, quiero hacer este pedido:\n\n${lineas}\n\nTotal: S/. ${total}`;
-  try{ fetch(CONFIG.API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"pedido",items:c.map(i=>({nombre:i.nombre,ml:i.ml,cantidad:i.cantidad,precio:i.precio})),total:Number(total),mensaje:msg})}); }catch(e){}
+  try{
+    fetch(CONFIG.API_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({action:"pedido",items:c.map(i=>({nombre:i.nombre,ml:i.ml,cantidad:i.cantidad,precio:i.precio})),total:Number(total),mensaje:msg})
+    });
+  }catch(err){ console.error("Checkout log error:", err); }
   window.open(`https://wa.me/${CONFIG.WA}?text=${encodeURIComponent(msg)}`,"_blank");
 });
 renderCart();
@@ -1405,11 +1412,28 @@ document.getElementById("newsForm").addEventListener("submit",async e=>{
   e.preventDefault();
   const email=document.getElementById("newsEmail").value.trim();
   const msg=document.getElementById("newsMsg");
+  if(!email){ msg.textContent="Por favor ingresa un correo válido."; return; }
+  if(!CONFIG.API_URL || CONFIG.API_URL.includes("PEGA")){
+    msg.textContent="¡Gracias por tu interés! (conecta tu Google Sheet para guardar correos automáticamente)";
+    document.getElementById("newsEmail").value="";
+    return;
+  }
+  msg.textContent="Enviando...";
   try{
-    await fetch(CONFIG.API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"suscriptor",email})});
+    // mode:"no-cors" evita que el navegador bloquee la respuesta por el redirect propio de Apps Script.
+    // No podemos leer la respuesta, pero la solicitud sí llega y el correo se guarda en tu Sheet.
+    await fetch(CONFIG.API_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({action:"suscriptor",email})
+    });
     msg.textContent="¡Listo! Revisa tu correo, pronto recibirás tu descuento.";
     document.getElementById("newsEmail").value="";
-  }catch(e){msg.textContent="No pudimos guardar tu correo, inténtalo nuevamente.";}
+  }catch(err){
+    console.error("Newsletter error:", err);
+    msg.textContent="No pudimos conectar, pero puedes escribirnos directo por WhatsApp.";
+  }
 });
 
 /* ============================================================
