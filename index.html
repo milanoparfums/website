@@ -400,7 +400,151 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
 .pay-icons span{font-family:'Archivo',sans-serif;font-size:9px;border:1px solid rgba(255,255,255,.18);padding:4px 8px;}
 @media(max-width:780px){.footer-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:460px){.footer-grid{grid-template-columns:1fr;}}
-/* ===== WA FLOAT ===== */
+/* ===== ASISTENTE IA FLOTANTE ===== */
+.ai-float{
+  position:fixed;bottom:96px;right:24px;z-index:75;
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+}
+.ai-float-btn{
+  width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,#B8924B,#6E1423);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 22px rgba(184,146,75,.45);
+  border:none;cursor:pointer;
+  animation:aiglow 3s infinite;
+}
+.ai-float-btn svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.5;}
+.ai-float-label{
+  background:var(--ink);color:var(--tl);
+  font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.06em;padding:8px 14px;white-space:nowrap;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  opacity:0;transform:translateX(8px);
+  transition:opacity .3s, transform .3s;
+}
+.ai-float:hover .ai-float-label{opacity:1;transform:translateX(0);}
+@keyframes aiglow{0%,100%{box-shadow:0 8px 22px rgba(184,146,75,.45),0 0 0 0 rgba(184,146,75,.4);}60%{box-shadow:0 8px 22px rgba(184,146,75,.45),0 0 0 12px rgba(184,146,75,0);}}
+
+/* ===== CHAT PANEL ===== */
+.ai-panel{
+  position:fixed;inset:0;z-index:95;
+  display:flex;flex-direction:column;
+  background:var(--cream);
+  transform:translateY(100%);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), visibility 0s linear .4s;
+  visibility:hidden;
+}
+.ai-panel.open{transform:translateY(0);visibility:visible;transition:transform .4s cubic-bezier(.2,.8,.2,1), visibility 0s linear 0s;}
+.ai-panel-head{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 20px;border-bottom:1px solid rgba(21,18,15,.1);
+  background:var(--ink);flex-shrink:0;
+}
+.ai-panel-head-ico{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#B8924B,#6E1423);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.ai-panel-head-ico svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.5;}
+.ai-panel-title{flex:1;}
+.ai-panel-title h4{color:var(--tl);font-size:15px;margin-bottom:2px;}
+.ai-panel-title span{color:#A99F8C;font-size:11.5px;}
+.ai-panel-close{background:none;border:none;color:var(--tl);font-size:22px;cursor:pointer;line-height:1;padding:4px;}
+.ai-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth;}
+.ai-msg{max-width:82%;line-height:1.55;}
+.ai-msg.user{align-self:flex-end;}
+.ai-msg.ai{align-self:flex-start;}
+.ai-bubble{padding:12px 16px;border-radius:18px;font-size:13.5px;}
+.ai-msg.user .ai-bubble{background:var(--ink);color:var(--tl);border-radius:18px 18px 4px 18px;}
+.ai-msg.ai .ai-bubble{background:#fff;color:var(--td);border:1px solid rgba(21,18,15,.08);border-radius:18px 18px 18px 4px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.ai-msg.ai .ai-bubble strong{color:var(--gold);font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px;}
+.ai-typing{display:flex;gap:4px;align-items:center;padding:14px 16px;}
+.ai-typing .dot{width:7px;height:7px;border-radius:50%;background:var(--tm);animation:typedot 1.2s infinite;}
+.ai-typing .dot:nth-child(2){animation-delay:.2s;}
+.ai-typing .dot:nth-child(3){animation-delay:.4s;}
+@keyframes typedot{0%,80%,100%{transform:scale(.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+/* product chips inside AI messages */
+.ai-product-chip{
+  display:flex;align-items:center;gap:10px;
+  background:var(--cream2);border:1px solid rgba(21,18,15,.1);
+  padding:10px 12px;margin-top:8px;cursor:pointer;
+  transition:.2s;
+}
+.ai-product-chip:hover{border-color:var(--gold);background:#fff;}
+.ai-chip-swatch{width:28px;height:36px;border-radius:2px;flex:none;}
+.ai-chip-info{flex:1;}
+.ai-chip-name{font-family:'Fraunces',serif;font-size:13px;}
+.ai-chip-note{font-size:10.5px;color:var(--tm);}
+.ai-chip-price{font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;}
+/* quick replies */
+.ai-chips-row{display:flex;gap:7px;flex-wrap:wrap;padding:4px 0 10px;}
+.ai-quick{
+  font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;
+  padding:8px 14px;border:1px solid rgba(21,18,15,.2);background:#fff;cursor:pointer;border-radius:20px;
+  white-space:nowrap;transition:.18s;color:var(--td);
+}
+.ai-quick:hover{background:var(--ink);color:var(--tl);border-color:var(--ink);}
+/* input area */
+.ai-input-row{
+  display:flex;gap:10px;padding:14px 16px;
+  border-top:1px solid rgba(21,18,15,.1);background:var(--cream);flex-shrink:0;
+}
+.ai-input{
+  flex:1;border:1px solid rgba(21,18,15,.18);background:#fff;
+  padding:12px 16px;font-family:'Manrope',sans-serif;font-size:13.5px;
+  outline:none;border-radius:24px;
+}
+.ai-input:focus{border-color:var(--gold);}
+.ai-send{
+  width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex:none;transition:.2s;
+}
+.ai-send:hover{background:var(--gold2);}
+.ai-send svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;}
+
+/* ===== SCROLL INMERSIVO ===== */
+body{transition:background-color .8s ease;}
+.scene-section{transition:background-color .6s ease;}
+
+/* partículas de notas flotantes en el hero */
+.note-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.note-p{
+  position:absolute;
+  font-family:'Archivo',sans-serif;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  color:rgba(184,146,75,.7);
+  animation:notedrift var(--dur,12s) var(--delay,0s) infinite ease-in-out;
+  white-space:nowrap;
+}
+@keyframes notedrift{
+  0%{transform:translate(0,0) scale(1);opacity:.45;}
+  25%{transform:translate(var(--dx1),var(--dy1)) scale(1.05);opacity:.7;}
+  50%{transform:translate(var(--dx2),var(--dy2)) scale(.95);opacity:.35;}
+  75%{transform:translate(var(--dx3),var(--dy3)) scale(1.08);opacity:.6;}
+  100%{transform:translate(0,0) scale(1);opacity:.45;}
+}
+
+/* chapter side-indicator */
+.chapter-track{
+  position:fixed;left:18px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:8px;z-index:50;
+  opacity:0;transition:opacity .4s;
+}
+.chapter-track.visible{opacity:1;}
+.ch-dot{width:6px;height:6px;border-radius:50%;background:rgba(184,146,75,.3);cursor:pointer;transition:.3s;}
+.ch-dot.active{background:var(--gold);width:6px;height:22px;border-radius:3px;}
+@media(max-width:780px){.chapter-track{display:none;}}
+
+/* section entrance animations */
+.chapter-fade{opacity:0;transform:translateY(32px);transition:opacity .9s ease, transform .9s ease;}
+.chapter-fade.in{opacity:1;transform:none;}
+.chapter-left{opacity:0;transform:translateX(-40px);transition:opacity .9s ease, transform .9s ease;}
+.chapter-left.in{opacity:1;transform:none;}
+.chapter-right{opacity:0;transform:translateX(40px);transition:opacity .9s ease, transform .9s ease;}
+.chapter-right.in{opacity:1;transform:none;}
+.chapter-scale{opacity:0;transform:scale(.93);transition:opacity .9s ease, transform .9s ease;}
+.chapter-scale.in{opacity:1;transform:scale(1);}
+
+/* ===== WHATSAPP FLOAT ===== */
 .wa-float{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:70;animation:wapulse 2.6s infinite;}
 .wa-float svg{width:26px;height:26px;fill:#fff;}
 @keyframes wapulse{0%{box-shadow:0 8px 22px rgba(0,0,0,.22),0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 8px 22px rgba(0,0,0,.22),0 0 0 13px rgba(37,211,102,0);}100%{box-shadow:0 8px 22px rgba(0,0,0,.22),0 0 0 0 rgba(37,211,102,0);}}
@@ -565,6 +709,8 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
     </div>
     <div class="hero-visual" id="heroVisual">
       <div class="thread"></div>
+      <!-- Partículas de notas olfativas flotantes -->
+      <div class="note-particles" id="noteParticles"></div>
       <video id="heroVideo" autoplay muted loop playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:4px;"></video>
       <svg id="heroBottle" width="210" height="400" viewBox="0 0 210 400" style="transition:transform .15s ease-out;">
         <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E4C988"/><stop offset="1" stop-color="#8C6B2E"/></linearGradient></defs>
@@ -849,6 +995,39 @@ footer.site{background:var(--ink);color:#B9AF9C;padding:70px 0 0;}
   </div>
 </footer>
 
+<!-- AI FRAGRANCE ASSISTANT FLOAT -->
+<div class="ai-float" id="aiFloat">
+  <span class="ai-float-label">Asistente de Fragancias IA</span>
+  <button class="ai-float-btn" id="aiFloatBtn" aria-label="Abrir asistente">
+    <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V18a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3.3A7 7 0 0 0 12 2z"/><line x1="9" y1="22" x2="15" y2="22"/></svg>
+  </button>
+</div>
+
+<!-- AI CHAT PANEL -->
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-panel-head">
+    <div class="ai-panel-head-ico">
+      <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V18a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3.3A7 7 0 0 0 12 2z"/><line x1="9" y1="22" x2="15" y2="22"/></svg>
+    </div>
+    <div class="ai-panel-title">
+      <h4>Asistente de Fragancias</h4>
+      <span>Milano Parfums · IA olfativa</span>
+    </div>
+    <button class="ai-panel-close" id="aiPanelClose">×</button>
+  </div>
+  <div class="ai-messages" id="aiMessages"></div>
+  <div id="aiQuickRow"></div>
+  <div class="ai-input-row">
+    <input class="ai-input" id="aiInput" type="text" placeholder="¿Qué fragancia estás buscando?">
+    <button class="ai-send" id="aiSend">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- CHAPTER TRACK (navegación lateral inmersiva) -->
+<nav class="chapter-track" id="chapterTrack"></nav>
+
 <!-- WA FLOAT -->
 <a class="wa-float" href="https://wa.me/51961389397?text=Hola%20Milano%20Parfums%2C%20quisiera%20hacer%20una%20consulta" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 0 0-10.4 18l-1.5 5.5 5.6-1.5A12 12 0 1 0 12 0zm6.9 17a9.9 9.9 0 0 1-14-14 9.9 9.9 0 0 1 16.9 7 9.8 9.8 0 0 1-2.9 7zm-3-5.3c-.3-.2-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.8-.7-3-2-3.8-3.5-.1-.2 0-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6L7.7 5c-.1-.3-.5-.3-.7-.3-.2 0-.5.1-.7.3-.5.5-.8 1.2-.8 2 0 2.6 2.7 6.4 6.7 7.6.6.2 1.2.3 1.7.1.5-.1 1.5-1 1.7-1.2.2-.2.2-.5.1-.7z"/></svg>
@@ -1074,11 +1253,17 @@ function renderCatalog(filter){
 async function loadProducts(){
   try{
     if(!CONFIG.API_URL||CONFIG.API_URL.includes("PEGA")) throw new Error("no api");
-    const res = await fetch(`${CONFIG.API_URL}?action=productos`);
-    if(!res.ok) throw new Error("bad response");
+    const res = await fetch(`${CONFIG.API_URL}?action=productos&v=${Date.now()}`);
+    if(!res.ok) throw new Error("HTTP "+res.status);
     const data = await res.json();
+    // Si Apps Script devuelve error, usar fallback
+    if(data && data.error) throw new Error(data.error);
     PRODUCTS = Array.isArray(data)&&data.length ? data : FALLBACK;
-  }catch(e){ PRODUCTS = FALLBACK; }
+    console.log("✅ Productos cargados desde Sheets:", PRODUCTS.length);
+  }catch(e){
+    console.warn("⚠️ Usando productos de respaldo. Error:", e.message);
+    PRODUCTS = FALLBACK;
+  }
   const activos = PRODUCTS.filter(p=>String(p.Activo).toUpperCase()!=="NO");
   renderCarousel("bestCarousel", activos.filter(p=>String(p.Categoria).toLowerCase()==="bestseller"));
   renderCarousel("newCarousel", activos.filter(p=>String(p.Categoria).toLowerCase()==="nuevo"));
@@ -1413,26 +1598,27 @@ document.getElementById("newsForm").addEventListener("submit",async e=>{
   const email=document.getElementById("newsEmail").value.trim();
   const msg=document.getElementById("newsMsg");
   if(!email){ msg.textContent="Por favor ingresa un correo válido."; return; }
-  if(!CONFIG.API_URL || CONFIG.API_URL.includes("PEGA")){
-    msg.textContent="¡Gracias por tu interés! (conecta tu Google Sheet para guardar correos automáticamente)";
-    document.getElementById("newsEmail").value="";
-    return;
+  if(!CONFIG.API_URL||CONFIG.API_URL.includes("PEGA")){
+    msg.textContent="¡Gracias! Configura tu Google Sheet para guardar correos automáticamente.";
+    document.getElementById("newsEmail").value=""; return;
   }
   msg.textContent="Enviando...";
   try{
-    // mode:"no-cors" evita que el navegador bloquee la respuesta por el redirect propio de Apps Script.
-    // No podemos leer la respuesta, pero la solicitud sí llega y el correo se guarda en tu Sheet.
-    await fetch(CONFIG.API_URL,{
-      method:"POST",
-      mode:"no-cors",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify({action:"suscriptor",email})
-    });
-    msg.textContent="¡Listo! Revisa tu correo, pronto recibirás tu descuento.";
-    document.getElementById("newsEmail").value="";
+    // GET evita el problema CORS/redirect de Apps Script — podemos leer la respuesta
+    const url = `${CONFIG.API_URL}?action=suscriptor&email=${encodeURIComponent(email)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if(data.ok){
+      msg.textContent = data.mensaje==="ya_suscrito"
+        ? "¡Ya estás en nuestra lista! Pronto recibirás noticias."
+        : "¡Listo! Revisa tu correo — pronto recibirás tu descuento de bienvenida. 🎁";
+      document.getElementById("newsEmail").value="";
+    } else {
+      msg.textContent = "Algo salió mal: " + (data.error||"intenta de nuevo.");
+    }
   }catch(err){
     console.error("Newsletter error:", err);
-    msg.textContent="No pudimos conectar, pero puedes escribirnos directo por WhatsApp.";
+    msg.textContent = "No pudimos conectar. Escríbenos directo por WhatsApp.";
   }
 });
 
@@ -1711,6 +1897,175 @@ function renderQuizResults(){
     </div>
   `;
 }
+
+/* ============================================================
+   PARTÍCULAS DE NOTAS OLFATIVAS EN EL HERO
+   ============================================================ */
+(function(){
+  const notes = ["Bergamota","Ámbar","Sándalo","Jazmín","Oud","Vainilla","Cedro","Pachulí","Musgo","Azafrán","Vetiver","Rosa"];
+  const container = document.getElementById("noteParticles");
+  if(!container) return;
+  notes.forEach((n,i)=>{
+    const el = document.createElement("span");
+    el.className = "note-p";
+    el.textContent = n;
+    const angle = (i/notes.length)*360;
+    const r = 120+Math.random()*90;
+    const x = Math.cos(angle*Math.PI/180)*r;
+    const y = Math.sin(angle*Math.PI/180)*r/1.8;
+    el.style.cssText = `
+      left:calc(50% + ${x}px);top:calc(50% + ${y}px);
+      --dur:${10+Math.random()*8}s;--delay:-${Math.random()*12}s;
+      --dx1:${(Math.random()-.5)*30}px;--dy1:${(Math.random()-.5)*20}px;
+      --dx2:${(Math.random()-.5)*40}px;--dy2:${(Math.random()-.5)*30}px;
+      --dx3:${(Math.random()-.5)*25}px;--dy3:${(Math.random()-.5)*15}px;
+    `;
+    container.appendChild(el);
+  });
+})();
+
+/* ============================================================
+   SCROLL INMERSIVO — CAPÍTULOS
+   ============================================================ */
+const CHAPTERS = [
+  {id:"top",        label:"Inicio"},
+  {id:"bestsellers",label:"Destacados"},
+  {id:"nuevos",     label:"Nuevos"},
+  {id:"catalogo",   label:"Catálogo"},
+  {id:"about",      label:"Filosofía"},
+  {id:"contacto",   label:"Contacto"},
+];
+let currentChapter = -1;
+const track = document.getElementById("chapterTrack");
+CHAPTERS.forEach((ch,i)=>{
+  const dot = document.createElement("button");
+  dot.className = "ch-dot";
+  dot.title = ch.label;
+  dot.addEventListener("click",()=>{ const el=document.getElementById(ch.id); if(el)el.scrollIntoView({behavior:"smooth"}); });
+  track.appendChild(dot);
+});
+function setChapter(i){
+  if(i===currentChapter) return;
+  currentChapter=i;
+  document.querySelectorAll(".ch-dot").forEach((d,idx)=>d.classList.toggle("active",idx===i));
+}
+window.addEventListener("scroll",()=>{
+  track.classList.toggle("visible", scrollY>200);
+  CHAPTERS.forEach((ch,i)=>{
+    const el=document.getElementById(ch.id); if(!el) return;
+    const rect=el.getBoundingClientRect();
+    if(rect.top<=200&&rect.bottom>200) setChapter(i);
+  });
+},{passive:true});
+
+// Animar elementos chapter-* al entrar
+const chIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");chIO.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll(".chapter-fade,.chapter-left,.chapter-right,.chapter-scale").forEach(el=>chIO.observe(el));
+
+/* ============================================================
+   ASISTENTE IA DE FRAGANCIAS (conversacional, sin API)
+   ============================================================ */
+const AI_KNOWLEDGE = {
+  familias:{
+    "dulce":["Gourmand"],"vainilla":["Gourmand"],"café":["Gourmand"],"gourmand":["Gourmand"],
+    "fresco":["Acuática","Floral"],"cítrico":["Acuática"],"marino":["Acuática"],"mar":["Acuática"],"ligero":["Acuática"],
+    "floral":["Floral"],"rosa":["Floral"],"jazmín":["Floral"],"flores":["Floral"],
+    "intenso":["Oriental"],"amaderado":["Oriental"],"madera":["Oriental"],"oriental":["Oriental"],"oud":["Oriental"],"cuero":["Oriental"],"especiado":["Oriental"],
+    "verde":["Herbal"],"higo":["Herbal"],"herbal":["Herbal"],
+  },
+  ocasiones:{
+    "noche":{intensidad:[2,3]},"nocturno":{intensidad:[2,3]},"fiesta":{intensidad:[2,3]},"evento":{intensidad:[2,3]},
+    "oficina":{intensidad:[1,2]},"trabajo":{intensidad:[1,2]},"diario":{intensidad:[1,2]},"dia":{intensidad:[1,2]},
+    "regalo":{all:true},"verano":{familias:["Acuática","Floral"]},"invierno":{familias:["Oriental","Gourmand"]},
+  },
+  genero:{
+    "hombre":["Masculino","Unisex"],"masculino":["Masculino","Unisex"],
+    "mujer":["Femenino","Unisex"],"femenino":["Femenino","Unisex"],
+    "unisex":["Unisex"],
+  }
+};
+function aiScore(p,msg){
+  const m=msg.toLowerCase(); let score=0;
+  Object.entries(AI_KNOWLEDGE.familias).forEach(([kw,fams])=>{ if(m.includes(kw)&&fams.includes(p.Familia)) score+=4; });
+  Object.entries(AI_KNOWLEDGE.ocasiones).forEach(([kw,cfg])=>{
+    if(m.includes(kw)){
+      if(cfg.all) score+=2;
+      if(cfg.intensidad&&cfg.intensidad.includes(Number(p.Intensidad))) score+=3;
+      if(cfg.familias&&cfg.familias.includes(p.Familia)) score+=2;
+    }
+  });
+  Object.entries(AI_KNOWLEDGE.genero).forEach(([kw,gens])=>{ if(m.includes(kw)&&gens.includes(p.Genero)) score+=2; });
+  const precio=getSizes(p)[1].precio;
+  if((m.includes("barato")||m.includes("económico"))&&precio<=55) score+=2;
+  if((m.includes("premium")||m.includes("especial"))&&precio>55) score+=2;
+  if(m.includes(p.Nombre.toLowerCase())) score+=8;
+  const notas=`${p.NotasCabeza||""} ${p.NotasCorazon||""} ${p.NotasFondo||""}`.toLowerCase();
+  ["bergamota","ámbar","sándalo","jazmín","oud","vainilla","cedro","pachulí","rosa","cuero","incienso","miel","café","tonka"].forEach(n=>{
+    if(m.includes(n)&&notas.includes(n)) score+=3;
+  });
+  return score;
+}
+function aiRecommend(msg,top=4){
+  const activos=PRODUCTS.filter(p=>String(p.Activo).toUpperCase()!=="NO");
+  const scored=activos.map(p=>({p,score:aiScore(p,msg)})).sort((a,b)=>b.score-a.score);
+  const pos=scored.filter(s=>s.score>0).slice(0,top);
+  return pos.length>=2?pos:scored.slice(0,3);
+}
+function aiGenerate(msg){
+  const m=msg.toLowerCase();
+  const recs=aiRecommend(msg);
+  const matchLabels=["Match perfecto para ti ✨","Opción ideal 🌟","Excelente alternativa 🎯","También te puede gustar"];
+  if(["hola","buenas","buenos","hey","hi"].some(g=>m.startsWith(g)||m===g)){
+    return{text:"¡Hola! Soy el asistente olfativo de Milano Parfums 🌿\n\nCuéntame qué tipo de fragancia buscas — para una ocasión especial, un regalo, una nota que te gusta, o simplemente dime **cómo quieres sentirte**.",products:[],chips:["Para la noche 🌙","Para regalar 🎁","Algo dulce 🍯","Algo fresco 🌊","Para el trabajo 💼"]};
+  }
+  if(m.includes("precio")||m.includes("cuánto")||m.includes("costo")){
+    return{text:"Nuestras fragancias están disponibles en **3 tamaños**:\n• **10ml Prueba** — para conocerla antes de comprometerte\n• **50ml Clásico** — el favorito de nuestra comunidad\n• **100ml Premium** — mejor precio por ml\n\n¿Te ayudo a encontrar algo en tu presupuesto?",products:[],chips:["Hasta S/. 55","Entre S/. 55–70","Quiero lo mejor 👑"]};
+  }
+  if(m.includes("dura")||m.includes("duración")){
+    return{text:"Formulamos con **16%–22% de concentración** — por encima del estándar del mercado masivo. En la mayoría de pieles duran **8 a 12 horas**.\n\nLas orientales y gourmand duran más. Las acuáticas son más ligeras pero perfectas para el día.",products:recs.slice(0,2),chips:["Algo que dure más 💪","Para el día 🌤️","Para la noche 🌙"],matchLabels};
+  }
+  if(m.includes("inspirada")||m.includes("original")||m.includes("copia")||m.includes("diferencia")){
+    return{text:"Somos una **marca original de Lima, Perú** 🇵🇪\n\nEl \"Inspirado en\" es solo una referencia olfativa — compartimos la familia de notas del perfume mencionado, pero con nuestra propia formulación, nombre y presentación. No somos una réplica: somos una reinterpretación con identidad propia.",products:[],chips:["¿Cuál me recomiendas?","Ver catálogo completo"]};
+  }
+  if(recs.length>=2){
+    return{text:`Según lo que me describes, aquí están mis recomendaciones personalizadas para ti:`,products:recs,chips:["Algo más intenso 🔥","Algo más suave 🍃","Para regalo 🎁","Ver todo el catálogo"],matchLabels};
+  }
+  return{text:"Cuéntame un poco más — ¿buscas algo **dulce, fresco o intenso**? ¿Es para ti o para regalar? ¿Tienes una ocasión especial? 😊",products:[],chips:["Dulce y cálido 🍯","Fresco y marino 🌊","Intenso y oscuro 🌙","Para regalar 🎁"]};
+}
+
+// ---- UI chat ----
+let aiHistory=[];
+function openAI(){ document.getElementById("aiPanel").classList.add("open"); document.body.style.overflow="hidden"; if(!aiHistory.length) aiWelcome(); setTimeout(()=>document.getElementById("aiInput").focus(),400); }
+function closeAI(){ document.getElementById("aiPanel").classList.remove("open"); document.body.style.overflow=""; }
+document.getElementById("aiFloatBtn").addEventListener("click",openAI);
+document.getElementById("aiPanelClose").addEventListener("click",closeAI);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeAI(); closeProduct(); closeWish(); closeSearch(); } });
+function aiWelcome(){ const r=aiGenerate("hola"); renderAIMsg("ai",r.text,[],r.chips,[]); }
+function renderAIMsg(role,text,products=[],chips=[],matchLabels=[]){
+  const msgBox=document.getElementById("aiMessages");
+  const div=document.createElement("div"); div.className=`ai-msg ${role}`;
+  const fmt=text.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/\n/g,"<br>");
+  let inner=`<div class="ai-bubble">${role==="ai"?'<strong>Asistente Milano</strong>':''} ${fmt}</div>`;
+  products.forEach(({p},i)=>{
+    inner+=`<div class="ai-product-chip" onclick="closeAI();openProduct('${p.ID}')">
+      <div class="ai-chip-swatch" style="background:linear-gradient(150deg,${p.Color||'#6E1423'},#16140F);"></div>
+      <div class="ai-chip-info"><div class="ai-chip-name">${p.Nombre}</div><div class="ai-chip-note">${matchLabels[i]||p.Nota}</div></div>
+      <div class="ai-chip-price">S/. ${getSizes(p)[1].precio.toFixed(2)}</div>
+    </div>`;
+  });
+  div.innerHTML=inner; msgBox.appendChild(div);
+  if(chips.length){
+    document.getElementById("aiQuickRow").innerHTML=`<div class="ai-chips-row" style="padding:0 16px 4px;">${chips.map(c=>`<button class="ai-quick" onclick="aiSendMsg('${c.replace(/'/g,"\\'")}')"> ${c}</button>`).join("")}</div>`;
+  } else { document.getElementById("aiQuickRow").innerHTML=""; }
+  msgBox.scrollTop=msgBox.scrollHeight;
+}
+function aiShowTyping(){ const b=document.getElementById("aiMessages"); const d=document.createElement("div"); d.className="ai-msg ai"; d.id="aiTypingIndicator"; d.innerHTML='<div class="ai-bubble ai-typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>'; b.appendChild(d); b.scrollTop=b.scrollHeight; }
+function aiHideTyping(){ document.getElementById("aiTypingIndicator")?.remove(); }
+function aiSendMsg(msg){ msg=msg.trim(); if(!msg) return; document.getElementById("aiInput").value=""; document.getElementById("aiQuickRow").innerHTML=""; renderAIMsg("user",msg); aiHistory.push({role:"user",text:msg}); aiShowTyping(); setTimeout(()=>{ aiHideTyping(); const r=aiGenerate(msg,aiHistory); renderAIMsg("ai",r.text,r.products||[],r.chips||[],r.matchLabels||[]); aiHistory.push({role:"ai",text:r.text}); }, 600+Math.random()*500); }
+document.getElementById("aiSend").addEventListener("click",()=>aiSendMsg(document.getElementById("aiInput").value));
+document.getElementById("aiInput").addEventListener("keydown",e=>{ if(e.key==="Enter") aiSendMsg(e.target.value); });
 </script>
 </body>
 </html>
