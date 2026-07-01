@@ -191,20 +191,22 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .cart-overlay.open{opacity:1;pointer-events:auto;}
 .cart-drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,96vw);background:#fff;z-index:92;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.2);}
 .cart-drawer.open{transform:translateX(0);}
-.cart-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid rgba(21,18,15,.1);flex-shrink:0;}
-.cart-head h3{font-size:17px;flex:1;}
-.cart-clear-btn{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.04em;border:1px solid rgba(21,18,15,.2);background:none;padding:5px 12px;cursor:pointer;color:var(--tm);border-radius:20px;transition:.2s;}
+/* HEAD — fijo siempre arriba */
+.cart-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid rgba(21,18,15,.1);flex-shrink:0;}
+.cart-head h3{font-size:16px;flex:1;}
+.cart-clear-btn{font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.04em;border:1px solid rgba(21,18,15,.2);background:none;padding:4px 11px;cursor:pointer;color:var(--tm);border-radius:20px;transition:.2s;white-space:nowrap;}
 .cart-clear-btn:hover{border-color:var(--wine);color:var(--wine);}
-.cart-head-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);line-height:1;}
-/* envío gratis bar */
-.ship-bar-wrap{padding:12px 20px;background:#f9f6f1;border-bottom:1px solid rgba(21,18,15,.07);flex-shrink:0;}
-.ship-bar-msg{font-size:12px;color:var(--td);margin-bottom:8px;}
+.cart-head-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);line-height:1;padding:2px 4px;}
+/* ENVÍO GRATIS — fijo debajo del head */
+.ship-bar-wrap{padding:10px 18px;background:#f9f6f1;border-bottom:1px solid rgba(21,18,15,.07);flex-shrink:0;}
+.ship-bar-msg{font-size:11.5px;color:var(--td);margin-bottom:6px;}
 .ship-bar-msg b{color:var(--wine);}
 .ship-bar-msg.done{color:var(--sage);}
-.ship-bar-track{height:5px;background:rgba(21,18,15,.1);border-radius:3px;overflow:hidden;}
+.ship-bar-track{height:4px;background:rgba(21,18,15,.1);border-radius:3px;overflow:hidden;}
 .ship-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--wine));border-radius:3px;transition:width .5s ease;}
-/* items */
-.cart-items{flex:1;overflow-y:auto;padding:0;}
+/* ZONA SCROLLEABLE — solo los productos y regalos scrollean */
+.cart-scroll-zone{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;}
+.cart-items{padding:0;}
 .cart-empty{text-align:center;color:var(--tm);padding:50px 20px;font-size:13.5px;}
 .cart-line{display:flex;gap:12px;padding:14px 20px;border-bottom:1px solid rgba(21,18,15,.06);}
 .cart-line-img{width:70px;height:88px;object-fit:cover;border-radius:2px;flex:none;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);display:flex;align-items:center;justify-content:center;overflow:hidden;}
@@ -221,35 +223,33 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .ci-delete:hover{color:var(--wine);}
 .ci-delete svg{width:16px;height:16px;}
 /* regalos */
-.cart-gifts{margin:12px 20px;border:1.5px dashed rgba(184,146,75,.4);border-radius:6px;padding:14px 14px 10px;background:#fffdf7;}
-.gifts-title{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.06em;font-weight:700;text-transform:uppercase;color:var(--ink);margin-bottom:10px;}
-.gift-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.gift-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:10px;font-weight:700;font-family:'Archivo',sans-serif;display:flex;align-items:center;justify-content:center;flex:none;}
+.cart-gifts{margin:10px 18px 0;border:1.5px dashed rgba(184,146,75,.35);border-radius:6px;padding:12px 13px 8px;background:#fffdf7;}
+.gifts-title{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.06em;font-weight:700;text-transform:uppercase;color:var(--ink);margin-bottom:8px;}
+.gift-row{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.gift-num{width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:9px;font-weight:700;font-family:'Archivo',sans-serif;display:flex;align-items:center;justify-content:center;flex:none;}
 .gift-num.done{background:var(--sage);}
-.gift-img{width:38px;height:48px;object-fit:contain;flex:none;filter:grayscale(1);opacity:.5;}
-.gift-img.done{filter:none;opacity:1;}
-.gift-info .gname{font-size:12px;font-weight:700;color:var(--ink);}
-.gift-info .gstatus{font-size:11px;color:var(--tm);}
+.gift-info .gname{font-size:11.5px;font-weight:700;color:var(--ink);}
+.gift-info .gstatus{font-size:10.5px;color:var(--tm);}
 .gift-info .gstatus.done{color:var(--sage);font-weight:600;}
-/* upsell / te podría interesar */
-.cart-upsell{padding:14px 20px 4px;flex-shrink:0;}
-.cart-upsell h5{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--tm);margin-bottom:10px;}
-.upsell-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px;-ms-overflow-style:none;scrollbar-width:none;}
+/* upsell — fijo encima del footer, NO scrollea */
+.cart-upsell{padding:10px 18px 4px;border-top:1px solid rgba(21,18,15,.08);flex-shrink:0;background:#fff;}
+.cart-upsell h5{font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--tm);margin-bottom:8px;}
+.upsell-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none;}
 .upsell-scroll::-webkit-scrollbar{display:none;}
-.upsell-card{flex:0 0 160px;border:1px solid rgba(21,18,15,.1);cursor:pointer;transition:.2s;}
+.upsell-card{flex:0 0 130px;border:1px solid rgba(21,18,15,.1);cursor:pointer;transition:.2s;}
 .upsell-card:hover{border-color:var(--gold);}
-.upsell-card-img{height:90px;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.upsell-card-img{height:76px;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .upsell-card-img img{width:100%;height:100%;object-fit:cover;}
-.upsell-card-body{padding:8px 10px 10px;}
-.upsell-tag{font-family:'Archivo',sans-serif;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2px;}
-.upsell-name{font-family:'Fraunces',serif;font-size:12.5px;line-height:1.2;margin-bottom:4px;}
-.upsell-price{font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;}
-.upsell-add{font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-weight:700;color:var(--tm);text-decoration:underline;cursor:pointer;background:none;border:none;margin-top:4px;padding:0;}
-/* footer */
-.cart-foot{padding:14px 20px 20px;border-top:1px solid rgba(21,18,15,.1);flex-shrink:0;}
-.cart-total{display:flex;justify-content:space-between;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;margin-bottom:12px;}
+.upsell-card-body{padding:6px 8px 8px;}
+.upsell-tag{font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:1px;}
+.upsell-name{font-family:'Fraunces',serif;font-size:11.5px;line-height:1.2;margin-bottom:3px;}
+.upsell-price{font-family:'Archivo',sans-serif;font-size:10px;font-weight:700;}
+.upsell-add{font-size:9px;letter-spacing:.04em;text-transform:uppercase;font-family:'Archivo',sans-serif;font-weight:700;color:var(--gold);text-decoration:none;cursor:pointer;background:none;border:none;margin-top:3px;padding:0;display:block;}
+/* footer — siempre visible, pegado al fondo */
+.cart-foot{padding:12px 18px 18px;border-top:1px solid rgba(21,18,15,.1);flex-shrink:0;background:#fff;}
+.cart-total{display:flex;justify-content:space-between;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;margin-bottom:11px;}
 .cart-foot .btn{width:100%;justify-content:center;}
-.cart-note{font-size:10.5px;color:var(--tm);text-align:center;margin-top:8px;}
+.cart-note{font-size:10px;color:var(--tm);text-align:center;margin-top:7px;}
 /* ===== WISHLIST PANEL ===== */
 .wish-drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,96vw);background:var(--cream);z-index:92;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.2);}
 .wish-drawer.open{transform:translateX(0);}
@@ -744,26 +744,40 @@ body{transition:background-color .8s ease;}
 <!-- CART OVERLAY + DRAWER -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <aside class="cart-drawer" id="cartDrawer">
+
+  <!-- ZONA FIJA: cabecera -->
   <div class="cart-head">
     <h3>Carrito de compra</h3>
     <button class="cart-clear-btn" id="cartClearBtn">Limpiar carrito</button>
     <button class="cart-head-close" id="cartCloseBtn" aria-label="Cerrar">×</button>
   </div>
+
+  <!-- ZONA FIJA: barra de envío gratis -->
   <div class="ship-bar-wrap" id="shipBarWrap">
     <div class="ship-bar-msg" id="shipBarMsg"></div>
     <div class="ship-bar-track"><div class="ship-bar-fill" id="shipBarFill" style="width:0%"></div></div>
   </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-gifts" id="cartGifts" style="display:none;"></div>
+
+  <!-- ZONA SCROLLEABLE: productos + regalos -->
+  <div class="cart-scroll-zone">
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-gifts" id="cartGifts" style="display:none;"></div>
+    <div style="height:12px;flex-shrink:0;"></div>
+  </div>
+
+  <!-- ZONA FIJA: upsell compacto -->
   <div class="cart-upsell" id="cartUpsell" style="display:none;">
     <h5>Te podría interesar</h5>
     <div class="upsell-scroll" id="upsellScroll"></div>
   </div>
+
+  <!-- ZONA FIJA: total + botón checkout -->
   <div class="cart-foot">
     <div class="cart-total"><span>Total</span><span id="cartTotal">S/. 0.00</span></div>
     <button class="btn solid" id="checkoutBtn" style="display:flex;">Finalizar por WhatsApp →</button>
     <p class="cart-note">Confirmamos stock y coordinas el pago por WhatsApp.</p>
   </div>
+
 </aside>
 
 <!-- WISHLIST DRAWER -->
@@ -1248,11 +1262,31 @@ initBranding();
 /* ============================================================
    GALERÍA DE IMÁGENES POR PRODUCTO
    ============================================================ */
+/* Convierte cualquier link de Google Drive/Photos al formato directo que los navegadores aceptan */
+function fixImgURL(url){
+  if(!url) return "";
+  url = String(url).trim();
+  // Google Drive: /file/d/ID/view  o  id=ID  →  thumbnail directo
+  let m = url.match(/\/file\/d\/([^\/\?]+)/);
+  if(m) return `https://lh3.googleusercontent.com/d/${m[1]}=s1200`;
+  m = url.match(/[?&]id=([^&]+)/);
+  if(m) return `https://lh3.googleusercontent.com/d/${m[1]}=s1200`;
+  // Google Drive open?id=
+  m = url.match(/open\?id=([^&]+)/);
+  if(m) return `https://lh3.googleusercontent.com/d/${m[1]}=s1200`;
+  // Google Drive uc?export=view&id=
+  m = url.match(/uc\?.*id=([^&]+)/);
+  if(m) return `https://lh3.googleusercontent.com/d/${m[1]}=s1200`;
+  // Google Photos share link
+  if(url.includes('photos.google.com') || url.includes('photos.app.goo.gl')) return url;
+  // imgur, cloudinary, etc — usar directo
+  return url;
+}
 function getProductImages(p){
   if(p.ImagenesURL){
-    return String(p.ImagenesURL).split(/[|,]/).map(s=>s.trim()).filter(Boolean).slice(0,6);
+    return String(p.ImagenesURL).split(/[|,]/).map(s=>fixImgURL(s.trim())).filter(Boolean).slice(0,6);
   }
-  if(p.ImagenURL) return [p.ImagenURL];
+  if(p.ImagenURL) return [fixImgURL(p.ImagenURL)];
   return [];
 }
 function getSizes(p){
@@ -1286,8 +1320,9 @@ function cardHTML(p){
   const sinStock = Number(p.Stock) === 0;
   const sizes = getSizes(p);
   const def = sizes[1];
-  const imgHTML = p.ImagenURL
-    ? `<img src="${p.ImagenURL}" alt="${p.Nombre}" style="width:100%;height:100%;object-fit:cover;">`
+  const imgs = getProductImages(p);
+  const imgHTML = imgs.length
+    ? `<img src="${imgs[0]}" alt="${p.Nombre}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">`
     : bottleSVG(color);
   return `<div class="card" data-id="${p.ID}" data-selected-ml="50">
     <div class="card-media" onclick="openProduct('${p.ID}')">
@@ -1509,8 +1544,7 @@ const CART_KEY = "mp_cart";
 const FREE_SHIP = 149;   // monto para envío gratis
 // Umbrales de regalo: { min: monto mínimo, name: nombre, icon: emoji }
 const GIFTS = [
-  { min: 0,   name: "Probador 3ml GRATIS",        icon: "🧪", detail: "Incluido con cualquier compra" },
-  { min: 100, name: "Perfume Roll-On 10ml GRATIS", icon: "✨", detail: "Al superar S/. 100" },
+  { min: 0, name: "Probador 3ml GRATIS", icon: "🧪", detail: "Incluido con cualquier compra" },
 ];
 
 function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return [];}}
@@ -1732,9 +1766,9 @@ searchClear.addEventListener("click",()=>{
   searchInput.value=""; searchClear.style.display="none"; searchInput.focus(); runSearch("");
 });
 function srThumb(p){
-  if(p.ImagenURL||p.ImagenesURL){
-    const url=(String(p.ImagenesURL||"").split(/[|,]/)[0].trim())||p.ImagenURL;
-    return `<div class="sr-thumb"><img src="${url}" alt="${p.Nombre}" loading="lazy"></div>`;
+  const imgs = getProductImages(p);
+  if(imgs.length){
+    return `<div class="sr-thumb"><img src="${imgs[0]}" alt="${p.Nombre}" loading="lazy" onerror="this.style.display='none'"></div>`;
   }
   return `<div class="sr-thumb">${bottleSVG(p.Color||"#6E1423",44)}</div>`;
 }
