@@ -178,60 +178,111 @@ nav.main{display:flex;gap:28px;align-items:center;}
   width:100%;
 }
 /* ──────── GALERÍA (columna izquierda) ──────── */
+/* ──── GALLERY: mosaico 1+2+2 estilo Dossier ──── */
 .pm-gallery{
-  display:flex;flex-direction:column;
-  background:#f5f0e8;
+  display:grid;
+  grid-template-rows:55% 22.5% 22.5%;
+  grid-template-columns:1fr 1fr;
+  background:#f0ebe0;
   overflow:hidden;
-  padding:0;
+  gap:3px;
 }
-/* imagen principal */
-.pm-main-wrap{
-  flex:1;position:relative;overflow:hidden;
+/* Imagen 1 — ocupa toda la fila superior */
+.pm-slot-1{
+  grid-column:1/-1;
+  grid-row:1;
+  position:relative;overflow:hidden;
+  cursor:zoom-in;
   display:flex;align-items:center;justify-content:center;
-  cursor:zoom-in;min-height:0;
+  background:#ece7da;
 }
-.pm-main-img{
-  max-width:100%;max-height:100%;
-  object-fit:contain;display:block;
-  transition:transform .5s cubic-bezier(.2,.8,.2,1), opacity .22s;
-  transform-origin:center center;
+.pm-slot-1 img,.pm-slot-1 .pm-bottle-wrap{
+  max-width:100%;max-height:100%;object-fit:contain;display:block;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1);
   will-change:transform;
 }
-.pm-main-wrap:hover .pm-main-img{transform:scale(1.06);}
-.pm-bottle-wrap{
-  transition:transform .5s cubic-bezier(.2,.8,.2,1);
-  transform-origin:center;
-}
-.pm-main-wrap:hover .pm-bottle-wrap{transform:scale(1.06) translateY(-4px);}
-/* fila de miniaturas abajo */
-.pm-thumbs-row{
-  display:flex;gap:6px;
-  padding:10px 12px;
-  background:#ece7dd;
-  overflow-x:auto;flex-shrink:0;
-  -ms-overflow-style:none;scrollbar-width:none;
-}
-.pm-thumbs-row::-webkit-scrollbar{display:none;}
-.pm-thumb{
-  width:70px;height:80px;flex-shrink:0;
-  border-radius:4px;overflow:hidden;
-  border:2px solid transparent;
-  cursor:pointer;
-  background:#fff;
-  transition:border-color .2s, transform .2s, opacity .2s;
-  opacity:.55;
-}
-.pm-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.pm-thumb:hover{opacity:.88;transform:translateY(-2px);}
-.pm-thumb.active{border-color:var(--gold);opacity:1;}
-/* placeholder slot vacío */
-.pm-thumb-ph{
-  width:70px;height:80px;flex-shrink:0;
-  border-radius:4px;border:1.5px dashed rgba(184,146,75,.3);
+.pm-slot-1:hover img,.pm-slot-1:hover .pm-bottle-wrap{transform:scale(1.07);}
+/* Slots 2–5 — cuadrícula 2x2 inferior */
+.pm-slot{
+  position:relative;overflow:hidden;
+  cursor:zoom-in;
   display:flex;align-items:center;justify-content:center;
-  opacity:.35;background:rgba(255,255,255,.4);
+  background:#e8e2d6;
+  transition:opacity .22s;
 }
-.pm-thumb-ph svg{width:18px;height:18px;color:var(--gold);}
+.pm-slot img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  display:block;
+}
+.pm-slot:hover img{transform:scale(1.08);}
+/* placeholder */
+.pm-slot-ph{
+  background:rgba(236,231,220,.6);
+  display:flex;align-items:center;justify-content:center;
+}
+.pm-slot-ph svg{width:22px;height:22px;color:rgba(184,146,75,.35);}
+/* borde activo */
+.pm-slot-active::after,.pm-slot-1.pm-slot-active::after{
+  content:"";position:absolute;inset:0;
+  border:2.5px solid var(--gold);pointer-events:none;
+}
+
+/* ──── LIGHTBOX ──── */
+.lightbox{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(10,9,7,.92);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .28s;
+  visibility:hidden;
+}
+.lightbox.open{opacity:1;pointer-events:auto;visibility:visible;}
+.lightbox-img-wrap{
+  position:relative;
+  max-width:90vw;max-height:90vh;
+  overflow:hidden;
+  cursor:zoom-in;
+  display:flex;align-items:center;justify-content:center;
+}
+.lightbox-img{
+  max-width:90vw;max-height:90vh;
+  object-fit:contain;display:block;
+  transition:transform .35s ease;
+  transform-origin:center;
+  user-select:none;
+}
+.lightbox-img.zoomed{transform:scale(2.2);cursor:zoom-out;}
+.lb-close{
+  position:fixed;top:18px;right:22px;
+  background:rgba(255,255,255,.12);border:none;
+  color:#fff;font-size:28px;width:44px;height:44px;
+  border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;z-index:201;
+}
+.lb-close:hover{background:rgba(255,255,255,.22);}
+.lb-arrow{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.12);border:none;
+  color:#fff;font-size:22px;width:44px;height:44px;
+  border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;z-index:201;
+}
+.lb-arrow:hover{background:rgba(255,255,255,.25);}
+.lb-arrow.prev{left:16px;}
+.lb-arrow.next{right:16px;}
+.lb-dots{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  display:flex;gap:7px;z-index:201;
+}
+.lb-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,.35);border:none;cursor:pointer;padding:0;
+  transition:.2s;
+}
+.lb-dot.active{background:#fff;width:20px;border-radius:4px;}
 /* ──────── INFO (columna derecha) ──────── */
 .pm-info{
   padding:20px 26px 28px 22px;
@@ -244,11 +295,9 @@ nav.main{display:flex;gap:28px;align-items:center;}
 /* ──────── MOBILE ──────── */
 @media(max-width:759px){
   .pm-inner{grid-template-columns:1fr;overflow-y:auto;}
-  .pm-gallery{height:340px;flex-shrink:0;}
-  .pm-main-wrap{flex:1;}
-  .pm-thumbs-row{padding:8px 10px;}
-  .pm-thumb,.pm-thumb-ph{width:58px;height:68px;}
+  .pm-gallery{height:400px;flex-shrink:0;grid-template-rows:60% 20% 20%;}
   .pm-info{padding:16px 16px 28px;overflow:visible;}
+  .lb-arrow{display:none;}
 }
 .pm-genero{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);margin-bottom:8px;}
 .pm-name{font-size:clamp(24px,3vw,34px);line-height:1.1;margin-bottom:6px;}
@@ -993,17 +1042,17 @@ body{transition:background-color .8s ease;}
     </div>
     <div class="gender-grid">
       <div class="gender-card reveal" onclick="applyFilterAndGo('Masculino')">
-        <div class="gcard-bg" style="background:linear-gradient(150deg,#2c241a,#0c0a08);"></div>
+        <div class="gcard-bg" id="gcard-masculino" style="background:linear-gradient(150deg,#2c241a,#0c0a08);"></div>
         <div class="g-overlay"></div>
         <div class="gc-content"><h3>Hombres</h3><span class="glink">Ver colección →</span></div>
       </div>
       <div class="gender-card reveal" onclick="applyFilterAndGo('Femenino')">
-        <div class="gcard-bg" style="background:linear-gradient(150deg,#3a1c22,#0c0a08);"></div>
+        <div class="gcard-bg" id="gcard-femenino" style="background:linear-gradient(150deg,#3a1c22,#0c0a08);"></div>
         <div class="g-overlay"></div>
         <div class="gc-content"><h3>Mujeres</h3><span class="glink">Ver colección →</span></div>
       </div>
       <div class="gender-card reveal" onclick="applyFilterAndGo('Unisex')">
-        <div class="gcard-bg" style="background:linear-gradient(150deg,#26301f,#0c0a08);"></div>
+        <div class="gcard-bg" id="gcard-unisex" style="background:linear-gradient(150deg,#26301f,#0c0a08);"></div>
         <div class="g-overlay"></div>
         <div class="gc-content"><h3>Unisex</h3><span class="glink">Ver colección →</span></div>
       </div>
@@ -1241,6 +1290,17 @@ body{transition:background-color .8s ease;}
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">×</button>
+  <button class="lb-arrow prev" id="lbPrev">&#8592;</button>
+  <div class="lightbox-img-wrap" id="lbImgWrap">
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-arrow next" id="lbNext">&#8594;</button>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
+
 <!-- CHAPTER TRACK (navegación lateral inmersiva) -->
 <nav class="chapter-track" id="chapterTrack"></nav>
 
@@ -1256,11 +1316,28 @@ body{transition:background-color .8s ease;}
 const CONFIG = {
   API_URL: "https://script.google.com/macros/s/AKfycbzJTYVwaTuRyGeSb2Rtd1Za8XIJ8oorWFcO4hzew623ajLxA9xR4AytIgsQ0nPjT6o3/exec",
   WA: "51961389397",
-  // Pega aquí el link directo a tu logo (PNG/SVG con fondo transparente recomendado). Vacío = usa el emblema por defecto.
+
+  // ── LOGO ──────────────────────────────────────────────────────────────────
+  // PNG/SVG con fondo transparente. Vacío = usa el emblema dorado por defecto.
   LOGO_URL: "",
-  // Pega aquí el link directo a un video corto (MP4, ideal <15MB, loopeable) para el fondo del Hero. Vacío = usa la botella animada con efecto parallax.
+
+  // ── HERO ──────────────────────────────────────────────────────────────────
+  // Opción A: video corto en loop (MP4, <15MB recomendado). Vacío = imagen + parallax.
   HERO_VIDEO_URL: "",
-  // Pega aquí hasta 4 imágenes para la sección "Por qué elegir Milano" (en orden: Ingredientes, Variedad, Experiencia, Transparencia). Deja "" para mantener el ícono ilustrado.
+  // Opción B: imagen de fondo del hero (JPG/PNG). Solo se usa si HERO_VIDEO_URL está vacío.
+  HERO_IMAGE_URL: "",
+
+  // ── TARJETAS DE CATEGORÍA (Hombres / Mujeres / Unisex) ───────────────────
+  // Imágenes de fondo de los 3 bloques del catálogo. Deja "" para usar el degradado oscuro.
+  GENDER_IMAGES: {
+    masculino: "",   // ej: "https://raw.githubusercontent.com/milanoparfums/website/main/images/hombres.jpg"
+    femenino:  "",   // ej: link de Google Drive o GitHub
+    unisex:    ""
+  },
+
+  // ── SECCIÓN "POR QUÉ ELEGIR MILANO" ──────────────────────────────────────
+  // 4 imágenes en orden: Ingredientes, Variedad, Experiencia, Transparencia.
+  // Deja "" para mostrar el ícono ilustrado por defecto.
   ABOUT_IMAGES: ["", "", "", ""]
 };
 
@@ -1317,15 +1394,23 @@ function initBranding(){
       el.replaceWith(img);
     });
   }
-  // Video de fondo del Hero (si hay URL) o parallax con mouse (si no hay video)
-  const heroVideo = document.getElementById("heroVideo");
+
+  // Hero — video o imagen de fondo
+  const heroVideo  = document.getElementById("heroVideo");
   const heroBottle = document.getElementById("heroBottle");
+  const heroVisual = document.getElementById("heroVisual");
   if(CONFIG.HERO_VIDEO_URL){
     heroVideo.src = CONFIG.HERO_VIDEO_URL;
     heroVideo.style.display = "block";
     heroBottle.style.display = "none";
-  }else{
-    const heroVisual = document.getElementById("heroVisual");
+  } else if(CONFIG.HERO_IMAGE_URL){
+    // Imagen de fondo en la zona visual del hero
+    heroVisual.style.backgroundImage = `url('${CONFIG.HERO_IMAGE_URL}')`;
+    heroVisual.style.backgroundSize = "cover";
+    heroVisual.style.backgroundPosition = "center";
+    heroBottle.style.display = "none";
+  } else {
+    // Parallax con el mouse (por defecto)
     heroVisual.addEventListener("mousemove", e=>{
       const r = heroVisual.getBoundingClientRect();
       const x = (e.clientX - r.left)/r.width - 0.5;
@@ -1336,12 +1421,25 @@ function initBranding(){
       heroBottle.style.transform = "translate(0,0) rotate(0deg)";
     });
   }
-  // Imágenes reales para "Por qué elegir Milano"
+
+  // Tarjetas de género (Hombres / Mujeres / Unisex)
+  const gcMap = {masculino:"#gcard-masc", femenino:"#gcard-fem", unisex:"#gcard-uni"};
+  Object.entries(CONFIG.GENDER_IMAGES).forEach(([key, url])=>{
+    if(!url) return;
+    const bg = document.getElementById(`gcard-${key}`);
+    if(!bg) return;
+    bg.style.backgroundImage = `url('${fixImgURL(url)}')`;
+    bg.style.backgroundSize = "cover";
+    bg.style.backgroundPosition = "center";
+    bg.style.opacity = "1";
+  });
+
+  // Imágenes de "Por qué elegir Milano"
   CONFIG.ABOUT_IMAGES.forEach((url, i)=>{
     if(!url) return;
     const el = document.getElementById(`aboutImg${i+1}`);
     if(!el) return;
-    el.innerHTML = `<img src="${url}" alt="Milano Parfums">`;
+    el.innerHTML = `<img src="${fixImgURL(url)}" alt="Milano Parfums" style="width:100%;height:100%;object-fit:cover;">`;
   });
 }
 initBranding();
@@ -1543,24 +1641,24 @@ function openProduct(id){
   const def = sizes[1];
   const images = getProductImages(p);
 
-  // Galería: imagen principal arriba, miniaturas abajo (estilo Dossier)
-  const SLOTS = 5;
-  const thumbsHTML = Array.from({length: SLOTS}).map((_,i)=>{
-    if(images[i]){
-      return `<button class="pm-thumb${i===0?' active':''}" data-img="${images[i]}"><img src="${images[i]}" alt="${p.Nombre} ${i+1}" loading="lazy" onerror="this.parentElement.style.display='none'"></button>`;
-    }
-    return `<div class="pm-thumb-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>`;
-  }).join("");
+  // Galería mosaico 1+2+2: imagen principal arriba, 4 slots abajo
+  const phIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
 
-  // Imagen principal
-  const mainHTML = images.length
-    ? `<img class="pm-main-img" id="pmMainImg" src="${images[0]}" alt="${p.Nombre}" onerror="this.style.display='none'">`
-    : `<div class="pm-bottle-wrap">${bottleSVG(color, 160)}</div>`;
+  // Slot 1: imagen principal grande (toda la fila superior)
+  const slot1 = images[0]
+    ? `<div class="pm-slot-1" data-idx="0" onclick="lbOpen(pmGalleryImages,0)"><img src="${images[0]}" alt="${p.Nombre}" onerror="this.style.display='none'" loading="eager"></div>`
+    : `<div class="pm-slot-1"><div class="pm-bottle-wrap">${bottleSVG(color, 160)}</div></div>`;
+
+  // Slots 2–5: fila inferior 2x2
+  const slots = [1,2,3,4].map(i=>{
+    if(images[i]) return `<div class="pm-slot" data-idx="${i}" onclick="lbOpen(pmGalleryImages,${i})"><img src="${images[i]}" alt="${p.Nombre} ${i+1}" loading="lazy" onerror="this.parentElement.classList.add('pm-slot-ph');this.remove()"></div>`;
+    return `<div class="pm-slot pm-slot-ph">${phIcon}</div>`;
+  }).join("");
 
   document.getElementById("pmInner").innerHTML = `
     <div class="pm-gallery">
-      <div class="pm-main-wrap">${mainHTML}</div>
-      <div class="pm-thumbs-row" id="pmThumbsRow">${thumbsHTML}</div>
+      ${slot1}
+      ${slots}
     </div>
     <div class="pm-info">
       <div class="pm-genero">${p.Genero}</div>
@@ -1599,7 +1697,80 @@ function openProduct(id){
   document.getElementById("productModal").classList.add("open");
   document.getElementById("pmOverlay").classList.add("open");
   document.body.style.overflow="hidden";
+  pmGalleryImages = images; // guardar para el lightbox
 }
+
+let pmGalleryImages = [];
+
+/* ============================================================
+   LIGHTBOX — abre imagen a pantalla completa con zoom y flechas
+   ============================================================ */
+let lbCurrent = 0;
+let lbImages  = [];
+let lbZoomed  = false;
+
+function lbOpen(imgs, idx){
+  lbImages  = imgs.filter(Boolean);
+  if(!lbImages.length) return;
+  lbCurrent = Math.max(0, Math.min(idx, lbImages.length-1));
+  lbZoomed  = false;
+  document.getElementById("lightbox").classList.add("open");
+  document.body.style.overflow = "hidden";
+  lbRender();
+}
+function lbClose(){
+  document.getElementById("lightbox").classList.remove("open");
+  const img = document.getElementById("lbImg");
+  img.classList.remove("zoomed");
+  lbZoomed = false;
+}
+function lbRender(){
+  const img  = document.getElementById("lbImg");
+  const dots = document.getElementById("lbDots");
+  img.classList.remove("zoomed");
+  lbZoomed = false;
+  img.style.opacity = "0";
+  img.src = lbImages[lbCurrent];
+  img.onload = ()=>{ img.style.opacity = "1"; };
+  // dots
+  dots.innerHTML = lbImages.map((_,i)=>`<button class="lb-dot${i===lbCurrent?' active':''}" onclick="lbGoto(${i})"></button>`).join("");
+  // arrows
+  document.getElementById("lbPrev").style.opacity = lbCurrent>0?"1":"0.25";
+  document.getElementById("lbNext").style.opacity = lbCurrent<lbImages.length-1?"1":"0.25";
+}
+function lbGoto(i){
+  lbCurrent = Math.max(0,Math.min(i,lbImages.length-1));
+  lbRender();
+}
+// zoom toggle al hacer clic en la imagen
+document.getElementById("lbImgWrap").addEventListener("click", e=>{
+  const img = document.getElementById("lbImg");
+  lbZoomed = !lbZoomed;
+  img.classList.toggle("zoomed", lbZoomed);
+});
+document.getElementById("lbClose").addEventListener("click", lbClose);
+document.getElementById("lbPrev").addEventListener("click", e=>{ e.stopPropagation(); lbGoto(lbCurrent-1); });
+document.getElementById("lbNext").addEventListener("click", e=>{ e.stopPropagation(); lbGoto(lbCurrent+1); });
+document.getElementById("lightbox").addEventListener("click", e=>{
+  if(e.target===document.getElementById("lightbox")) lbClose();
+});
+// swipe en mobile
+(()=>{
+  let sx=0;
+  const lb = document.getElementById("lightbox");
+  lb.addEventListener("touchstart", e=>{ sx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener("touchend", e=>{
+    const dx = e.changedTouches[0].clientX - sx;
+    if(Math.abs(dx)>50){ dx<0 ? lbGoto(lbCurrent+1) : lbGoto(lbCurrent-1); }
+  },{passive:true});
+})();
+// teclado
+document.addEventListener("keydown", e=>{
+  if(!document.getElementById("lightbox").classList.contains("open")) return;
+  if(e.key==="ArrowRight") lbGoto(lbCurrent+1);
+  if(e.key==="ArrowLeft")  lbGoto(lbCurrent-1);
+  if(e.key==="Escape")     lbClose();
+});
 
 /* Delegated: clic en miniatura → cambia imagen principal */
 document.addEventListener("click", e=>{
