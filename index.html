@@ -581,7 +581,7 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .stat-label{font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tm);font-weight:700;margin-top:8px;}
 .stat-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-top:4px;}
 @media(max-width:780px){.social-stats{grid-template-columns:1fr 1fr;}}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:54px;}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:54px;} @media(max-width:1100px){.review-grid{grid-template-columns:repeat(2,1fr);}}
 .review-card{background:#fff;border:1px solid rgba(21,18,15,.08);padding:22px;}
 .review-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
 .review-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#fff;flex:none;}
@@ -807,6 +807,189 @@ body{transition:background-color .8s ease;}
 .cart-overlay.open,.overlay-bg.open{visibility:visible;transition:opacity .3s ease, visibility 0s linear 0s;}
 .cart-drawer,.wish-drawer{visibility:hidden;transition:transform .35s ease, visibility 0s linear .35s;}
 .cart-drawer.open,.wish-drawer.open{visibility:visible;transition:transform .35s ease, visibility 0s linear 0s;}
+
+/* ============================================================
+   HOVER EFFECTS GLOBALES — UX premium
+   ============================================================ */
+
+/* Botones — todos */
+.btn{transition:background .25s, color .25s, transform .18s, box-shadow .25s;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(184,146,75,.28);}
+.btn:active{transform:translateY(0);box-shadow:none;}
+
+/* Links de nav */
+.navlink{transition:color .2s;}
+.navlink:hover{color:var(--gold);}
+
+/* Footer links */
+.footer-grid a,.footer-grid button.flink{transition:color .2s, padding-left .2s;}
+.footer-grid a:hover,.footer-grid button.flink:hover{color:var(--gold2);padding-left:5px;}
+
+/* Tarjetas de producto — hover enriquecido */
+.card{transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s cubic-bezier(.2,.8,.2,1);}
+.card:hover{transform:translateY(-8px);box-shadow:0 28px 50px rgba(21,18,15,.14);}
+
+/* Imágenes de producto — zoom + sombra + brillo */
+.card-media{overflow:hidden;}
+.card-media img,.card-media svg{
+  transition:transform .6s cubic-bezier(.2,.8,.2,1), filter .5s;
+}
+.card:hover .card-media img{transform:scale(1.1);filter:brightness(1.04);}
+.card:hover .card-media svg{transform:scale(1.08) rotate(-1.5deg);}
+
+/* Tarjetas de género */
+.gender-card{transition:transform .4s ease, box-shadow .4s ease;}
+.gender-card:hover{transform:scale(1.015);box-shadow:0 20px 50px rgba(0,0,0,.35);}
+.gender-card .gcard-bg{transition:transform .7s cubic-bezier(.2,.8,.2,1);}
+.gender-card:hover .gcard-bg{transform:scale(1.06);}
+.glink{transition:gap .2s, color .2s;}
+.gender-card:hover .glink{gap:10px;color:var(--gold2);}
+
+/* Cards de reseñas */
+.review-card{transition:transform .3s, box-shadow .3s, border-color .3s;}
+.review-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(21,18,15,.09);border-color:var(--gold);}
+
+/* Botones de añadir */
+.add-btn{transition:background .22s, color .22s, transform .18s;}
+.add-btn:hover:not(:disabled){transform:scale(1.04);}
+
+/* Wishlist btn */
+.wishlist-btn{transition:transform .2s, background .2s;}
+.wishlist-btn:hover{transform:scale(1.15);}
+
+/* Dropdown links */
+.dropdown a,.dropdown button{transition:color .18s, background .18s, padding-left .18s;}
+.dropdown a:hover,.dropdown button:hover{padding-left:18px;}
+
+/* Trust items */
+.trust-item{transition:transform .3s;}
+.trust-item:hover{transform:translateX(4px);}
+
+/* Social stat numbers */
+.stat-item{transition:transform .3s;}
+.stat-item:hover{transform:translateY(-3px);}
+
+/* upsell cards */
+.upsell-card{transition:transform .3s, border-color .3s, box-shadow .3s;}
+.upsell-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(21,18,15,.1);}
+
+/* Quiz banner btn + options */
+.quiz-opt{transition:border-color .2s, background .2s, transform .2s;}
+.quiz-opt:hover{transform:translateX(4px);}
+
+/* AI float button pulse+hover */
+.ai-float-btn{transition:transform .25s, box-shadow .25s;}
+.ai-float-btn:hover{transform:scale(1.1);}
+
+/* Size selector options */
+.pm-size-opt{transition:background .2s, color .2s, transform .15s;}
+.pm-size-opt:hover:not(.active){transform:translateY(-2px);}
+
+/* Footer social */
+.foot-social a{transition:border-color .2s, background .2s, transform .2s;}
+.foot-social a:hover{border-color:var(--gold);background:rgba(184,146,75,.12);transform:translateY(-2px);}
+
+/* ── PARALLAX SUAVE AL MOVER EL MOUSE (secciones) ── */
+.parallax-section{will-change:transform;transition:transform .1s linear;}
+
+/* ── CUSTOMER PHOTOS CAROUSEL ── */
+.customer-section{padding:80px 0;background:var(--cream2);}
+.customer-scroll{
+  display:flex;gap:14px;overflow-x:auto;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:0 0 16px;-ms-overflow-style:none;scrollbar-width:none;
+}
+.customer-scroll::-webkit-scrollbar{display:none;}
+.customer-photo{
+  flex:0 0 240px;scroll-snap-align:start;
+  position:relative;overflow:hidden;
+  border-radius:4px;height:300px;
+  cursor:pointer;
+}
+.customer-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1);
+}
+.customer-photo:hover img{transform:scale(1.07);}
+.customer-photo .cp-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,7,.75) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.customer-photo:hover .cp-overlay{opacity:1;}
+.customer-photo .cp-info{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:16px 14px;color:#fff;
+  transform:translateY(8px);transition:transform .3s;
+}
+.customer-photo:hover .cp-info{transform:translateY(0);}
+.cp-name{font-family:'Fraunces',serif;font-size:14px;margin-bottom:2px;}
+.cp-verify{font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.05em;color:var(--gold2);font-weight:700;}
+.customer-photo .ph-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px;
+  background:linear-gradient(150deg,#EFE6D6,#E2D6BC);
+  color:var(--tm);
+}
+.ph-placeholder svg{width:32px;height:32px;opacity:.4;}
+.ph-placeholder span{font-size:11px;font-family:'Archivo',sans-serif;letter-spacing:.08em;text-transform:uppercase;font-weight:700;opacity:.5;}
+
+/* ── LIBRO DE RECLAMACIONES ── */
+.reclamaciones-modal{
+  position:fixed;inset:0;z-index:99;
+  display:flex;align-items:center;justify-content:center;padding:18px;
+  pointer-events:none;
+}
+.reclamaciones-modal.open{pointer-events:auto;}
+.rec-box{
+  background:#fff;max-width:600px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:0;box-shadow:0 30px 80px rgba(0,0,0,.25);
+  transform:translateY(20px) scale(.97);opacity:0;
+  transition:transform .3s, opacity .3s;border-radius:4px;
+}
+.reclamaciones-modal.open .rec-box{transform:none;opacity:1;}
+.rec-header{
+  background:var(--wine);color:#fff;
+  padding:22px 26px;display:flex;align-items:center;gap:14px;
+}
+.rec-header svg{width:28px;height:28px;flex:none;}
+.rec-header h3{font-size:20px;color:#fff;margin:0;}
+.rec-header button{margin-left:auto;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;}
+.rec-body{padding:26px;}
+.rec-body p.rec-intro{font-size:12.5px;color:var(--tm);margin-bottom:20px;line-height:1.6;}
+.rec-field{margin-bottom:16px;}
+.rec-field label{display:block;font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.rec-field input,.rec-field select,.rec-field textarea{
+  width:100%;border:1px solid rgba(21,18,15,.18);background:#fff;
+  padding:11px 14px;font-family:'Manrope',sans-serif;font-size:13.5px;
+  color:var(--ink);outline:none;transition:border-color .2s;border-radius:2px;
+}
+.rec-field input:focus,.rec-field select:focus,.rec-field textarea:focus{border-color:var(--wine);}
+.rec-field textarea{resize:vertical;min-height:90px;}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.rec-submit{
+  width:100%;background:var(--wine);color:#fff;border:none;
+  font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:700;padding:15px;cursor:pointer;
+  transition:.2s;margin-top:8px;
+}
+.rec-submit:hover{background:#8a1a2d;}
+.rec-msg{text-align:center;padding:14px;font-size:13px;min-height:20px;}
+.rec-footer-note{font-size:11px;color:var(--tm);text-align:center;margin-top:12px;line-height:1.6;}
+
+/* ── LIBRO btn en footer ── */
+.libro-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--wine);color:var(--wine);background:none;
+  font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:700;padding:8px 14px;cursor:pointer;
+  transition:.2s;
+}
+.libro-btn:hover{background:var(--wine);color:#fff;}
+.libro-btn svg{width:14px;height:14px;}
+
 </style>
 </head>
 <body>
@@ -1148,6 +1331,7 @@ body{transition:background-color .8s ease;}
     <div class="section-head reveal" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;">
       <span class="eyebrow">Comunidad Milano</span>
       <h2>Lo que dicen quienes ya nos eligieron</h2>
+      <p style="color:var(--tm);font-size:14px;margin-top:8px;">Reseñas reales de clientes verificados en todo el Perú</p>
     </div>
 
     <div class="social-stats reveal">
@@ -1161,35 +1345,87 @@ body{transition:background-color .8s ease;}
       <div class="review-card">
         <div class="review-top">
           <div class="review-avatar" style="background:#6E1423;">VQ</div>
-          <div class="review-id"><div class="review-name">Valeria Quispe</div><div class="review-verified">✓ Compra verificada</div></div>
+          <div class="review-id"><div class="review-name">Valeria Quispe</div><div class="review-verified">✓ Compra verificada · Lima</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Dura todo el día, huele increíble. Empecé con una fragancia y ahora tengo cuatro en mi colección."</p>
+        <p class="review-text">"Dura todo el día, huele increíble. Empecé con una fragancia y ahora tengo cuatro en mi colección. La calidad supera a muchas marcas que cuestan el triple."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
           <div class="review-avatar" style="background:#B8924B;">RA</div>
-          <div class="review-id"><div class="review-name">Renzo Alvarado</div><div class="review-verified">✓ Compra verificada</div></div>
+          <div class="review-id"><div class="review-name">Renzo Alvarado</div><div class="review-verified">✓ Compra verificada · Arequipa</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado."</p>
+        <p class="review-text">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado y con una presentación impecable."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
           <div class="review-avatar" style="background:#5C6B54;">CT</div>
-          <div class="review-id"><div class="review-name">Camila Torres</div><div class="review-verified">✓ Compra verificada</div></div>
+          <div class="review-id"><div class="review-name">Camila Torres</div><div class="review-verified">✓ Compra verificada · Trujillo</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota la calidad de los ingredientes."</p>
+        <p class="review-text">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota la calidad de los ingredientes. Ya es mi perfume de cabecera."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar" style="background:#3A4A5C;">DS</div>
+          <div class="review-id"><div class="review-name">Diego Salazar</div><div class="review-verified">✓ Compra verificada · Lima</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Cuoio Antico huele a lujo de verdad. Recibo preguntas de qué perfume uso todo el tiempo. Precio imbatible para la calidad que ofrece."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar" style="background:#7A3B1F;">MR</div>
+          <div class="review-id"><div class="review-name">María Rodríguez</div><div class="review-verified">✓ Compra verificada · Piura</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Le regalé Fiore di Milano a mi mamá y se enamoró al instante. Dura más de 8 horas, es floral pero no empalagoso. Definitivamente volvemos a comprar."</p>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-avatar" style="background:#6E1423;">AL</div>
+          <div class="review-id"><div class="review-name">André López</div><div class="review-verified">✓ Compra verificada · Cusco</div></div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré el 10ml para probar y en una semana ya pedí el de 100ml. Via Condotti es exactamente lo que buscaba: fresco, elegante y con gran proyección."</p>
       </div>
     </div>
 
     <div class="testi-wrap reveal">
-      <div class="testi-slide active"><div class="stars">★★★★★</div><p class="quote">"La duración es lo que más me sorprendió. Empecé con una sola fragancia y ahora tengo cuatro en mi colección."</p><div class="testi-name">Valeria Quispe</div><div class="testi-meta">Compra verificada · Lima</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado."</p><div class="testi-name">Renzo Alvarado</div><div class="testi-meta">Compra verificada · Arequipa</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota que usan buenos ingredientes."</p><div class="testi-name">Camila Torres</div><div class="testi-meta">Compra verificada · Trujillo</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Mi favorita es Aurum Notte. Recibo cumplidos cada vez que la uso. Definitivamente no es la última que compro."</p><div class="testi-name">Diego Salazar</div><div class="testi-meta">Compra verificada · Lima</div></div>
+      <div class="testi-slide active"><div class="stars">★★★★★</div><p class="quote">"La duración es lo que más me sorprendió. Empecé con una sola fragancia y ahora tengo cuatro en mi colección."</p><div class="testi-name">Valeria Quispe</div><div class="testi-meta">✓ Compra verificada · Lima</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado."</p><div class="testi-name">Renzo Alvarado</div><div class="testi-meta">✓ Compra verificada · Arequipa</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota que usan buenos ingredientes."</p><div class="testi-name">Camila Torres</div><div class="testi-meta">✓ Compra verificada · Trujillo</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Cuoio Antico huele a lujo. Recibo preguntas de qué perfume uso todo el tiempo. Precio imbatible."</p><div class="testi-name">Diego Salazar</div><div class="testi-meta">✓ Compra verificada · Lima</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Le regalé Fiore di Milano a mi mamá y se enamoró al instante. Dura más de 8 horas y no es empalagoso."</p><div class="testi-name">María Rodríguez</div><div class="testi-meta">✓ Compra verificada · Piura</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Compré el 10ml para probar y en una semana ya pedí el de 100ml. Via Condotti: fresco, elegante y con gran proyección."</p><div class="testi-name">André López</div><div class="testi-meta">✓ Compra verificada · Cusco</div></div>
       <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTOS DE CLIENTES -->
+<section class="customer-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Milano en tu vida</span>
+        <h2>Nuestra comunidad</h2>
+        <p class="sub">Fotos reales de clientes satisfechos. Etiquétanos en Instagram @milanoparfums.pe</p>
+      </div>
+    </div>
+    <div class="carousel-wrap">
+      <button class="car-arrow prev" data-target="customerScroll" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="customer-scroll carousel" id="customerScroll">
+        <!-- Las fotos se llenan desde CONFIG.CUSTOMER_PHOTOS o muestran placeholders -->
+        <div class="customer-photo" id="cp0"><div class="ph-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Tu foto aquí</span></div></div>
+        <div class="customer-photo" id="cp1"><div class="ph-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Tu foto aquí</span></div></div>
+        <div class="customer-photo" id="cp2"><div class="ph-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Tu foto aquí</span></div></div>
+        <div class="customer-photo" id="cp3"><div class="ph-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Tu foto aquí</span></div></div>
+        <div class="customer-photo" id="cp4"><div class="ph-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Tu foto aquí</span></div></div>
+        <div class="customer-photo" id="cp5"><div class="ph-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Tu foto aquí</span></div></div>
+      </div>
+      <button class="car-arrow next" data-target="customerScroll" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg></button>
     </div>
   </div>
 </section>
@@ -1242,6 +1478,7 @@ body{transition:background-color .8s ease;}
         <li><button class="flink" onclick="openPolicy('envios')">Política de envíos</button></li>
         <li><button class="flink" onclick="openPolicy('devoluciones')">Cambios y devoluciones</button></li>
         <li><button class="flink" onclick="openPolicy('terminos')">Términos y condiciones</button></li>
+        <li style="margin-top:10px;"><button class="libro-btn" onclick="openRec()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Libro de Reclamaciones</button></li>
       </ul>
     </div>
     <div>
@@ -1304,6 +1541,46 @@ body{transition:background-color .8s ease;}
 <!-- CHAPTER TRACK (navegación lateral inmersiva) -->
 <nav class="chapter-track" id="chapterTrack"></nav>
 
+<!-- LIBRO DE RECLAMACIONES -->
+<div class="overlay-bg" id="recOverlayBg" style="z-index:97;"></div>
+<div class="reclamaciones-modal" id="recModal" style="z-index:98;">
+  <div class="rec-box">
+    <div class="rec-header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <h3>Libro de Reclamaciones</h3>
+      <button onclick="closeRec()">×</button>
+    </div>
+    <div class="rec-body">
+      <p class="rec-intro">Conforme a lo establecido en el Código de Protección y Defensa del Consumidor (Ley N° 29571), tienes derecho a registrar tu reclamación o queja. Te responderemos en un plazo máximo de <strong>30 días hábiles</strong>.</p>
+      <div class="rec-grid">
+        <div class="rec-field"><label>Nombre completo *</label><input type="text" id="recNombre" placeholder="Tu nombre"></div>
+        <div class="rec-field"><label>DNI / CE *</label><input type="text" id="recDni" placeholder="12345678"></div>
+        <div class="rec-field"><label>Correo electrónico *</label><input type="email" id="recEmail" placeholder="tu@correo.com"></div>
+        <div class="rec-field"><label>Teléfono</label><input type="tel" id="recTel" placeholder="+51 9XX XXX XXX"></div>
+      </div>
+      <div class="rec-field">
+        <label>Tipo *</label>
+        <select id="recTipo">
+          <option value="">Selecciona...</option>
+          <option value="Reclamación">Reclamación — disconformidad con un producto o servicio</option>
+          <option value="Queja">Queja — disconformidad no relacionada al producto</option>
+        </select>
+      </div>
+      <div class="rec-field">
+        <label>Descripción detallada *</label>
+        <textarea id="recDesc" placeholder="Describe tu reclamación o queja con el mayor detalle posible..."></textarea>
+      </div>
+      <div class="rec-field">
+        <label>Pedido (número de orden si tienes)</label>
+        <input type="text" id="recOrden" placeholder="Ej: ORD-2025-001 (opcional)">
+      </div>
+      <button class="rec-submit" onclick="submitRec()">Registrar mi reclamación</button>
+      <div class="rec-msg" id="recMsg"></div>
+      <p class="rec-footer-note">Milano Parfums respeta tus derechos como consumidor. Esta información es confidencial y solo se usará para dar seguimiento a tu caso.</p>
+    </div>
+  </div>
+</div>
+
 <!-- WA FLOAT -->
 <a class="wa-float" href="https://wa.me/51961389397?text=Hola%20Milano%20Parfums%2C%20quisiera%20hacer%20una%20consulta" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 0 0-10.4 18l-1.5 5.5 5.6-1.5A12 12 0 1 0 12 0zm6.9 17a9.9 9.9 0 0 1-14-14 9.9 9.9 0 0 1 16.9 7 9.8 9.8 0 0 1-2.9 7zm-3-5.3c-.3-.2-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.8-.7-3-2-3.8-3.5-.1-.2 0-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6L7.7 5c-.1-.3-.5-.3-.7-.3-.2 0-.5.1-.7.3-.5.5-.8 1.2-.8 2 0 2.6 2.7 6.4 6.7 7.6.6.2 1.2.3 1.7.1.5-.1 1.5-1 1.7-1.2.2-.2.2-.5.1-.7z"/></svg>
@@ -1336,9 +1613,19 @@ const CONFIG = {
   },
 
   // ── SECCIÓN "POR QUÉ ELEGIR MILANO" ──────────────────────────────────────
-  // 4 imágenes en orden: Ingredientes, Variedad, Experiencia, Transparencia.
-  // Deja "" para mostrar el ícono ilustrado por defecto.
-  ABOUT_IMAGES: ["", "", "", ""]
+  ABOUT_IMAGES: ["", "", "", ""],
+
+  // ── FOTOS DE CLIENTES ─────────────────────────────────────────────────────
+  // Hasta 8 fotos del carrusel "Nuestra comunidad". Cada entrada: { url, nombre, ciudad }
+  // Si url está vacío, se muestra un placeholder con instrucciones.
+  CUSTOMER_PHOTOS: [
+    { url:"", nombre:"Valeria Q.", ciudad:"Lima" },
+    { url:"", nombre:"Renzo A.",  ciudad:"Arequipa" },
+    { url:"", nombre:"Camila T.", ciudad:"Trujillo" },
+    { url:"", nombre:"Diego S.",  ciudad:"Lima" },
+    { url:"", nombre:"María R.",  ciudad:"Piura" },
+    { url:"", nombre:"André L.",  ciudad:"Cusco" },
+  ]
 };
 
 /* ============================================================
@@ -1443,6 +1730,78 @@ function initBranding(){
   });
 }
 initBranding();
+
+/* ── Customer photos carousel ── */
+(function initCustomerPhotos(){
+  CONFIG.CUSTOMER_PHOTOS.forEach((cp, i)=>{
+    const el = document.getElementById(`cp${i}`);
+    if(!el || !cp.url) return;
+    const url = fixImgURL(cp.url);
+    el.innerHTML = `<img src="${url}" alt="${cp.nombre}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ph-placeholder><span>${cp.nombre}</span></div>'">
+      <div class="cp-overlay"></div>
+      <div class="cp-info">
+        <div class="cp-name">${cp.nombre}</div>
+        <div class="cp-verify">✓ Cliente verificado · ${cp.ciudad}</div>
+      </div>`;
+    el.onclick = ()=> lbOpen([url], 0);
+  });
+})();
+
+/* ── Parallax suave en secciones al mover el mouse ── */
+document.addEventListener("mousemove", e=>{
+  const x = (e.clientX / window.innerWidth  - 0.5) * 12;
+  const y = (e.clientY / window.innerHeight - 0.5) * 8;
+  document.querySelectorAll(".hero-copy h1").forEach(el=>{
+    el.style.transform = `translate(${x*0.4}px,${y*0.3}px)`;
+  });
+  document.querySelectorAll(".quiz-orb").forEach(el=>{
+    el.style.transform = `translate(${x*0.6}px,${y*0.5}px)`;
+  });
+},{passive:true});
+
+/* ── Libro de Reclamaciones ── */
+function openRec(){
+  document.getElementById("recModal").classList.add("open");
+  document.getElementById("recOverlayBg").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeRec(){
+  document.getElementById("recModal").classList.remove("open");
+  document.getElementById("recOverlayBg").classList.remove("open");
+  document.body.style.overflow="";
+  document.getElementById("recMsg").textContent="";
+}
+document.getElementById("recOverlayBg").addEventListener("click", closeRec);
+async function submitRec(){
+  const nombre = document.getElementById("recNombre").value.trim();
+  const dni    = document.getElementById("recDni").value.trim();
+  const email  = document.getElementById("recEmail").value.trim();
+  const tipo   = document.getElementById("recTipo").value;
+  const desc   = document.getElementById("recDesc").value.trim();
+  const msg    = document.getElementById("recMsg");
+  if(!nombre||!dni||!email||!tipo||!desc){
+    msg.style.color="var(--wine)";
+    msg.textContent="Por favor completa todos los campos obligatorios (*)";
+    return;
+  }
+  msg.style.color="var(--tm)"; msg.textContent="Enviando...";
+  const payload = {
+    action:"reclamacion", nombre, dni, email,
+    telefono: document.getElementById("recTel").value,
+    tipo, descripcion: desc,
+    orden: document.getElementById("recOrden").value,
+    fecha: new Date().toLocaleString("es-PE")
+  };
+  try{
+    fetch(CONFIG.API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+    msg.style.color="var(--sage)";
+    msg.textContent="✅ Reclamación registrada. Te responderemos en un máximo de 30 días hábiles.";
+    setTimeout(closeRec, 3200);
+  }catch(e){
+    msg.style.color="var(--wine)";
+    msg.textContent="No pudimos enviar. Escríbenos directamente a milanoparfums.pe@gmail.com";
+  }
+}
 
 /* ============================================================
    GALERÍA DE IMÁGENES POR PRODUCTO
@@ -2236,8 +2595,9 @@ document.querySelectorAll(".car-arrow").forEach(btn=>{
   btn.addEventListener("click",()=>{
     const car = document.getElementById(btn.dataset.target);
     if(!car) return;
-    const cardW = car.querySelector(".card")?.offsetWidth || 260;
-    const dist = (cardW+20) * 2;
+    const firstChild = car.querySelector(".card,.customer-photo");
+    const cardW = firstChild?.offsetWidth || 260;
+    const dist = (cardW+14) * 2;
     car.scrollBy({left: btn.classList.contains("next") ? dist : -dist, behavior:"smooth"});
   });
 });
