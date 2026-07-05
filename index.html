@@ -110,7 +110,7 @@ nav.main{display:flex;gap:28px;align-items:center;}
   padding:0 20px;margin-bottom:10px;display:block;
 }
 .search-hint{color:var(--tm);font-size:13.5px;padding:30px 20px;text-align:center;}
-/* resultado de búsqueda — fila estilo */
+/* resultado de búsqueda — fila estilo Two Lions */
 .sr-row{
   display:flex;align-items:center;gap:14px;
   padding:14px 20px;border-bottom:1px solid rgba(21,18,15,.06);
@@ -1596,7 +1596,7 @@ const CONFIG = {
 
   // ── LOGO ──────────────────────────────────────────────────────────────────
   // PNG/SVG con fondo transparente. Vacío = usa el emblema dorado por defecto.
-  LOGO_URL: "https://raw.githubusercontent.com/milanoparfums/website/main/images/LOGO.png",
+  LOGO_URL: "",
 
   // ── HERO ──────────────────────────────────────────────────────────────────
   // Opción A: video corto en loop (MP4, <15MB recomendado). Vacío = imagen + parallax.
@@ -1607,10 +1607,10 @@ const CONFIG = {
   // ── TARJETAS DE CATEGORÍA (Hombres / Mujeres / Unisex) ───────────────────
   // Imágenes de fondo de los 3 bloques del catálogo. Deja "" para usar el degradado oscuro.
   GENDER_IMAGES: {
-  masculino: "https://raw.githubusercontent.com/milanoparfums/website/main/images/hombres.png",
-  femenino:  "https://raw.githubusercontent.com/milanoparfums/website/main/images/mujer.png",
-  unisex:    "https://raw.githubusercontent.com/milanoparfums/website/main/images/unisex.png"
-}
+    masculino: "https://raw.githubusercontent.com/milanoparfums/website/main/images/masculino.png",   // ej: "https://raw.githubusercontent.com/milanoparfums/website/main/images/hombres.jpg"
+    femenino:  "https://raw.githubusercontent.com/milanoparfums/website/main/images/femenino.png",   // ej: link de Google Drive o GitHub
+    unisex:    "https://raw.githubusercontent.com/milanoparfums/website/main/images/unisex.png"
+  },
 
   // ── SECCIÓN "POR QUÉ ELEGIR MILANO" ──────────────────────────────────────
   ABOUT_IMAGES: ["", "", "", ""],
@@ -1620,9 +1620,9 @@ const CONFIG = {
   // Si url está vacío, se muestra un placeholder con instrucciones.
   CUSTOMER_PHOTOS: [
     { url:"", nombre:"Valeria Q.", ciudad:"Lima" },
-    { url:"", nombre:"Renzo A.",  ciudad:"Arequipa" },
-    { url:"", nombre:"Camila T.", ciudad:"Trujillo" },
-    { url:"", nombre:"Diego S.",  ciudad:"Lima" },
+    { url:"", nombre:"Arturo P.",  ciudad:"Arequipa" },
+    { url:"", nombre:"Yuliana H.", ciudad:"Trujillo" },
+    { url:"", nombre:"Braulio R.",  ciudad:"Chiclayo" },
     { url:"", nombre:"María R.",  ciudad:"Piura" },
     { url:"", nombre:"André L.",  ciudad:"Cusco" },
   ]
