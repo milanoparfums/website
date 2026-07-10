@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://milanoparfums.github.io/website/sitemap.xml
+
+# No indexar archivos de sistema
+Disallow: /*.json$
