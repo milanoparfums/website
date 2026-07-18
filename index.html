@@ -6,6 +6,16 @@
 
 <!-- ═══ SEO PRIMARIO ═══ -->
 <title>Milano Parfums — Perfumes inspirados en marcas de lujo | Lima, Perú</title>
+<meta name="application-name" content="Milano Parfums">
+<meta name="author" content="Milano Parfums">
+<meta name="publisher" content="Milano Parfums">
+<meta name="copyright" content="Milano Parfums 2025">
+<meta name="category" content="Perfumes, Fragancias, Tienda online Perú">
+<meta name="classification" content="Business">
+<meta name="subject" content="Tienda de perfumes inspirados en marcas de lujo. Envíos a todo el Perú.">
+<meta itemprop="name" content="Milano Parfums">
+<meta itemprop="description" content="Fragancias de alta concentración inspiradas en las casas más codiciadas del mundo. Desde Lima, Perú para todo el país.">
+<meta itemprop="image" content="https://milanoparfums.github.io/website/images/og-cover.jpg">
 <meta name="description" content="Milano Parfums: fragancias de alta concentración inspiradas en las marcas más codiciadas del mundo. Envíos a todo el Perú desde Lima. Aurum Notte, Via Condotti, Cuoio Antico y más.">
 <meta name="keywords" content="perfumes Lima Peru, fragancias alternativas Peru, perfumes inspirados lujo, perfumes baratos buena calidad, Milano Parfums, perfumes importados Peru, fragancias equivalentes Peru, perfumes por mayor Lima">
 <meta name="author" content="Milano Parfums">
@@ -36,31 +46,49 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "Store", "OnlineStore"],
   "name": "Milano Parfums",
-  "description": "Tienda de fragancias de alta concentración inspiradas en las marcas más codiciadas del mundo.",
+  "alternateName": "Milano Parfums Perú",
+  "legalName": "Milano Parfums",
+  "description": "Tienda de fragancias de alta concentración inspiradas en las marcas más codiciadas del mundo. Envíos a todo el Perú desde Lima.",
   "url": "https://milanoparfums.github.io/website/",
+  "logo": "https://milanoparfums.github.io/website/images/og-cover.jpg",
+  "image": "https://milanoparfums.github.io/website/images/og-cover.jpg",
   "telephone": "+51961389397",
   "email": "milanoparfums.pe@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Lima",
+    "addressRegion": "Lima",
     "addressCountry": "PE"
   },
-  "areaServed": "PE",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-12.0464",
+    "longitude": "-77.0428"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Perú"
+  },
+  "currenciesAccepted": "PEN",
+  "paymentAccepted": "Cash, Yape, Plin, Credit Card, Bank Transfer",
   "priceRange": "S/. 28 - S/. 105",
-  "image": "https://milanoparfums.github.io/website/images/og-cover.jpg",
+  "hasMap": "https://maps.google.com/?q=Lima,Peru",
   "sameAs": [
     "https://www.instagram.com/milanoparfums.pe",
     "https://www.facebook.com/share/1G4PD1UnMH/",
-    "https://www.tiktok.com/@milanoparfums"
+    "https://www.tiktok.com/@milanoparfums",
+    "https://wa.me/51961389397"
   ],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
     "opens": "09:00",
     "closes": "20:00"
-  }
+  },
+  "foundingDate": "2024",
+  "slogan": "El lujo no se compra, se evoca."
 }
 </script>
 
@@ -114,18 +142,32 @@
 <!-- ═══ PERFORMANCE ═══ -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<!-- Performance hints -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,500&family=Manrope:wght@400;500;600&family=Archivo:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://script.google.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,500&family=Manrope:wght@400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+
 <style>
 /* ===== RESET & TOKENS ===== */
 :root{
-  --ink:#15120F; --ink2:#241F1A;
-  --cream:#F7F2E9; --cream2:#EFE6D6;
-  --gold:#B8924B; --gold2:#E4C988;
-  --wine:#6E1423; --sage:#5C6B54;
-  --td:#211C16; --tl:#F3ECDD; --tm:#8B8378;
+  /* ── Negros y oscuros ── */
+  --ink:#0D0C0A;       /* negro profundo principal */
+  --ink2:#1A1814;      /* negro suave para hover/cards */
+  /* ── Cremas y blancos ── */
+  --cream:#FAF8F3;     /* crema limpia (fondo principal) */
+  --cream2:#F0EBE0;    /* crema cálida (fondo secciones alt) */
+  /* ── Dorados ── */
+  --gold:#B8924B;      /* dorado principal */
+  --gold2:#D4AA6A;     /* dorado claro / highlights */
+  /* ── Acentos ── */
+  --wine:#7A1F2E;      /* vino profundo (errores, urgencia) */
+  --sage:#4A5E48;      /* verde salvia (éxito, verificado) */
+  /* ── Textos ── */
+  --td:#1A1814;        /* texto oscuro principal */
+  --tl:#FAF8F3;        /* texto claro (sobre fondos oscuros) */
+  --tm:#857F74;        /* texto secundario / meta */
   --maxw:1320px; --r:2px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -522,17 +564,30 @@ nav.main{display:flex;gap:28px;align-items:center;}
 .policy-box h4{font-family:'Archivo',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:18px 0 8px;}
 .policy-close{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);margin-left:10px;}
 /* ===== HERO — premium cinematográfico ===== */
+:root{ --hero-overlay: transparent; }
 .hero{
   position:relative;min-height:100vh;
   display:flex;align-items:center;
   background:#080705;overflow:hidden;
 }
+/* Overlay oscuro cuando hay imagen/video de fondo */
+.hero-overlay-layer{
+  position:absolute;inset:0;z-index:1;
+  background:var(--hero-overlay);
+  pointer-events:none;
+  transition:background .4s;
+}
+/* Todo el contenido del hero por encima del overlay */
+.hero-grid-lines,.hero-bg-text,.hero-inner,
+.note-particles,.scroll-cue{position:relative;z-index:2;}
 .hero::before{
-  content:"";position:absolute;inset:0;
+  content:"";position:absolute;inset:0;z-index:0;
   background:
     radial-gradient(ellipse 65% 70% at 75% 15%, rgba(42,28,14,.95) 0%, transparent 55%),
     radial-gradient(ellipse 55% 65% at 15% 85%, rgba(26,12,6,.9) 0%, transparent 50%),
     radial-gradient(ellipse 90% 55% at 50% 50%, rgba(14,11,8,1) 0%, rgba(6,5,4,1) 100%);
+  pointer-events:none;
+}
   pointer-events:none;
 }
 /* grain texture */
@@ -1357,6 +1412,180 @@ body{transition:background-color .8s ease;}
 @media(max-width:520px){
   .catalog-grid .card,.catalog-grid.view-2 .card,.catalog-grid.view-3 .card,.catalog-grid.view-4 .card{flex:0 0 calc(50% - 8px);}
 }
+/* ══ YAPE MODAL ══════════════════════════════════════ */
+.yape-modal{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;pointer-events:none;
+}
+.yape-modal.open{pointer-events:auto;}
+.yape-box{
+  background:#fff;width:100%;max-width:360px;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  transform:scale(.94) translateY(16px);opacity:0;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s;
+}
+.yape-modal.open .yape-box{transform:scale(1) translateY(0);opacity:1;}
+.yape-head{
+  background:linear-gradient(135deg,#6B1FBF,#8B2FDF);
+  padding:18px 20px;display:flex;align-items:center;gap:12px;
+}
+.yape-head .yape-logo{
+  font-family:'Archivo',sans-serif;font-size:20px;font-weight:900;
+  color:#fff;letter-spacing:-.5px;
+}
+.yape-head .yape-title{
+  font-family:'Archivo',sans-serif;font-size:13px;
+  font-weight:700;color:rgba(255,255,255,.85);
+}
+.yape-head .yape-close{
+  margin-left:auto;background:rgba(255,255,255,.2);
+  border:none;color:#fff;font-size:18px;width:30px;height:30px;
+  border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.yape-body{padding:22px 20px;}
+.yape-amount{
+  text-align:center;margin-bottom:16px;
+  font-family:'Archivo',sans-serif;
+}
+.yape-amount .ya-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin-bottom:4px;}
+.yape-amount .ya-total{font-size:32px;font-weight:900;color:#6B1FBF;}
+.yape-amount .ya-sub{font-size:11px;color:var(--tm);margin-top:2px;}
+.yape-qr-wrap{
+  width:200px;height:200px;margin:0 auto 16px;
+  border:3px solid #6B1FBF;border-radius:12px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:#f8f4ff;
+}
+.yape-qr-wrap img{width:100%;height:100%;object-fit:contain;}
+.yape-qr-placeholder{
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:#6B1FBF;
+  font-family:'Archivo',sans-serif;font-size:11px;text-align:center;padding:10px;
+}
+.yape-qr-placeholder svg{width:48px;height:48px;opacity:.4;}
+.yape-steps{
+  background:#f8f4ff;border-radius:8px;padding:12px 14px;
+  margin-bottom:16px;
+}
+.yape-steps p{font-size:12px;color:#555;line-height:1.6;margin:0;}
+.yape-steps strong{color:#6B1FBF;}
+.yape-confirm-btn{
+  width:100%;padding:14px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#6B1FBF,#8B2FDF);
+  color:#fff;font-family:'Archivo',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:.2s;margin-bottom:8px;
+}
+.yape-confirm-btn:hover{opacity:.9;transform:translateY(-1px);}
+.yape-confirm-btn svg{width:18px;height:18px;fill:#fff;}
+.yape-cancel{
+  width:100%;background:none;border:1px solid rgba(0,0,0,.12);
+  padding:10px;font-family:'Archivo',sans-serif;font-size:11px;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--tm);cursor:pointer;border-radius:6px;transition:.2s;
+}
+.yape-cancel:hover{border-color:var(--wine);color:var(--wine);}
+
+/* Botón Yape en el carrito */
+.yape-cart-btn{
+  width:100%;padding:14px;border:2px solid #6B1FBF;
+  background:#fff;color:#6B1FBF;
+  font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  cursor:pointer;transition:.2s;margin-bottom:8px;border-radius:0;
+}
+.yape-cart-btn:hover{background:#6B1FBF;color:#fff;}
+.yape-cart-btn .yape-icon{
+  font-size:14px;font-weight:900;
+  background:linear-gradient(135deg,#6B1FBF,#8B2FDF);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.yape-cart-btn:hover .yape-icon{-webkit-text-fill-color:#fff;background:none;}
+
+/* ══ HOVER DORADO GLOBAL — nav, links, botones ══ */
+.navlink:hover,.dropdown a:hover,.dropdown button:hover,
+nav.main a:hover{color:var(--gold) !important;}
+.has-drop:hover .navlink{color:var(--gold);}
+.footer-grid a:hover,.footer-grid button.flink:hover{color:var(--gold2) !important;}
+.view-all:hover{color:var(--gold);}
+.filter-tab:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.sb-item:hover .sb-item-name,.sb-item:hover{color:var(--gold);}
+.ai-quick:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.pg-btn:hover:not(:disabled):not(.active){border-color:var(--gold);color:var(--gold);}
+
+/* ══ ANIMACIÓN FLY-TO-CART ══ */
+.fly-item{
+  position:fixed;width:44px;height:44px;
+  border-radius:50%;object-fit:cover;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;z-index:9999;
+  transition:none;
+  box-shadow:0 4px 16px rgba(184,146,75,.5);
+}
+.fly-item svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:1.8;}
+@keyframes flyToCart{
+  0%  {transform:scale(1) translate(0,0);opacity:1;}
+  60% {transform:scale(.7) translate(var(--dx2),var(--dy2));opacity:.9;}
+  100%{transform:scale(.2) translate(var(--dx),var(--dy));opacity:0;}
+}
+/* Cart count bounce cuando se añade un item */
+@keyframes cartBounce{
+  0%,100%{transform:scale(1);}
+  30%{transform:scale(1.5);}
+  60%{transform:scale(.9);}
+}
+.cart-count.bounce{animation:cartBounce .45s ease;}
+
+/* ══ CARRUSEL COMUNIDAD DINÁMICO ══ */
+.customer-scroll{
+  display:flex;gap:14px;
+  overflow-x:auto;scroll-behavior:smooth;
+  padding:4px 0 16px;
+  -ms-overflow-style:none;scrollbar-width:none;
+  cursor:grab;
+}
+.customer-scroll:active{cursor:grabbing;}
+.customer-scroll::-webkit-scrollbar{display:none;}
+.customer-photo{
+  flex:0 0 240px;position:relative;overflow:hidden;
+  border-radius:8px;height:300px;cursor:pointer;
+  transition:flex .4s ease, box-shadow .3s;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}
+.customer-photo:hover{
+  flex:0 0 300px;
+  box-shadow:0 12px 36px rgba(0,0,0,.3);
+}
+.customer-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1);
+}
+.customer-photo:hover img{transform:scale(1.08);}
+.customer-photo .cp-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,7,.8) 0%,transparent 55%);
+  opacity:0;transition:opacity .3s;
+}
+.customer-photo:hover .cp-overlay{opacity:1;}
+.customer-photo .cp-info{
+  position:absolute;bottom:0;left:0;right:0;padding:18px 16px;
+  color:#fff;transform:translateY(10px);transition:transform .3s;
+}
+.customer-photo:hover .cp-info{transform:translateY(0);}
+.cp-name{font-family:'Fraunces',serif;font-size:15px;margin-bottom:3px;}
+.cp-verify{font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.05em;color:var(--gold2);font-weight:700;}
+
+/* ══ PERFORMANCE: reduce motion ══ */
+@media(prefers-reduced-motion:reduce){
+  .fly-item,*{animation:none !important;transition:none !important;}
+}
+
 </style>
 </head>
 <body>
@@ -1368,18 +1597,22 @@ body{transition:background-color .8s ease;}
 <header class="site" id="siteHeader">
   <div class="wrap nav-row">
     <a href="#top" class="logo">
-      <svg class="crest" id="headerCrest" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Círculo exterior -->
-        <circle cx="32" cy="32" r="30" stroke="#B8924B" stroke-width="1.2"/>
-        <!-- Monograma MP -->
-        <!-- M -->
-        <path d="M13 44 L13 22 L22 36 L31 22 L31 44" stroke="#B8924B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- P -->
-        <path d="M35 44 L35 22" stroke="#B8924B" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M35 22 L43 22 Q51 22 51 30 Q51 38 43 38 L35 38" stroke="#B8924B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Línea decorativa inferior -->
-        <line x1="20" y1="49" x2="44" y2="49" stroke="#B8924B" stroke-width=".7" opacity=".6"/>
-      </svg>
+      <svg class="crest" id="headerCrest" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- M principal -->
+  <path d="M10 95 L10 28 L38 65 L60 28 L82 65 L110 28 L110 95" stroke="#B8924B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Copa/trofeo en el centro de la M -->
+  <path d="M51 52 Q51 44 60 44 Q69 44 69 52 L67 62 Q64 68 60 68 Q56 68 53 62 Z" fill="#B8924B" opacity=".15" stroke="#D4AA6A" stroke-width="1.5"/>
+  <path d="M51 52 Q51 44 60 44 Q69 44 69 52 L67 62 Q64 68 60 68 Q56 68 53 62 Z" fill="none" stroke="#D4AA6A" stroke-width="1.8"/>
+  <!-- Asa izquierda de la copa -->
+  <path d="M51 53 Q44 53 44 59 Q44 65 51 65" stroke="#D4AA6A" stroke-width="1.5" fill="none"/>
+  <!-- Asa derecha de la copa -->
+  <path d="M69 53 Q76 53 76 59 Q76 65 69 65" stroke="#D4AA6A" stroke-width="1.5" fill="none"/>
+  <!-- Pedestal de la copa -->
+  <line x1="60" y1="68" x2="60" y2="76" stroke="#D4AA6A" stroke-width="2"/>
+  <line x1="53" y1="76" x2="67" y2="76" stroke="#D4AA6A" stroke-width="2" stroke-linecap="round"/>
+  <!-- Línea decorativa inferior -->
+  <line x1="15" y1="104" x2="105" y2="104" stroke="#B8924B" stroke-width="1" opacity=".5"/>
+</svg>
       <span class="logo-text">MILANO <span>PARFUMS</span></span>
     </a>
     <nav class="main">
@@ -1471,8 +1704,11 @@ body{transition:background-color .8s ease;}
   <!-- ZONA FIJA: total + botón checkout -->
   <div class="cart-foot">
     <div class="cart-total"><span>Total</span><span id="cartTotal">S/. 0.00</span></div>
+    <button class="yape-cart-btn" id="yapeBtn" onclick="openYape()">
+      <span class="yape-icon">yape</span> Pagar con Yape
+    </button>
     <button class="btn solid" id="checkoutBtn" style="display:flex;">Finalizar por WhatsApp →</button>
-    <p class="cart-note">Confirmamos stock y coordinas el pago por WhatsApp.</p>
+    <p class="cart-note">Paga con Yape o coordina por WhatsApp.</p>
   </div>
 
 </aside>
@@ -1525,6 +1761,7 @@ body{transition:background-color .8s ease;}
 <section class="hero" id="top">
 
   <!-- Capas decorativas de fondo -->
+  <div class="hero-overlay-layer" id="heroOverlayLayer"></div>
   <div class="hero-grid-lines"></div>
   <div class="hero-bg-text">M</div>
 
@@ -1819,7 +2056,7 @@ body{transition:background-color .8s ease;}
     <div class="about-feature reveal">
       <div>
         <div class="about-num">02 — Variedad</div>
-        <h3>Un catálogo curado, no infinito</h3>
+        <h3>Más de 200 fragancias. Una experiencia inolvidable.</h3>
         <p>Seleccionamos cuidadosamente las familias olfativas más codiciadas — amaderadas, orientales, florales, gourmand y acuáticas — para que encuentres tu fragancia firma sin perderte en una oferta interminable.</p>
       </div>
       <div class="feature-visual" id="aboutImg2"><svg width="150" height="100" viewBox="0 0 150 100"><circle cx="35" cy="50" r="28" fill="none" stroke="#6E1423" stroke-width="1.2"/><circle cx="75" cy="30" r="28" fill="none" stroke="#B8924B" stroke-width="1.2"/><circle cx="115" cy="50" r="28" fill="none" stroke="#5C6B54" stroke-width="1.2"/></svg></div>
@@ -1872,61 +2109,64 @@ body{transition:background-color .8s ease;}
     <div class="review-grid reveal">
       <div class="review-card">
         <div class="review-top">
-          <div class="review-avatar" style="background:#6E1423;">VQ</div>
-          <div class="review-id"><div class="review-name">Valeria Quispe</div><div class="review-verified">✓ Compra verificada · Lima</div></div>
+          <div class="review-avatar" style="background:#B8924B;">YH</div>
+          <div class="review-id"><div class="review-name">Yuliana H.</div><div class="review-verified">✓ Compra verificada · Piura</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Dura todo el día, huele increíble. Empecé con una fragancia y ahora tengo cuatro en mi colección. La calidad supera a muchas marcas que cuestan el triple."</p>
+        <p class="review-text">"Lo compré para probar y la verdad me gustó bastante. El aroma dura bien y ya varias personas me han preguntado cuál estoy usando."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
-          <div class="review-avatar" style="background:#B8924B;">RA</div>
-          <div class="review-id"><div class="review-name">Renzo Alvarado</div><div class="review-verified">✓ Compra verificada · Arequipa</div></div>
+          <div class="review-avatar" style="background:#0D0C0A;">AP</div>
+          <div class="review-id"><div class="review-name">Arturo P.</div><div class="review-verified">✓ Compra verificada · Arequipa</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado y con una presentación impecable."</p>
+        <p class="review-text">"Tenía mis dudas al comprar por internet, pero todo salió muy bien. El perfume llegó rápido y el aroma fue justo lo que esperaba."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
-          <div class="review-avatar" style="background:#5C6B54;">CT</div>
-          <div class="review-id"><div class="review-name">Camila Torres</div><div class="review-verified">✓ Compra verificada · Trujillo</div></div>
+          <div class="review-avatar" style="background:#7A1F2E;">ME</div>
+          <div class="review-id"><div class="review-name">Mary E.</div><div class="review-verified">✓ Compra verificada · Motupe</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota la calidad de los ingredientes. Ya es mi perfume de cabecera."</p>
+        <p class="review-text">"Ya es la segunda vez que compro. Me gusta porque huele muy bien y la atención siempre ha sido excelente."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
-          <div class="review-avatar" style="background:#3A4A5C;">DS</div>
-          <div class="review-id"><div class="review-name">Diego Salazar</div><div class="review-verified">✓ Compra verificada · Lima</div></div>
+          <div class="review-avatar" style="background:#4A5E48;">JT</div>
+          <div class="review-id"><div class="review-name">José T.</div><div class="review-verified">✓ Compra verificada · Lima</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Cuoio Antico huele a lujo de verdad. Recibo preguntas de qué perfume uso todo el tiempo. Precio imbatible para la calidad que ofrece."</p>
+        <p class="review-text">"La relación calidad-precio me pareció muy buena. El perfume tiene una excelente presentación y el aroma dura varias horas."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
-          <div class="review-avatar" style="background:#7A3B1F;">MR</div>
-          <div class="review-id"><div class="review-name">María Rodríguez</div><div class="review-verified">✓ Compra verificada · Piura</div></div>
+          <div class="review-avatar" style="background:#B8924B;">DH</div>
+          <div class="review-id"><div class="review-name">Diana H.</div><div class="review-verified">✓ Compra verificada · Trujillo</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Le regalé Fiore di Milano a mi mamá y se enamoró al instante. Dura más de 8 horas, es floral pero no empalagoso. Definitivamente volvemos a comprar."</p>
+        <p class="review-text">"Pedí uno para uso diario y terminé encantada. Ahora quiero probar otras fragancias de la tienda."</p>
       </div>
       <div class="review-card">
         <div class="review-top">
-          <div class="review-avatar" style="background:#6E1423;">AL</div>
-          <div class="review-id"><div class="review-name">André López</div><div class="review-verified">✓ Compra verificada · Cusco</div></div>
+          <div class="review-avatar" style="background:#0D0C0A;">BR</div>
+          <div class="review-id"><div class="review-name">Braulio R.</div><div class="review-verified">✓ Compra verificada · Chiclayo</div></div>
         </div>
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Compré el 10ml para probar y en una semana ya pedí el de 100ml. Via Condotti es exactamente lo que buscaba: fresco, elegante y con gran proyección."</p>
+        <p class="review-text">"Me recomendaron la tienda y fue una buena decisión. El pedido llegó en el tiempo indicado y quedé conforme con la compra."</p>
       </div>
     </div>
 
     <div class="testi-wrap reveal">
-      <div class="testi-slide active"><div class="stars">★★★★★</div><p class="quote">"La duración es lo que más me sorprendió. Empecé con una sola fragancia y ahora tengo cuatro en mi colección."</p><div class="testi-name">Valeria Quispe</div><div class="testi-meta">✓ Compra verificada · Lima</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Pedí asesoría por WhatsApp y me ayudaron a encontrar la fragancia perfecta para regalar. Llegó antes de lo esperado."</p><div class="testi-name">Renzo Alvarado</div><div class="testi-meta">✓ Compra verificada · Arequipa</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Comparando precio y calidad, no hay con qué comparar. El aroma es fiel y se nota que usan buenos ingredientes."</p><div class="testi-name">Camila Torres</div><div class="testi-meta">✓ Compra verificada · Trujillo</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Cuoio Antico huele a lujo. Recibo preguntas de qué perfume uso todo el tiempo. Precio imbatible."</p><div class="testi-name">Diego Salazar</div><div class="testi-meta">✓ Compra verificada · Lima</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Le regalé Fiore di Milano a mi mamá y se enamoró al instante. Dura más de 8 horas y no es empalagoso."</p><div class="testi-name">María Rodríguez</div><div class="testi-meta">✓ Compra verificada · Piura</div></div>
-      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Compré el 10ml para probar y en una semana ya pedí el de 100ml. Via Condotti: fresco, elegante y con gran proyección."</p><div class="testi-name">André López</div><div class="testi-meta">✓ Compra verificada · Cusco</div></div>
+      <div class="testi-slide active"><div class="stars">★★★★★</div><p class="quote">"Lo compré para probar y la verdad me gustó bastante. El aroma dura bien y ya varias personas me han preguntado cuál estoy usando."</p><div class="testi-name">Yuliana H.</div><div class="testi-meta">✓ Compra verificada · Piura</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Tenía mis dudas al comprar por internet, pero todo salió muy bien. El perfume llegó rápido y el aroma fue justo lo que esperaba."</p><div class="testi-name">Arturo P.</div><div class="testi-meta">✓ Compra verificada · Arequipa</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Ya es la segunda vez que compro. Me gusta porque huele muy bien y la atención siempre ha sido excelente."</p><div class="testi-name">Mary E.</div><div class="testi-meta">✓ Compra verificada · Motupe</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"La relación calidad-precio me pareció muy buena. El perfume tiene una excelente presentación y el aroma dura varias horas."</p><div class="testi-name">José T.</div><div class="testi-meta">✓ Compra verificada · Lima</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Pedí uno para uso diario y terminé encantada. Ahora quiero probar otras fragancias de la tienda."</p><div class="testi-name">Diana H.</div><div class="testi-meta">✓ Compra verificada · Trujillo</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Me recomendaron la tienda y fue una buena decisión. El pedido llegó en el tiempo indicado y quedé conforme."</p><div class="testi-name">Braulio R.</div><div class="testi-meta">✓ Compra verificada · Chiclayo</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Me animé a comprar por los comentarios y no me arrepiento. El aroma me encantó y llegó muy bien empaquetado."</p><div class="testi-name">Moises A.</div><div class="testi-meta">✓ Compra verificada · Chiclayo</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Es la primera vez que compro un perfume inspirado y quedé sorprendido. Huele muy bien y tiene una duración que me dejó satisfecho."</p><div class="testi-name">Percy S.</div><div class="testi-meta">✓ Compra verificada · Ica</div></div>
+      <div class="testi-slide"><div class="stars">★★★★★</div><p class="quote">"Pedí una fragancia para regalar y terminó gustándome tanto que también compré una para mí. Muy buena atención y envío rápido."</p><div class="testi-name">Daniela C.</div><div class="testi-meta">✓ Compra verificada · Huancayo</div></div>
       <div class="testi-dots" id="testiDots"></div>
     </div>
   </div>
@@ -1979,13 +2219,15 @@ body{transition:background-color .8s ease;}
   <div class="wrap footer-grid">
     <div>
       <div class="foot-logo">
-        <svg class="crest" id="footerCrest" viewBox="0 0 64 64" fill="none" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="32" r="30" stroke="#B8924B" stroke-width="1.2"/>
-          <path d="M13 44 L13 22 L22 36 L31 22 L31 44" stroke="#B8924B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M35 44 L35 22" stroke="#B8924B" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M35 22 L43 22 Q51 22 51 30 Q51 38 43 38 L35 38" stroke="#B8924B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <line x1="20" y1="49" x2="44" y2="49" stroke="#B8924B" stroke-width=".7" opacity=".6"/>
-        </svg>
+        <svg class="crest" id="footerCrest" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+  <path d="M10 95 L10 28 L38 65 L60 28 L82 65 L110 28 L110 95" stroke="#B8924B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M51 52 Q51 44 60 44 Q69 44 69 52 L67 62 Q64 68 60 68 Q56 68 53 62 Z" fill="none" stroke="#D4AA6A" stroke-width="1.8"/>
+  <path d="M51 53 Q44 53 44 59 Q44 65 51 65" stroke="#D4AA6A" stroke-width="1.5" fill="none"/>
+  <path d="M69 53 Q76 53 76 59 Q76 65 69 65" stroke="#D4AA6A" stroke-width="1.5" fill="none"/>
+  <line x1="60" y1="68" x2="60" y2="76" stroke="#D4AA6A" stroke-width="2"/>
+  <line x1="53" y1="76" x2="67" y2="76" stroke="#D4AA6A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="15" y1="104" x2="105" y2="104" stroke="#B8924B" stroke-width="1" opacity=".5"/>
+</svg>
         <span class="logo-text">MILANO PARFUMS</span>
       </div>
       <p class="foot-desc">Fragancias inspiradas en las casas más reconocidas del mundo, enviadas a todo el Perú.</p>
@@ -2115,6 +2357,43 @@ body{transition:background-color .8s ease;}
   </div>
 </div>
 
+<!-- YAPE MODAL -->
+<div class="overlay-bg" id="yapeOverlayBg" style="z-index:199;"></div>
+<div class="yape-modal" id="yapeModal">
+  <div class="yape-box">
+    <div class="yape-head">
+      <div class="yape-logo">yape</div>
+      <div class="yape-title">Paga con Yape</div>
+      <button class="yape-close" onclick="closeYape()">×</button>
+    </div>
+    <div class="yape-body">
+      <div class="yape-amount">
+        <div class="ya-label">Total a pagar</div>
+        <div class="ya-total" id="yapeTotal">S/. 0.00</div>
+        <div class="ya-sub">Escanea el QR con tu app Yape</div>
+      </div>
+      <div class="yape-qr-wrap" id="yapeQrWrap">
+        <!-- Se llena desde CONFIG.YAPE_QR_URL -->
+        <div class="yape-qr-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h.01M18 14h.01M14 18h.01M18 18h.01M14 14v4h4v-4h-4"/></svg>
+          Agrega tu QR de Yape en CONFIG.YAPE_QR_URL
+        </div>
+      </div>
+      <div class="yape-steps">
+        <p>1. Abre Yape en tu celular<br>
+        2. Toca <strong>Cobrar o Pagar QR</strong><br>
+        3. Escanea el código de arriba<br>
+        4. Confirma el monto y paga</p>
+      </div>
+      <button class="yape-confirm-btn" onclick="confirmYapePago()">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20l1.2-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        Ya pagué — Confirmar por WhatsApp
+      </button>
+      <button class="yape-cancel" onclick="closeYape()">Volver al carrito</button>
+    </div>
+  </div>
+</div>
+
 <!-- WA FLOAT -->
 <a class="wa-float" href="https://wa.me/51961389397?text=Hola%20Milano%20Parfums%2C%20quisiera%20hacer%20una%20consulta" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 0 0-10.4 18l-1.5 5.5 5.6-1.5A12 12 0 1 0 12 0zm6.9 17a9.9 9.9 0 0 1-14-14 9.9 9.9 0 0 1 16.9 7 9.8 9.8 0 0 1-2.9 7zm-3-5.3c-.3-.2-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.8-.7-3-2-3.8-3.5-.1-.2 0-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6L7.7 5c-.1-.3-.5-.3-.7-.3-.2 0-.5.1-.7.3-.5.5-.8 1.2-.8 2 0 2.6 2.7 6.4 6.7 7.6.6.2 1.2.3 1.7.1.5-.1 1.5-1 1.7-1.2.2-.2.2-.5.1-.7z"/></svg>
@@ -2127,40 +2406,24 @@ body{transition:background-color .8s ease;}
 const CONFIG = {
   API_URL: "https://script.google.com/macros/s/AKfycbzJTYVwaTuRyGeSb2Rtd1Za8XIJ8oorWFcO4hzew623ajLxA9xR4AytIgsQ0nPjT6o3/exec",
   WA: "51961389397",
-
-  // ── LOGO ──────────────────────────────────────────────────────────────────
-  // PNG/SVG con fondo transparente. Vacío = usa el emblema dorado por defecto.
   LOGO_URL: "",
-
-  // ── HERO ──────────────────────────────────────────────────────────────────
-  // Opción A: video corto en loop (MP4, <15MB recomendado). Vacío = imagen + parallax.
+  // Pega el link de tu imagen de fondo del hero (o video)
   HERO_VIDEO_URL: "",
-  // Opción B: imagen de fondo del hero (JPG/PNG). Solo se usa si HERO_VIDEO_URL está vacío.
   HERO_IMAGE_URL: "",
-
-  // ── TARJETAS DE CATEGORÍA (Hombres / Mujeres / Unisex) ───────────────────
-  // Imágenes de fondo de los 3 bloques del catálogo. Deja "" para usar el degradado oscuro.
-  GENDER_IMAGES: {
-    masculino: "",   // ej: "https://raw.githubusercontent.com/milanoparfums/website/main/images/hombres.jpg"
-    femenino:  "",   // ej: link de Google Drive o GitHub
-    unisex:    ""
-  },
-
-  // ── SECCIÓN "POR QUÉ ELEGIR MILANO" ──────────────────────────────────────
-  ABOUT_IMAGES: ["", "", "", ""],
-
-  // ── FOTOS DE CLIENTES ─────────────────────────────────────────────────────
-  // Hasta 8 fotos del carrusel "Nuestra comunidad". Cada entrada: { url, nombre, ciudad }
-  // Si url está vacío, se muestra un placeholder con instrucciones.
+  // Pega el link DIRECTO a tu imagen QR de Yape (sube a GitHub images/yape-qr.jpg)
+  YAPE_QR_URL: "",
+  GENDER_IMAGES: { masculino:"", femenino:"", unisex:"" },
+  ABOUT_IMAGES: ["","","",""],
   CUSTOMER_PHOTOS: [
-    { url:"", nombre:"Valeria Q.", ciudad:"Lima" },
-    { url:"", nombre:"Renzo A.",  ciudad:"Arequipa" },
-    { url:"", nombre:"Camila T.", ciudad:"Trujillo" },
-    { url:"", nombre:"Diego S.",  ciudad:"Lima" },
-    { url:"", nombre:"María R.",  ciudad:"Piura" },
-    { url:"", nombre:"André L.",  ciudad:"Cusco" },
+    {url:"",nombre:"",ciudad:""},
+    {url:"",nombre:"",ciudad:""},
+    {url:"",nombre:"",ciudad:""},
+    {url:"",nombre:"",ciudad:""},
+    {url:"",nombre:"",ciudad:""},
+    {url:"",nombre:"",ciudad:""}
   ]
 };
+
 
 /* ============================================================
    PRODUCTOS DE RESPALDO (enriquecidos con datos de modal)
@@ -2216,31 +2479,51 @@ function initBranding(){
     });
   }
 
-  // Hero — video o imagen de fondo
-  const heroVideo  = document.getElementById("heroVideo");
+  // Hero — video o imagen CUBRIENDO TODO EL HERO (fondo completo)
+  const heroEl     = document.querySelector(".hero");
   const heroBottle = document.getElementById("heroBottle");
   const heroVisual = document.getElementById("heroVisual");
+
   if(CONFIG.HERO_VIDEO_URL){
-    heroVideo.src = CONFIG.HERO_VIDEO_URL;
-    heroVideo.style.display = "block";
-    heroBottle.style.display = "none";
+    // VIDEO de fondo: cubre el hero completo
+    const vid = document.createElement("video");
+    vid.src = CONFIG.HERO_VIDEO_URL;
+    vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
+    vid.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;";
+    heroEl.insertBefore(vid, heroEl.firstChild);
+    // Oscurecer para que el texto se lea bien
+    document.documentElement.style.setProperty("--hero-overlay","rgba(8,7,5,.65)");
+    // Ocultar botella y anillos — ya no se necesitan
+    if(heroVisual) heroVisual.style.display = "none";
+
   } else if(CONFIG.HERO_IMAGE_URL){
-    // Imagen de fondo en la zona visual del hero
-    heroVisual.style.backgroundImage = `url('${CONFIG.HERO_IMAGE_URL}')`;
-    heroVisual.style.backgroundSize = "cover";
-    heroVisual.style.backgroundPosition = "center";
-    heroBottle.style.display = "none";
+    // IMAGEN de fondo: cubre el hero completo
+    heroEl.style.backgroundImage = `url('${fixImgURL(CONFIG.HERO_IMAGE_URL)}')`;
+    heroEl.style.backgroundSize = "cover";
+    heroEl.style.backgroundPosition = "center top";
+    // Overlay oscuro encima de la imagen para que el texto se lea
+    document.documentElement.style.setProperty("--hero-overlay","rgba(8,7,5,.70)");
+    // Expandir texto a todo el ancho
+    if(heroVisual) heroVisual.style.display = "none";
+    const heroInner = document.querySelector(".hero-inner");
+    if(heroInner){
+      heroInner.style.gridTemplateColumns = "1fr";
+      heroInner.style.maxWidth = "780px";
+    }
+
   } else {
-    // Parallax con el mouse (por defecto)
-    heroVisual.addEventListener("mousemove", e=>{
-      const r = heroVisual.getBoundingClientRect();
-      const x = (e.clientX - r.left)/r.width - 0.5;
-      const y = (e.clientY - r.top)/r.height - 0.5;
-      heroBottle.style.transform = `translate(${x*18}px,${y*14}px) rotate(${x*4}deg)`;
-    });
-    heroVisual.addEventListener("mouseleave", ()=>{
-      heroBottle.style.transform = "translate(0,0) rotate(0deg)";
-    });
+    // Sin imagen/video: parallax con el mouse sobre la botella (por defecto)
+    if(heroVisual){
+      heroVisual.addEventListener("mousemove", e=>{
+        const r = heroVisual.getBoundingClientRect();
+        const x = (e.clientX - r.left)/r.width - 0.5;
+        const y = (e.clientY - r.top)/r.height - 0.5;
+        if(heroBottle) heroBottle.style.transform = `translate(${x*18}px,${y*14}px) rotate(${x*4}deg)`;
+      });
+      heroVisual.addEventListener("mouseleave", ()=>{
+        if(heroBottle) heroBottle.style.transform = "translate(0,0) rotate(0deg)";
+      });
+    }
   }
 
   // Tarjetas de género (Hombres / Mujeres / Unisex)
@@ -2299,6 +2582,58 @@ function openRec(){
   document.getElementById("recOverlayBg").classList.add("open");
   document.body.style.overflow="hidden";
 }
+
+/* ============================================================
+   YAPE — QR + confirmación por WhatsApp
+   ============================================================ */
+function initYapeQR(){
+  if(!CONFIG.YAPE_QR_URL) return;
+  const wrap = document.getElementById("yapeQrWrap");
+  if(!wrap) return;
+  wrap.innerHTML = `<img src="${fixImgURL(CONFIG.YAPE_QR_URL)}" alt="QR Yape Milano Parfums" style="width:100%;height:100%;object-fit:contain;">`;
+}
+
+function openYape(){
+  const c = getCart();
+  if(!c.length) return;
+  const total = cartTotal(c).toFixed(2);
+  document.getElementById("yapeTotal").textContent = `S/. ${total}`;
+  initYapeQR();
+  document.getElementById("yapeModal").classList.add("open");
+  document.getElementById("yapeOverlayBg").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeYape(){
+  document.getElementById("yapeModal").classList.remove("open");
+  document.getElementById("yapeOverlayBg").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function confirmYapePago(){
+  const c = getCart();
+  const total = cartTotal(c).toFixed(2);
+  const lineas = c.map(i=>`• ${i.nombre} (${i.ml}ml) x${i.cantidad} — S/. ${(i.precio*i.cantidad).toFixed(2)}`).join("\n");
+  const msg = `Hola Milano Parfums 👋🏼 Acabo de pagar S/. ${total} con *Yape*.\n\nDetalle del pedido:\n${lineas}\n\nTotal pagado: S/. ${total} ✅\n\nPor favor confirmar mi pedido.`;
+  // Registrar pedido en Sheets
+  try{
+    fetch(CONFIG.API_URL,{
+      method:"POST",mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({
+        action:"pedido",
+        items:c.map(i=>({nombre:i.nombre,ml:i.ml,cantidad:i.cantidad,precio:i.precio})),
+        total:Number(total),
+        mensaje:msg + " — PAGO CON YAPE"
+      })
+    });
+  }catch(e){}
+  closeYape();
+  closeCart();
+  window.open(`https://wa.me/${CONFIG.WA}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
+document.getElementById("yapeOverlayBg").addEventListener("click", closeYape);
 function closeRec(){
   document.getElementById("recModal").classList.remove("open");
   document.getElementById("recOverlayBg").classList.remove("open");
@@ -2318,22 +2653,39 @@ async function submitRec(){
     msg.textContent="Por favor completa todos los campos obligatorios (*)";
     return;
   }
-  msg.style.color="var(--tm)"; msg.textContent="Enviando...";
-  const payload = {
-    action:"reclamacion", nombre, dni, email,
-    telefono: document.getElementById("recTel").value,
-    tipo, descripcion: desc,
-    orden: document.getElementById("recOrden").value,
+  msg.style.color="var(--tm)"; msg.textContent="Enviando reclamación...";
+
+  // Usar JSONP (GET) para poder confirmar que se guardó en Sheets
+  const params = new URLSearchParams({
+    action: "reclamacion",
+    nombre, dni, email,
+    telefono: document.getElementById("recTel").value || "",
+    tipo,
+    descripcion: desc,
+    orden: document.getElementById("recOrden").value || "",
     fecha: new Date().toLocaleString("es-PE")
-  };
+  });
+
   try{
-    fetch(CONFIG.API_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
-    msg.style.color="var(--sage)";
-    msg.textContent="✅ Reclamación registrada. Te responderemos en un máximo de 30 días hábiles.";
-    setTimeout(closeRec, 3200);
+    const res  = await fetch(`${CONFIG.API_URL}?${params.toString()}`);
+    const data = await res.json();
+    if(data.ok){
+      msg.style.color="var(--sage)";
+      msg.textContent="✅ Reclamación registrada. Te responderemos en un máximo de 30 días hábiles.";
+      // Limpiar formulario
+      ["recNombre","recDni","recEmail","recTel","recDesc","recOrden"].forEach(id=>{
+        const el=document.getElementById(id); if(el) el.value="";
+      });
+      const sel=document.getElementById("recTipo"); if(sel) sel.value="";
+      setTimeout(closeRec, 3500);
+    } else {
+      msg.style.color="var(--wine)";
+      msg.textContent="Error al registrar: " + (data.error||"intenta de nuevo.");
+    }
   }catch(e){
+    console.error("Reclamacion error:", e);
     msg.style.color="var(--wine)";
-    msg.textContent="No pudimos enviar. Escríbenos directamente a milanoparfums.pe@gmail.com";
+    msg.textContent="No pudimos conectar. Escríbenos a milanoparfums.pe@gmail.com";
   }
 }
 
@@ -3651,6 +4003,108 @@ function aiHideTyping(){ document.getElementById("aiTypingIndicator")?.remove();
 function aiSendMsg(msg){ msg=msg.trim(); if(!msg) return; document.getElementById("aiInput").value=""; document.getElementById("aiQuickRow").innerHTML=""; renderAIMsg("user",msg); aiHistory.push({role:"user",text:msg}); aiShowTyping(); setTimeout(()=>{ aiHideTyping(); const r=aiGenerate(msg,aiHistory); renderAIMsg("ai",r.text,r.products||[],r.chips||[],r.matchLabels||[]); aiHistory.push({role:"ai",text:r.text}); }, 600+Math.random()*500); }
 document.getElementById("aiSend").addEventListener("click",()=>aiSendMsg(document.getElementById("aiInput").value));
 document.getElementById("aiInput").addEventListener("keydown",e=>{ if(e.key==="Enter") aiSendMsg(e.target.value); });
+
+/* ============================================================
+   FLY-TO-CART ANIMATION
+   ============================================================ */
+function flyToCart(originEl){
+  const cartIcon = document.getElementById("cartBtn");
+  if(!cartIcon || !originEl) return;
+
+  const from = originEl.getBoundingClientRect();
+  const to   = cartIcon.getBoundingClientRect();
+
+  const fly = document.createElement("div");
+  fly.className = "fly-item";
+  fly.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.2 2 4.5 5.7 4.1c2-.2 3.7.9 4.5 2.3.8-1.4 2.5-2.5 4.5-2.3C18.4 4.5 20 8.2 18.3 11.7"/><circle cx="18" cy="18" r="4" fill="#fff" stroke="none"/><path d="M16 18h4M18 16v4" stroke="#B8924B" stroke-width="2"/></svg>`;
+
+  const startX = from.left + from.width/2 - 22;
+  const startY = from.top  + from.height/2 - 22;
+  const endX   = to.left  + to.width/2  - 22;
+  const endY   = to.top   + to.height/2 - 22;
+  const dx = endX - startX;
+  const dy = endY - startY;
+
+  fly.style.cssText = `left:${startX}px;top:${startY}px;`;
+  fly.style.setProperty("--dx",  dx + "px");
+  fly.style.setProperty("--dy",  dy + "px");
+  fly.style.setProperty("--dx2", (dx*0.4) + "px");
+  fly.style.setProperty("--dy2", (dy*0.2 - 60) + "px");
+  document.body.appendChild(fly);
+
+  fly.style.animation = "flyToCart .65s cubic-bezier(.4,0,.2,1) forwards";
+  fly.addEventListener("animationend", ()=>{
+    fly.remove();
+    // Bounce cart count
+    const cnt = document.getElementById("cartCount");
+    if(cnt){ cnt.classList.remove("bounce"); void cnt.offsetWidth; cnt.classList.add("bounce"); }
+  });
+}
+
+/* Override addToCart para disparar animación */
+const _origAddToCart = addToCart;
+addToCart = function(id, ml){
+  // Find the card button that triggered this to get position
+  const card = document.querySelector(`.card[data-id="${id}"]`);
+  _origAddToCart.apply(this, arguments);
+  if(card) flyToCart(card.querySelector(".card-media") || card);
+};
+
+/* ============================================================
+   DRAG-TO-SCROLL + AUTO-SCROLL en hover para carrusel comunidad
+   ============================================================ */
+(function initCommunityCarousel(){
+  const scroll = document.getElementById("customerScroll");
+  if(!scroll) return;
+
+  // Drag to scroll
+  let isDown=false, startX, scrollLeft;
+  scroll.addEventListener("mousedown", e=>{
+    isDown=true; scroll.style.cursor="grabbing";
+    startX=e.pageX-scroll.offsetLeft; scrollLeft=scroll.scrollLeft;
+  });
+  scroll.addEventListener("mouseleave",()=>{ isDown=false; scroll.style.cursor="grab"; });
+  scroll.addEventListener("mouseup",  ()=>{ isDown=false; scroll.style.cursor="grab"; });
+  scroll.addEventListener("mousemove", e=>{
+    if(!isDown) return; e.preventDefault();
+    const x=e.pageX-scroll.offsetLeft;
+    scroll.scrollLeft=scrollLeft-(x-startX)*1.4;
+  });
+
+  // Auto-slide suave al hacer hover sobre la sección
+  let autoTimer=null;
+  const section = scroll.closest("section");
+  if(section){
+    section.addEventListener("mouseenter",()=>{
+      autoTimer=setInterval(()=>{
+        if(scroll.scrollLeft+scroll.clientWidth>=scroll.scrollWidth-10){
+          scroll.scrollLeft=0;
+        } else {
+          scroll.scrollBy({left:1, behavior:"auto"});
+        }
+      }, 18);
+    });
+    section.addEventListener("mouseleave",()=>{ clearInterval(autoTimer); });
+  }
+})();
+
+/* ============================================================
+   PERFORMANCE: lazy load images + preconnect DNS
+   ============================================================ */
+(function lazyImages(){
+  if(!("IntersectionObserver" in window)) return;
+  const lazyIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const img = e.target;
+        if(img.dataset.src){ img.src=img.dataset.src; delete img.dataset.src; }
+        lazyIO.unobserve(img);
+      }
+    });
+  },{rootMargin:"200px"});
+  document.querySelectorAll("img[loading='lazy']").forEach(img=>lazyIO.observe(img));
+})();
+
 </script>
 </body>
 </html>
