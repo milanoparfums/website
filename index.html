@@ -1196,14 +1196,22 @@ body{transition:background-color .8s ease;}
 .customer-photo{
   flex:0 0 240px;scroll-snap-align:start;
   position:relative;overflow:hidden;
-  border-radius:4px;height:300px;
-  cursor:pointer;
+  border-radius:8px;height:300px;cursor:pointer;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+  box-shadow:0 4px 14px rgba(0,0,0,.1);
+  will-change:transform;
+}
+.customer-photo:hover{
+  transform:scale(1.04) translateY(-5px);
+  box-shadow:0 18px 42px rgba(0,0,0,.25);
+  z-index:2;
 }
 .customer-photo img{
   width:100%;height:100%;object-fit:cover;
   transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  display:block;
 }
-.customer-photo:hover img{transform:scale(1.07);}
+.customer-photo:hover img{transform:scale(1.06);}
 .customer-photo .cp-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to top,rgba(10,9,7,.75) 0%,transparent 60%);
@@ -1543,43 +1551,8 @@ nav.main a:hover{color:var(--gold) !important;}
 .cart-count.bounce{animation:cartBounce .45s ease;}
 
 /* ══ CARRUSEL COMUNIDAD DINÁMICO ══ */
-.customer-scroll{
-  display:flex;gap:14px;
-  overflow-x:auto;scroll-behavior:smooth;
-  padding:4px 0 16px;
-  -ms-overflow-style:none;scrollbar-width:none;
-  cursor:grab;
-}
-.customer-scroll:active{cursor:grabbing;}
-.customer-scroll::-webkit-scrollbar{display:none;}
-.customer-photo{
-  flex:0 0 240px;position:relative;overflow:hidden;
-  border-radius:8px;height:300px;cursor:pointer;
-  transition:flex .4s ease, box-shadow .3s;
-  box-shadow:0 4px 16px rgba(0,0,0,.15);
-}
-.customer-photo:hover{
-  flex:0 0 300px;
-  box-shadow:0 12px 36px rgba(0,0,0,.3);
-}
-.customer-photo img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .55s cubic-bezier(.2,.8,.2,1);
-}
-.customer-photo:hover img{transform:scale(1.08);}
-.customer-photo .cp-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,9,7,.8) 0%,transparent 55%);
-  opacity:0;transition:opacity .3s;
-}
-.customer-photo:hover .cp-overlay{opacity:1;}
-.customer-photo .cp-info{
-  position:absolute;bottom:0;left:0;right:0;padding:18px 16px;
-  color:#fff;transform:translateY(10px);transition:transform .3s;
-}
-.customer-photo:hover .cp-info{transform:translateY(0);}
-.cp-name{font-family:'Fraunces',serif;font-size:15px;margin-bottom:3px;}
-.cp-verify{font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.05em;color:var(--gold2);font-weight:700;}
+
+/* carousel hover — controlled by first block */
 
 /* ══ PERFORMANCE: reduce motion ══ */
 @media(prefers-reduced-motion:reduce){
@@ -3904,103 +3877,161 @@ document.querySelectorAll(".chapter-fade,.chapter-left,.chapter-right,.chapter-s
 /* ============================================================
    ASISTENTE IA DE FRAGANCIAS (conversacional, sin API)
    ============================================================ */
-const AI_KNOWLEDGE = {
-  familias:{
-    "dulce":["Gourmand"],"vainilla":["Gourmand"],"café":["Gourmand"],"gourmand":["Gourmand"],
-    "fresco":["Acuática","Floral"],"cítrico":["Acuática"],"marino":["Acuática"],"mar":["Acuática"],"ligero":["Acuática"],
-    "floral":["Floral"],"rosa":["Floral"],"jazmín":["Floral"],"flores":["Floral"],
-    "intenso":["Oriental"],"amaderado":["Oriental"],"madera":["Oriental"],"oriental":["Oriental"],"oud":["Oriental"],"cuero":["Oriental"],"especiado":["Oriental"],
-    "verde":["Herbal"],"higo":["Herbal"],"herbal":["Herbal"],
-  },
-  ocasiones:{
-    "noche":{intensidad:[2,3]},"nocturno":{intensidad:[2,3]},"fiesta":{intensidad:[2,3]},"evento":{intensidad:[2,3]},
-    "oficina":{intensidad:[1,2]},"trabajo":{intensidad:[1,2]},"diario":{intensidad:[1,2]},"dia":{intensidad:[1,2]},
-    "regalo":{all:true},"verano":{familias:["Acuática","Floral"]},"invierno":{familias:["Oriental","Gourmand"]},
-  },
-  genero:{
-    "hombre":["Masculino","Unisex"],"masculino":["Masculino","Unisex"],
-    "mujer":["Femenino","Unisex"],"femenino":["Femenino","Unisex"],
-    "unisex":["Unisex"],
-  }
-};
-function aiScore(p,msg){
-  const m=msg.toLowerCase(); let score=0;
-  Object.entries(AI_KNOWLEDGE.familias).forEach(([kw,fams])=>{ if(m.includes(kw)&&fams.includes(p.Familia)) score+=4; });
-  Object.entries(AI_KNOWLEDGE.ocasiones).forEach(([kw,cfg])=>{
-    if(m.includes(kw)){
-      if(cfg.all) score+=2;
-      if(cfg.intensidad&&cfg.intensidad.includes(Number(p.Intensidad))) score+=3;
-      if(cfg.familias&&cfg.familias.includes(p.Familia)) score+=2;
-    }
-  });
-  Object.entries(AI_KNOWLEDGE.genero).forEach(([kw,gens])=>{ if(m.includes(kw)&&gens.includes(p.Genero)) score+=2; });
-  const precio=getSizes(p)[1].precio;
-  if((m.includes("barato")||m.includes("económico"))&&precio<=55) score+=2;
-  if((m.includes("premium")||m.includes("especial"))&&precio>55) score+=2;
-  if(m.includes(p.Nombre.toLowerCase())) score+=8;
-  const notas=`${p.NotasCabeza||""} ${p.NotasCorazon||""} ${p.NotasFondo||""}`.toLowerCase();
-  ["bergamota","ámbar","sándalo","jazmín","oud","vainilla","cedro","pachulí","rosa","cuero","incienso","miel","café","tonka"].forEach(n=>{
-    if(m.includes(n)&&notas.includes(n)) score+=3;
-  });
-  return score;
-}
-function aiRecommend(msg,top=4){
-  const activos=PRODUCTS.filter(p=>String(p.Activo).toUpperCase()!=="NO");
-  const scored=activos.map(p=>({p,score:aiScore(p,msg)})).sort((a,b)=>b.score-a.score);
-  const pos=scored.filter(s=>s.score>0).slice(0,top);
-  return pos.length>=2?pos:scored.slice(0,3);
-}
-function aiGenerate(msg){
-  const m=msg.toLowerCase();
-  const recs=aiRecommend(msg);
-  const matchLabels=["Match perfecto para ti ✨","Opción ideal 🌟","Excelente alternativa 🎯","También te puede gustar"];
-  if(["hola","buenas","buenos","hey","hi"].some(g=>m.startsWith(g)||m===g)){
-    return{text:"¡Hola! Soy el asistente olfativo de Milano Parfums 🌿\n\nCuéntame qué tipo de fragancia buscas — para una ocasión especial, un regalo, una nota que te gusta, o simplemente dime **cómo quieres sentirte**.",products:[],chips:["Para la noche 🌙","Para regalar 🎁","Algo dulce 🍯","Algo fresco 🌊","Para el trabajo 💼"]};
-  }
-  if(m.includes("precio")||m.includes("cuánto")||m.includes("costo")){
-    return{text:"Nuestras fragancias están disponibles en **3 tamaños**:\n• **10ml Prueba** — para conocerla antes de comprometerte\n• **50ml Clásico** — el favorito de nuestra comunidad\n• **100ml Premium** — mejor precio por ml\n\n¿Te ayudo a encontrar algo en tu presupuesto?",products:[],chips:["Hasta S/. 55","Entre S/. 55–70","Quiero lo mejor 👑"]};
-  }
-  if(m.includes("dura")||m.includes("duración")){
-    return{text:"Formulamos con **16%–22% de concentración** — por encima del estándar del mercado masivo. En la mayoría de pieles duran **8 a 12 horas**.\n\nLas orientales y gourmand duran más. Las acuáticas son más ligeras pero perfectas para el día.",products:recs.slice(0,2),chips:["Algo que dure más 💪","Para el día 🌤️","Para la noche 🌙"],matchLabels};
-  }
-  if(m.includes("inspirada")||m.includes("original")||m.includes("copia")||m.includes("diferencia")){
-    return{text:"Somos una **marca original de Lima, Perú** 🇵🇪\n\nEl \"Inspirado en\" es solo una referencia olfativa — compartimos la familia de notas del perfume mencionado, pero con nuestra propia formulación, nombre y presentación. No somos una réplica: somos una reinterpretación con identidad propia.",products:[],chips:["¿Cuál me recomiendas?","Ver catálogo completo"]};
-  }
-  if(recs.length>=2){
-    return{text:`Según lo que me describes, aquí están mis recomendaciones personalizadas para ti:`,products:recs,chips:["Algo más intenso 🔥","Algo más suave 🍃","Para regalo 🎁","Ver todo el catálogo"],matchLabels};
-  }
-  return{text:"Cuéntame un poco más — ¿buscas algo **dulce, fresco o intenso**? ¿Es para ti o para regalar? ¿Tienes una ocasión especial? 😊",products:[],chips:["Dulce y cálido 🍯","Fresco y marino 🌊","Intenso y oscuro 🌙","Para regalar 🎁"]};
+/* ============================================================
+   ASISTENTE DE FRAGANCIAS — Powered by Claude AI
+   ============================================================ */
+let aiHistory = [];   // [{role:"user",content:""},{role:"assistant",content:""}]
+
+function buildSystemPrompt(){
+  const activos = PRODUCTS.filter(p=>String(p.Activo).toUpperCase()!=="NO").slice(0,80);
+  const catalog = activos.map(p=>
+    `• ${p.Nombre} (${p.Genero}, ${p.Familia||"?"}, S/.${getSizes(p)[1].precio}) - Inspirado en: ${p.InspiradoEn||"original"} - Notas: ${p.NotasCabeza||""} / ${p.NotasCorazon||""} / ${p.NotasFondo||""}`
+  ).join("\n");
+  return `Eres el asesor de fragancias de Milano Parfums, una tienda peruana de perfumes premium con más de 200 fragancias inspiradas en las marcas más codiciadas del mundo.
+
+Tu personalidad:
+- Cálido, sofisticado y cercano — como un amigo experto en perfumería
+- Hablas en español peruano natural, sin sonar robótico
+- Haces preguntas específicas para entender mejor al cliente
+- Das recomendaciones concretas con razones personales
+- Si alguien quiere algo dulce nocturno, no solo listas opciones — describes lo que sentirán al usarlo
+- Puedes hacer seguimiento: "¿Y para qué ocasión sería?" "¿Te gustan más las notas cálidas o frescas?"
+- NUNCA digas "Según lo que me describes" como intro
+- Varía tus respuestas — sé espontáneo y natural
+- Si preguntan precio, menciona los 3 tamaños: 10ml prueba, 50ml clásico, 100ml premium
+
+Datos clave de la marca:
+- Concentración: 33-35% esencia premium de Grasse, Francia
+- Envíos a todo el Perú, entrega 24-48h en Lima
+- Pago: Yape, Plin, transferencia, tarjeta
+- WhatsApp para coordinar: +51 961 389 397
+
+Nuestro catálogo actual (los más relevantes):
+${catalog}
+
+Cuando recomiendes productos, menciona el nombre exacto de nuestra colección. Si el cliente describe algo que no existe en el catálogo, sugiere el más cercano.`;
 }
 
-// ---- UI chat ----
-let aiHistory=[];
-function openAI(){ document.getElementById("aiPanel").classList.add("open"); document.body.style.overflow="hidden"; if(!aiHistory.length) aiWelcome(); setTimeout(()=>document.getElementById("aiInput").focus(),400); }
+async function callClaude(userMsg){
+  const messages = [
+    ...aiHistory,
+    {role:"user", content: userMsg}
+  ];
+  try{
+    const res = await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        model:"claude-sonnet-4-6",
+        max_tokens:1000,
+        system: buildSystemPrompt(),
+        messages
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || "Disculpa, tuve un problema. ¿Puedes repetir tu pregunta?";
+    return text;
+  }catch(e){
+    console.error("Claude error:", e);
+    return "Tuve un inconveniente técnico. Escríbenos por WhatsApp y te asesoramos al instante 😊";
+  }
+}
+
+// ── UI helpers ──
+function openAI(){
+  document.getElementById("aiPanel").classList.add("open");
+  document.body.style.overflow="hidden";
+  if(!aiHistory.length) aiWelcome();
+  setTimeout(()=>document.getElementById("aiInput").focus(),400);
+}
 function closeAI(){ document.getElementById("aiPanel").classList.remove("open"); document.body.style.overflow=""; }
 document.getElementById("aiFloatBtn").addEventListener("click",openAI);
 document.getElementById("aiPanelClose").addEventListener("click",closeAI);
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeAI(); closeProduct(); closeWish(); closeSearch(); } });
-function aiWelcome(){ const r=aiGenerate("hola"); renderAIMsg("ai",r.text,[],r.chips,[]); }
-function renderAIMsg(role,text,products=[],chips=[],matchLabels=[]){
-  const msgBox=document.getElementById("aiMessages");
-  const div=document.createElement("div"); div.className=`ai-msg ${role}`;
-  const fmt=text.replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/\n/g,"<br>");
-  let inner=`<div class="ai-bubble">${role==="ai"?'<strong>Asistente Milano</strong>':''} ${fmt}</div>`;
-  products.forEach(({p},i)=>{
-    inner+=`<div class="ai-product-chip" onclick="closeAI();openProduct('${p.ID}')">
-      <div class="ai-chip-swatch" style="background:linear-gradient(150deg,${p.Color||'#6E1423'},#16140F);"></div>
-      <div class="ai-chip-info"><div class="ai-chip-name">${p.Nombre}</div><div class="ai-chip-note">${matchLabels[i]||p.Nota}</div></div>
-      <div class="ai-chip-price">S/. ${getSizes(p)[1].precio.toFixed(2)}</div>
-    </div>`;
-  });
-  div.innerHTML=inner; msgBox.appendChild(div);
-  if(chips.length){
-    document.getElementById("aiQuickRow").innerHTML=`<div class="ai-chips-row" style="padding:0 16px 4px;">${chips.map(c=>`<button class="ai-quick" onclick="aiSendMsg('${c.replace(/'/g,"\\'")}')"> ${c}</button>`).join("")}</div>`;
-  } else { document.getElementById("aiQuickRow").innerHTML=""; }
-  msgBox.scrollTop=msgBox.scrollHeight;
+
+function aiWelcome(){
+  const greets = [
+    "¡Hola! Soy tu asesor de fragancias de Milano Parfums 🌿 Cuéntame, ¿qué estás buscando? Puedo ayudarte a encontrar el perfume ideal según tu estilo, la ocasión o las notas que más te gusten.",
+    "¡Bienvenido! ¿Buscas algo para ti o para regalar? Cuéntame un poco y te ayudo a encontrar la fragancia perfecta de nuestra colección.",
+    "Hola 👋 Soy el asesor de Milano Parfums. Tenemos más de 200 fragancias — dime qué tipo de aromas te llaman la atención y encontramos la tuya."
+  ];
+  const msg = greets[Math.floor(Math.random()*greets.length)];
+  renderAIMsg("ai", msg, [], ["Para la noche 🌙","Para regalar 🎁","Algo dulce 🍯","Algo fresco 🌊","Para el trabajo 💼"]);
 }
-function aiShowTyping(){ const b=document.getElementById("aiMessages"); const d=document.createElement("div"); d.className="ai-msg ai"; d.id="aiTypingIndicator"; d.innerHTML='<div class="ai-bubble ai-typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>'; b.appendChild(d); b.scrollTop=b.scrollHeight; }
+
+function renderAIMsg(role, text, products=[], chips=[]){
+  const msgBox = document.getElementById("aiMessages");
+  const div = document.createElement("div");
+  div.className = `ai-msg ${role}`;
+  const fmt = text
+    .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g,"<em>$1</em>")
+    .replace(/\n/g,"<br>");
+  div.innerHTML = `<div class="ai-bubble">${fmt}</div>`;
+
+  // Detectar productos mencionados y mostrar chips
+  if(role === "ai" && PRODUCTS.length){
+    const mentioned = PRODUCTS.filter(p=>
+      text.toLowerCase().includes(p.Nombre.toLowerCase())
+    ).slice(0,3);
+    if(mentioned.length){
+      const productChips = mentioned.map(p=>`
+        <div class="ai-product-chip" onclick="closeAI();openProduct('${p.ID}')">
+          <div class="ai-chip-swatch" style="background:linear-gradient(150deg,${p.Color||'#6E1423'},#16140F);"></div>
+          <div class="ai-chip-info">
+            <div class="ai-chip-name">${p.Nombre}</div>
+            <div class="ai-chip-note">${p.Nota||""}</div>
+          </div>
+          <div class="ai-chip-price">S/. ${getSizes(p)[1].precio.toFixed(2)}</div>
+        </div>`).join("");
+      div.querySelector(".ai-bubble").insertAdjacentHTML("beforeend", productChips);
+    }
+  }
+
+  msgBox.appendChild(div);
+
+  // Quick reply chips
+  const qr = document.getElementById("aiQuickRow");
+  if(chips.length){
+    qr.innerHTML=`<div class="ai-chips-row" style="padding:0 16px 4px;">${chips.map(c=>`<button class="ai-quick" onclick="aiSendMsg('${c.replace(/'/g,"\'")}')"> ${c}</button>`).join("")}</div>`;
+  } else { qr.innerHTML=""; }
+
+  msgBox.scrollTop = msgBox.scrollHeight;
+}
+
+function aiShowTyping(){
+  const b = document.getElementById("aiMessages");
+  const d = document.createElement("div");
+  d.className="ai-msg ai"; d.id="aiTypingIndicator";
+  d.innerHTML='<div class="ai-bubble ai-typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+  b.appendChild(d); b.scrollTop=b.scrollHeight;
+}
 function aiHideTyping(){ document.getElementById("aiTypingIndicator")?.remove(); }
-function aiSendMsg(msg){ msg=msg.trim(); if(!msg) return; document.getElementById("aiInput").value=""; document.getElementById("aiQuickRow").innerHTML=""; renderAIMsg("user",msg); aiHistory.push({role:"user",text:msg}); aiShowTyping(); setTimeout(()=>{ aiHideTyping(); const r=aiGenerate(msg,aiHistory); renderAIMsg("ai",r.text,r.products||[],r.chips||[],r.matchLabels||[]); aiHistory.push({role:"ai",text:r.text}); }, 600+Math.random()*500); }
+
+async function aiSendMsg(msg){
+  msg = msg.trim(); if(!msg) return;
+  document.getElementById("aiInput").value="";
+  document.getElementById("aiQuickRow").innerHTML="";
+  renderAIMsg("user", msg);
+  aiHistory.push({role:"user", content: msg});
+  aiShowTyping();
+  try{
+    const reply = await callClaude(msg);
+    aiHideTyping();
+    aiHistory.push({role:"assistant", content: reply});
+    // Keep history manageable (last 10 turns)
+    if(aiHistory.length > 20) aiHistory = aiHistory.slice(-20);
+    // Smart quick replies based on reply content
+    const chips = reply.length < 50 ? ["Cuéntame más","¿Cuál recomiendas?","Ver precios"] :
+      reply.toLowerCase().includes("regalo") ? ["¿Para hombre o mujer?","Presupuesto S/. 55","Envuelto para regalo 🎁"] :
+      reply.toLowerCase().includes("recomiendo") ? ["Ver más opciones","¿Cómo se aplica?","Añadir al carrito"] :
+      ["¿Y para regalo?","Ver más fragancias","Hablar por WhatsApp"];
+    renderAIMsg("ai", reply, [], chips);
+  }catch(e){
+    aiHideTyping();
+    renderAIMsg("ai","Disculpa, tuve un problema de conexión. ¿Puedes repetir?");
+  }
+}
+
 document.getElementById("aiSend").addEventListener("click",()=>aiSendMsg(document.getElementById("aiInput").value));
 document.getElementById("aiInput").addEventListener("keydown",e=>{ if(e.key==="Enter") aiSendMsg(e.target.value); });
 
