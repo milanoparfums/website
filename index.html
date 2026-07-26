@@ -742,14 +742,14 @@ nav.main{display:flex;gap:28px;align-items:center;}
 /* ===== PRODUCT CARD ===== */
 .card{flex:0 0 260px;scroll-snap-align:start;background:#fff;border:1px solid rgba(21,18,15,.08);display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s cubic-bezier(.2,.8,.2,1);cursor:pointer;}
 .card:hover{transform:translateY(-7px);box-shadow:0 24px 44px rgba(21,18,15,.13);}
-.card-media{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);}
+.card-media{height:280px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(150deg,#EFE6D6,#E2D6BC);}
 .card-media img,.card-media svg{transition:transform .55s cubic-bezier(.2,.8,.2,1);}
 .card:hover .card-media img,.card:hover .card-media svg{transform:scale(1.09) rotate(-1deg);}
 .ctag{position:absolute;top:10px;left:10px;font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 10px;}
 /* Colores por género */
-.ctag-masc{background:#15120F;color:#F3ECDD;}
-.ctag-fem{background:#D4848A;color:#fff;}
-.ctag-uni{background:#C4A44A;color:#fff;}
+.ctag-masc{background:#1A56B0;color:#fff;}
+.ctag-fem{background:#E8196A;color:#fff;}
+.ctag-uni{background:#7B5EA7;color:#fff;}
 /* urgency badge */
 .urg-badge{display:flex;align-items:center;gap:5px;font-family:'Archivo',sans-serif;font-size:10px;letter-spacing:.02em;color:var(--wine);font-weight:700;margin-bottom:9px;}
 .urg-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--wine);flex:none;animation:urgblink 1.8s infinite;}
@@ -1331,7 +1331,7 @@ body{transition:background-color .8s ease;}
 .catalog-grid.view-3 .card{flex:0 0 calc(33.33% - 11px);}
 .catalog-grid.view-4 .card{flex:0 0 calc(25% - 12px);}
 .catalog-grid.view-list .card{flex:0 0 100%;display:grid;grid-template-columns:130px 1fr;height:auto;}
-.catalog-grid.view-list .card-media{height:130px;}
+.catalog-grid.view-list .card-media{height:160px;}
 .catalog-grid.view-list .card-body{padding:14px 18px;}
 /* ACTIVE FILTER CHIPS */
 .active-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;min-height:10px;}
@@ -1396,7 +1396,7 @@ body{transition:background-color .8s ease;}
 .catalog-grid.view-3 .card{flex:0 0 calc(33.33% - 11px);}
 .catalog-grid.view-4 .card{flex:0 0 calc(25% - 12px);}
 .catalog-grid.view-list .card{flex:0 0 100%;display:grid;grid-template-columns:130px 1fr;height:auto;}
-.catalog-grid.view-list .card-media{height:130px;}
+.catalog-grid.view-list .card-media{height:160px;}
 .catalog-grid.view-list .card-body{padding:14px 18px;}
 .active-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;min-height:10px;}
 .af-chip{display:inline-flex;align-items:center;gap:6px;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;background:rgba(184,146,75,.12);color:var(--ink);padding:5px 10px;border-radius:20px;}
@@ -1557,6 +1557,32 @@ nav.main a:hover{color:var(--gold) !important;}
 /* ══ PERFORMANCE: reduce motion ══ */
 @media(prefers-reduced-motion:reduce){
   .fly-item,*{animation:none !important;transition:none !important;}
+}
+
+
+/* ══ DESCUENTOS ══ */
+.discount-badge{
+  position:absolute;top:10px;right:10px;
+  background:var(--wine);color:#fff;
+  font-family:'Archivo',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.04em;padding:4px 8px;border-radius:2px;
+  z-index:2;
+}
+.price-orig{
+  font-family:'Archivo',sans-serif;font-size:11px;
+  color:var(--tm);text-decoration:line-through;
+  margin-right:4px;
+}
+.price-new{color:var(--wine);font-weight:700;}
+.pm-price-orig{
+  font-family:'Archivo',sans-serif;font-size:14px;
+  color:var(--tm);text-decoration:line-through;
+  display:inline-block;margin-right:8px;
+}
+.pm-savings{
+  display:inline-block;background:var(--wine);color:#fff;
+  font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;
+  padding:3px 8px;border-radius:2px;vertical-align:middle;
 }
 
 </style>
@@ -2693,13 +2719,17 @@ function getProductImages(p){
   return [];
 }
 function getSizes(p){
-  const base = Number(p.Precio) || 55;
-  const p10 = p.Precio10 ? Number(p.Precio10) : Math.round(base*0.5);
-  const p100 = p.Precio100 ? Number(p.Precio100) : Math.round(base*1.75);
+  const base   = Number(p.Precio)    || 55;
+  const p10    = p.Precio10   ? Number(p.Precio10)   : Math.round(base*0.5);
+  const p100   = p.Precio100  ? Number(p.Precio100)  : Math.round(base*1.75);
+  // Precios originales (antes de descuento) — columnas: PrecioOrig, Precio10Orig, Precio100Orig
+  const orig50  = p.PrecioOrig    ? Number(p.PrecioOrig)    : null;
+  const orig10  = p.Precio10Orig  ? Number(p.Precio10Orig)  : null;
+  const orig100 = p.Precio100Orig ? Number(p.Precio100Orig) : null;
   return [
-    {ml:10, precio:p10, label:"Prueba"},
-    {ml:50, precio:base, label:"Clásico"},
-    {ml:100, precio:p100, label:"Premium"}
+    {ml:10,  precio:p10,   precioOrig:orig10,  label:"Prueba"},
+    {ml:50,  precio:base,  precioOrig:orig50,  label:"Clásico"},
+    {ml:100, precio:p100,  precioOrig:orig100, label:"Premium"}
   ];
 }
 function urgencyBadge(p){
@@ -2730,6 +2760,7 @@ function cardHTML(p){
   return `<div class="card" data-id="${p.ID}" data-selected-ml="50">
     <div class="card-media" onclick="openProduct('${p.ID}')">
       <span class="ctag ${p.Genero==='Femenino'?'ctag-fem':p.Genero==='Unisex'?'ctag-uni':'ctag-masc'}">${p.Genero}</span>
+      ${sizes[1].precioOrig ? `<span class="discount-badge">-${Math.round((1-sizes[1].precio/sizes[1].precioOrig)*100)}%</span>` : ""}
       <button class="wishlist-btn" data-wish="${p.ID}" onclick="event.stopPropagation();toggleWish('${p.ID}')"><svg viewBox="0 0 24 24" fill="none" stroke="#15120F" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.2 2 4.5 5.7 4.1c2-.2 3.7.9 4.5 2.3.8-1.4 2.5-2.5 4.5-2.3C18.4 4.5 20 8.2 18.3 11.7 16.5 16.4 12 21 12 21z"/></svg></button>
       ${imgHTML}
     </div>
@@ -2739,10 +2770,13 @@ function cardHTML(p){
       <div class="card-note" onclick="openProduct('${p.ID}')">${p.Nota}</div>
       ${urgencyBadge(p)}
       <div class="size-row">
-        ${sizes.map(s=>`<button class="size-opt${s.ml===50?' active':''}" data-ml="${s.ml}">${s.ml}ml</button>`).join("")}
+        ${sizes.map(s=>`<button class="size-opt${s.ml===50?' active':''}" data-ml="${s.ml}" title="S/. ${s.precio.toFixed(2)}">${s.ml}ml</button>`).join("")}
       </div>
       <div class="card-foot">
-        <div class="price">S/. ${def.precio.toFixed(2)}<small>${def.ml}ml</small></div>
+        <div class="price">
+          ${def.precioOrig ? `<span class="price-orig">S/. ${def.precioOrig.toFixed(2)}</span><span class="price-new">S/. ${def.precio.toFixed(2)}</span>` : `S/. ${def.precio.toFixed(2)}`}
+          <small>${def.ml}ml</small>
+        </div>
         <button class="add-btn" ${sinStock?'disabled':''}>${sinStock?'Agotado':'Añadir'}</button>
       </div>
     </div>
@@ -3048,7 +3082,12 @@ function openProduct(id){
       <div class="pm-size-row">
         ${sizes.map(s=>`<button class="pm-size-opt${s.ml===50?' active':''}" data-ml="${s.ml}">${s.ml}ml<span>${s.label}</span></button>`).join("")}
       </div>
-      <div class="pm-price" id="pmPriceDisplay">S/. ${def.precio.toFixed(2)}<small>Precio · ${def.ml}ml</small></div>
+      <div class="pm-price" id="pmPriceDisplay">
+        ${def.precioOrig ? `<span class="pm-price-orig">S/. ${def.precioOrig.toFixed(2)}</span>` : ""}
+        S/. ${def.precio.toFixed(2)}
+        ${def.precioOrig ? `<span class="pm-savings">-${Math.round((1-def.precio/def.precioOrig)*100)}% OFF</span>` : ""}
+        <small>Precio · ${def.ml}ml</small>
+      </div>
       <button class="btn solid pm-add" onclick="addToCart(pmCurrentId,pmSelectedMl);closeProduct();" ${Number(p.Stock)===0?'disabled':''}>
         ${Number(p.Stock)===0?'Agotado — Consultar':'Añadir al carrito'}
       </button>
